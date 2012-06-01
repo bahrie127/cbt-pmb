@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!--
+    Declare Spring's View Resolvers for Jasper
+
+    Based on the bean names we can infer that:
+    * pdfReport is for generating PDFs
+    * xlsReport is for Excel format reports
+    * htmlReport is for HTML reports
+    * csvReport is for CSV reports
+    -->
+    <!--
+    id: the name to be used as a reference in the controller
+    url: the path where the Jasper JRXML file is located
+    reportDateKey: the name of the datasource. This is passed by the controller
+    -->
+
+    <bean id="testPdf"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/test.jrxml"
+          p:reportDataKey="datasource" />
+
+    <bean id="jurnalUmum"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/jurnalumum.jrxml"
+          p:reportDataKey="datasource" />
+
+    <bean id="daftarMerek"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/daftarmerek.jrxml"
+          p:reportDataKey="datasource" />
+
+    <bean id="daftarWarna"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/daftarwarna.jrxml"
+          p:reportDataKey="datasource" />
+    <bean id="daftarTipe"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/daftartipe.jrxml"
+          p:reportDataKey="datasource" />
+    <bean id="daftarUkuran"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/daftarukuran.jrxml"
+          p:reportDataKey="datasource" />
+    <bean id="daftarDistributor"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/daftardistributor.jrxml"
+          p:reportDataKey="datasource" />
+    <bean id="daftarPelanggan"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/daftarpelanggan.jrxml"
+          p:reportDataKey="datasource" />
+    <bean id="daftarDeposit"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/daftardeposit.jrxml"
+          p:reportDataKey="datasource" />
+    <bean id="daftarTransaksi"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/daftartransaksi.jrxml"
+          p:reportDataKey="datasource" />
+    <bean id="daftarPembelian"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/daftarpembelian.jrxml"
+          p:reportDataKey="datasource" />
+    <bean id="daftarPenjualan"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/daftarpenjualan.jrxml"
+          p:reportDataKey="datasource" />
+    <bean id="daftarOngkosKirim"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/daftarongkoskirim.jrxml"
+          p:reportDataKey="datasource" />
+    <bean id="daftarKategori"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/daftarkategori.jrxml"
+          p:reportDataKey="datasource" />
+    <bean id="daftarDiskon"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/daftardiskon.jrxml"
+          p:reportDataKey="datasource" />
+    <bean id="daftarProfitByDay"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/daftarprofitbyday.jrxml"
+          p:reportDataKey="datasource" />
+    <bean id="daftarProfitByMonth"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/daftarprofitbymonth.jrxml"
+          p:reportDataKey="datasource" />
+    <bean id="productRate"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+          p:url="classpath:/com/secondstack/flatoutstore/jasper/productrate.jrxml"
+          p:reportDataKey="datasource" />
+
+</beans>

@@ -1,0 +1,120 @@
+#icon_tambah
+{
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 2px
+}
+
+.batasAtas
+{
+    margin-top: 5px;
+}
+
+.warnaFont
+{
+    color: grey;
+}
+
+.sideContent
+{
+    width: 174px;
+    text-align: center;
+}
+
+.bgSubmenu
+{
+    background-color: #808080;
+}
+
+.warnaFontSubmenu
+{
+    color: #ffffff;
+}
+
+.warnaFontSubmenu:hover
+{
+    color: #808080;
+}
+
+#myModalplus table
+{
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.height-report
+{
+    height: 125px;
+    padding: 5px;
+    /*background-color: #ffffff;*/
+    opacity: 0.7;
+    /*cursor: pointer*/
+}
+
+.height-report-bottom
+{
+    height: 177px;
+    opacity: 0.7
+}
+
+.height-report:hover
+{
+    opacity: 0.9
+}
+
+.abs-report
+{
+    position: absolute;
+    top: 22px;
+    left: 50px;
+}
+
+.abs-report-bottom
+{
+    position: absolute;
+    left: 50px;
+    bottom: 16px;
+
+}
+
+.logo-banner
+{
+    position: absolute;
+    height: 25px;
+    width: 151px;
+    border-radius: 5px;
+}
+
+.bundle-img
+{
+    padding: 3px;
+    border: 1px solid grey;
+    width: 80px
+}
+
+.adm
+{
+    text-transform: lowercase;
+    margin-top: -11px;
+}
+
+.adm-profile
+{
+    font-size: 10px
+}
+
+.icon-banner
+{
+    margin-top: 4px;
+    margin-right: 3px;
+}
+
+#sidebar{
+    background-color: #ffffff;
+}
+
+#sidebar:hover
+{
+    box-shadow: 3px 3px 10px black;
+}
+

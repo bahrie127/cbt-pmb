@@ -1,0 +1,10 @@
+.tabel-ukuran-modal
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tabel-ukuran-modal tr td  input
+{
+    width: 70px
+}

@@ -1,0 +1,34 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="endy">
+        <createTable tableName="TB_CONFIG">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="label" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <modifySql dbms="mysql">
+            <append value=" engine innodb"/>
+        </modifySql>
+
+    </changeSet>
+    <changeSet id="2" author="jasoet">
+        <loadData tableName="TB_CONFIG"
+                  file="META-INF/liquibase/data/config.csv">
+            <column name="id" header="id" type="STRING"/>
+            <column name="name" header="name" type="STRING"/>
+            <column name="label" header="label" type="STRING"/>
+            <column name="value" header="value" type="STRING"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

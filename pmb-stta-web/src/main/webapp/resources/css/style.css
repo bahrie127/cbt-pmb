@@ -1,0 +1,46 @@
+@import "bootstrap.css";
+@import "bootstrap-responsive.css";
+
+@import "transaksi.css";
+
+body
+{
+    text-align: center;
+    /*background: -webkit-linear-gradient(top,#ffffff,#808080);*/
+    /*background: -moz-linear-gradient(top,#ffffff,#808080);*/
+    /*background: -ms-linear-gradient(top,#ffffff,#808080);*/
+    /*background: -o-linear-gradient(top,#ffffff,#808080);*/
+    /*min-height: 491px;*/
+    background-color: #f9f9f9;
+}
+
+#panel
+{
+    padding: 15px;
+    border-radius:  5px;
+    background-color: #000000;
+    left: 422px;
+    position: absolute;
+    margin-top: 120px;
+    box-shadow: 0px 0px 20px white;
+}
+
+#panel form
+{
+    margin-top: 20px;
+}
+
+#panel label
+{
+    margin-right: 10px;
+}
+
+
+
+/*.icon_white*/
+/*{*/
+    /*background-color: #ffffff;*/
+    /*cursor: pointer;*/
+    /*border-radius: 6px*/
+/*}*/
+

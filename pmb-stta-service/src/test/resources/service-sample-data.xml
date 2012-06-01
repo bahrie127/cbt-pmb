@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <TB_CONFIG
+        id="1"
+        name="applicationname"
+        label="Application Name"
+        value="Belajar Restful"
+    />
+    
+    <TB_CONFIG
+        id="2"
+        name="applicationversion"
+        label="Application Version"
+        value="1.0"
+    />
+</dataset>
