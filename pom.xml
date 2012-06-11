@@ -47,11 +47,11 @@
         <rest-assured.version>1.6</rest-assured.version>
 
         <!-- konfigurasi database development -->
-        <db.driver>com.mysql.jdbc.Driver</db.driver>
-        <db.url>jdbc:mysql://localhost</db.url>
-        <db.name>pmb-stta</db.name>
-        <db.username>root</db.username>
-        <db.password>admin</db.password>
+        <db.driver>org.postgresql.Driver</db.driver>
+        <db.url>jdbc:postgresql://localhost</db.url>
+        <db.name>cbt</db.name>
+        <db.username>cbt</db.username>
+        <db.password>pmbstta</db.password>
 
     </properties>
 

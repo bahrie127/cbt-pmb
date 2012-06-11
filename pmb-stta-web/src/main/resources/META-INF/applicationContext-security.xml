@@ -6,7 +6,7 @@
              xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.secondstack.flatoutstore.service.security">
+    <context:component-scan base-package="com.bahri.pmb.service.security">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
 
@@ -229,7 +229,7 @@
 
     <beans:bean id="daoAuthenticationProvider"
                 class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
-        <beans:property name="userDetailsService" ref="securityService"/>
+        <!--<beans:property name="userDetailsService" ref="securityService"/>-->
         <beans:property name="passwordEncoder" ref="passwordEncoder"/>
         <beans:property name="saltSource" ref="saltSource"/>
     </beans:bean>
