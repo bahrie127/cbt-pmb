@@ -6,7 +6,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            classpath*:META-INF/**/applicationContext*.xml
+            classpath*:META-INF/spring/applicationContext*.xml
         </param-value>
     </context-param>
 
@@ -14,9 +14,9 @@
         <!--<filter-name>httpMethodFilter</filter-name>-->
         <!--<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>-->
     <!--</filter>-->
-    <!--<listener>-->
-        <!--<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
-    <!--</listener>-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 
     <!-- Reads request input using UTF-8 encoding -->
     <!--<filter>-->

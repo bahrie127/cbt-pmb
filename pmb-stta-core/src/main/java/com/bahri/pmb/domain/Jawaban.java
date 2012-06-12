@@ -23,6 +23,8 @@ public class Jawaban {
     @Size(min = 1,max = 255)
     private String pilihan;
 
+    private Boolean right;
+
     public Long getId() {
         return id;
     }
@@ -39,23 +41,11 @@ public class Jawaban {
         this.pilihan = pilihan;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Jawaban jawaban = (Jawaban) o;
-
-        if (id != null ? !id.equals(jawaban.id) : jawaban.id != null) return false;
-        if (pilihan != null ? !pilihan.equals(jawaban.pilihan) : jawaban.pilihan != null) return false;
-
-        return true;
+    public Boolean getRight() {
+        return right;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (pilihan != null ? pilihan.hashCode() : 0);
-        return result;
+    public void setRight(Boolean right) {
+        this.right = right;
     }
 }

@@ -3,7 +3,9 @@ package com.bahri.pmb.domain;
 import com.bahri.pmb.domain.enumeration.EnumJawaban;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -31,13 +33,9 @@ public class Soal {
     @Column(name = "is_view",nullable = true)
     private Long isView;
 
-    @OneToMany
-    @JoinTable(
-            name = "jawaban_map",
-            joinColumns = {@JoinColumn(name = "soal_")},
-            inverseJoinColumns = {@JoinColumn(table = "jawaban", name = "jawaban_id")}
-    )
-    private Map<EnumJawaban, Jawaban> jawabanMap;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "soal_id")
+    private List<Jawaban> jawabans;
 
     public Long getId() {
         return id;
@@ -71,37 +69,11 @@ public class Soal {
         isView = view;
     }
 
-    public Map<EnumJawaban, Jawaban> getJawabanMap() {
-        return jawabanMap;
+    public List<Jawaban> getJawabans() {
+        return jawabans;
     }
 
-    public void setJawabanMap(Map<EnumJawaban, Jawaban> jawabanMap) {
-        this.jawabanMap = jawabanMap;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Soal soal = (Soal) o;
-
-        if (id != null ? !id.equals(soal.id) : soal.id != null) return false;
-        if (isView != null ? !isView.equals(soal.isView) : soal.isView != null) return false;
-        if (jawabanMap != null ? !jawabanMap.equals(soal.jawabanMap) : soal.jawabanMap != null) return false;
-        if (kategori != null ? !kategori.equals(soal.kategori) : soal.kategori != null) return false;
-        if (pertanyaan != null ? !pertanyaan.equals(soal.pertanyaan) : soal.pertanyaan != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (pertanyaan != null ? pertanyaan.hashCode() : 0);
-        result = 31 * result + (kategori != null ? kategori.hashCode() : 0);
-        result = 31 * result + (isView != null ? isView.hashCode() : 0);
-        result = 31 * result + (jawabanMap != null ? jawabanMap.hashCode() : 0);
-        return result;
+    public void setJawabans(List<Jawaban> jawabans) {
+        this.jawabans = jawabans;
     }
 }
