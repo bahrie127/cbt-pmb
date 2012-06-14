@@ -12,7 +12,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Flatout Store</title>
+    <title>Computer-Based Testing PMB STTA</title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/style.css'/>"/>
     <%--<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>"/>--%>
     <script type="text/javascript" src="<c:url value='/resources/js/jquery.js'/>"></script>
@@ -31,7 +31,7 @@
     <div class="span4" id="panel">
         <form class="form-horizontal" action="${submit_url}" method="POST">
 
-                <img src="<c:url value='/resources/img/logoflat.png'/>" style="width: 300px;height: 50px;margin-bottom: 17px;margin-top: -17px" />
+                <%--<img src="<c:url value='/resources/img/logoflat.png'/>" style="width: 300px;height: 50px;margin-bottom: 17px;margin-top: -17px" />--%>
                 <br/>
                 <div class="control-group">
                     <h2 style="position: absolute;margin-left: 20px;color: #ffffff;">
