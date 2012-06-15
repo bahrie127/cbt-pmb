@@ -14,4 +14,10 @@ import java.util.List;
 public interface CalonMahasiswaService {
 
     List<CalonMahasiswa> getAll();
+    public void save(CalonMahasiswa calonMahasiswa);
+    public void delete(CalonMahasiswa calonMahasiswa);
+    public void deleteMore(CalonMahasiswa[] calonMahasiswas);
+    public CalonMahasiswa findCalonMahasiswa(Long id);
+    public List<CalonMahasiswa> findCalonMahasiswas();
+    public Long countCalonMahasiswas();
 }

@@ -27,4 +27,39 @@ public class CalonMahasiswaServiceImpl implements CalonMahasiswaService{
     public List<CalonMahasiswa> getAll() {
         return sessionFactory.getCurrentSession().createQuery("from CalonMahasiswa c").list();
     }
+
+    @Override
+    public void save(CalonMahasiswa calonMahasiswa) {
+        sessionFactory.getCurrentSession().saveOrUpdate(calonMahasiswa);
+    }
+
+    @Override
+    public void delete(CalonMahasiswa calonMahasiswa) {
+        if(calonMahasiswa!=null)
+            sessionFactory.getCurrentSession().delete(calonMahasiswa);
+    }
+
+    @Override
+    public void deleteMore(CalonMahasiswa[] calonMahasiswas) {
+        if(calonMahasiswas!=null){
+            for(CalonMahasiswa calonMahasiswa:calonMahasiswas){
+                delete(calonMahasiswa);
+            }
+        }
+    }
+
+    @Override
+    public CalonMahasiswa findCalonMahasiswa(Long id) {
+        return (CalonMahasiswa) sessionFactory.getCurrentSession().get(CalonMahasiswa.class,id);
+    }
+
+    @Override
+    public List<CalonMahasiswa> findCalonMahasiswas() {
+        return sessionFactory.getCurrentSession().createQuery("from CalonMahasiswa o order by o.id").list();
+    }
+
+    @Override
+    public Long countCalonMahasiswas() {
+        return (Long) sessionFactory.getCurrentSession().createQuery("select count (o) from CalonMahasiswa o").uniqueResult();
+    }
 }
