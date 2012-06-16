@@ -2,24 +2,7 @@ $(document).ready(function () {
 
     //distributor
     var accordianToggleDistributor = $('#accordianToggleDistributor');
-    var accordianToggleDeposit = $('#accordianToggleDeposit');
-    var accordianToggleDiskon = $('#accordianToggleDiskon');
-    var accordianToggleMerek = $('#accordianToggleMerek');
-    var accordianTogglePelanggan = $('#accordianTogglePelanggan');
-    var accordianToggleTipe = $('#accordianToggleTipe');
-    var accordianToggleTransaksi = $('#accordianToggleTransaksi');
-    var accordianToggleBank = $('#accordianToggleBank');
-    var accordianToggleCash = $('#accordianToggleCash');
-    var accordianTogglePenjualan = $('#accordianTogglePenjualan');
-    var accordianTogglePembelian = $('#accordianTogglePembelian');
-    var accordianToggleOngkosKirim = $('#accordianToggleOngkosKirim');
     var accordianToggleKategori = $('#accordianToggleKategori');
-    var accordianToggleUkuran = $('#accordianToggleUkuran');
-    var accordianToggleWarna = $('#accordianToggleWarna');
-    var accordianToggleRoleGroup = $('#accordianToggleRoleGroup');
-    var accordianToggleUser = $('#accordianToggleUser');
-    var accordianHeadingLaporan = $('#accordianHeadingLaporan');
-
     /**
      * Distributor Action
      */
@@ -34,176 +17,16 @@ $(document).ready(function () {
         });
     });
 
-    accordianToggleDeposit.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/deposit/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/deposit', function (data) {
-            $('#bundleList').html(data);
-
-        });
-    });
-
-    accordianToggleDiskon.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/diskon/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/diskon', function (data) {
-            $('#bundleList').html(data);
-        });
-    });
-
-    accordianToggleMerek.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/merek/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/merek', function (data) {
-            $('#bundleList').html(data);
-        });
-    });
-
-    accordianTogglePelanggan.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/pelanggan/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/pelanggan', function (data) {
-            $('#bundleList').html(data);
-        });
-    });
-
-    accordianToggleTipe.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/tipe/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/tipe', function (data) {
-            $('#bundleList').html(data);
-        });
-    });
-
-    accordianToggleTransaksi.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/transaksi/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/transaksi', function (data) {
-            $('#bundleList').html(data);
-        });
-    });
-
-    accordianToggleBank.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/bank/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/bank', function (data) {
-            $('#bundleList').html(data);
-        });
-    });
-
-    accordianToggleCash.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/cash/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/cash', function (data) {
-            $('#bundleList').html(data);
-        });
-    });
-
-    accordianTogglePenjualan.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/penjualan/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/penjualan', function (data) {
-            $('#bundleList').html(data);
-        });
-    });
-
-    accordianTogglePembelian.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/pembelian/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/pembelian', function (data) {
-            $('#bundleList').html(data);
-        });
-    });
-
-    accordianToggleOngkosKirim.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/ongkoskirim/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/ongkoskirim', function (data) {
-            $('#bundleList').html(data);
-        });
-    });
-
     accordianToggleKategori.click(function () {
         $('#myCarousel').remove();
-        $.get('/flatout/kategori/navbar', function (dataNavBar) {
+        $.get('/cbt-pmb/kategori/navbar', function (dataNavBar) {
             $('#bundleNavbar').html(dataNavBar);
         });
-        $.get('/flatout/kategori', function (data) {
+        $.get('/cbt-pmb/kategori', function (data) {
             $('#bundleList').html(data);
         });
     });
 
-    accordianToggleUkuran.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/ukuran/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/ukuran', function (data) {
-            $('#bundleList').html(data);
-        });
-    });
-
-    accordianToggleWarna.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/warna/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/warna', function (data) {
-            $('#bundleList').html(data);
-        });
-    });
-
-    accordianToggleRoleGroup.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/roleGroup/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/roleGroup', function (data) {
-            $('#bundleList').html(data);
-        });
-    });
-
-    accordianToggleUser.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/user/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/user', function (data) {
-            $('#bundleList').html(data);
-        });
-    });
-
-    accordianHeadingLaporan.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/report/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/chart', function (data) {
-            $('#bundleList').html(data);
-        });
-    });
 
     $('div.pagination ul li').click(function(){
         $(this).addClass('active');

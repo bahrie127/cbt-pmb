@@ -86,26 +86,10 @@
 <div class="container-fluid">
 <div class="row-fluid">
 <div class="span2">
-    <%--<div class="row">--%>
-        <%--<div class="span1">--%>
-            <%--<div class="bundle-img">--%>
-                <%--<img src="<c:url value='/resources/img/80x60.gif'/>" alt="" width="80" height="60">--%>
-            <%--</div>--%>
-
-        <%--</div>--%>
-        <%--<div class="span1">--%>
-            <%--<p style="color: #ffffff;"><sec:authentication property="principal.username"/></p>--%>
-            <%--<h6 class="adm">Administrator</h6>--%>
-
-        <%--</div>--%>
-
-    <%--</div>--%>
-    <%--<hr>--%>
 
     <div class="well sidebar-nav sideContent" id="sidebar">
 
         <ul class="nav nav-list" style="background-color: #ffffff;">
-            <!--<li class="nav-header">Menu</li>-->
 
             <li>
 
@@ -122,175 +106,34 @@
                     <div class="accordion-group batasAtas" style="border: none">
                         <div class="accordion-heading" id="accordianHeadingBarang" >
                             <a class="badge badge-inverse accordion-toggle " href="#collapseBarang" data-parent="#accordion2"
-                               data-toggle="collapse" style="text-decoration: none" id="chevron1" data-stack="barang"> <i class="icon-barcode icon-white"></i> Barang
+                               data-toggle="collapse" style="text-decoration: none" id="chevron1" data-stack="barang"> <i class="icon-barcode icon-white"></i> Menu
                                  </a>
                         </div>
                         <div id="collapseBarang" class="accordion-body in collapse" style="height: auto;">
                             <div class="accordion-inner bgSubmenu" style="box-shadow: 0 0 10px black inset; background-color: #ffffff;text-align: center">
                                 <ul class="nav nav-tabs nav-stacked">
-                                    <sec:authorize access="hasAnyRole('MEREK_R','ADMIN_IT')">
-                                        <li><a id="accordianToggleMerek" class="badge-inverse accordion-toggle warnaFontSubmenu"
-                                               href="#collapseMerek"
+                                        <li><a id="accordianToggleKategori" class="badge-inverse accordion-toggle warnaFontSubmenu"
+                                               href="#collapseKategori"
                                                data-parent="#accordion2"
-                                               data-toggle="collapse">Merek</a></li>
-                                    </sec:authorize>
-                                    <sec:authorize access="hasAnyRole('TIPE_R','ADMIN_IT')">
+                                               data-toggle="collapse">Kategori</a></li>
                                         <li><a id="accordianToggleTipe" class="badge-inverse accordion-toggle warnaFontSubmenu"
                                                href="#collapseTipe"
                                                data-parent="#accordion2"
                                                data-toggle="collapse">Tipe</a></li>
-                                    </sec:authorize>
-                                    <sec:authorize access="hasAnyRole('WARNA_R','ADMIN_IT')">
                                         <li><a id="accordianToggleWarna" class="badge-inverse accordion-toggle warnaFontSubmenu"
                                                href="#collapseWarna"
                                                data-parent="#accordion2"
                                                data-toggle="collapse">Warna</a></li>
-                                    </sec:authorize>
-                                    <sec:authorize access="hasAnyRole('UKURAN_R','ADMIN_IT')">
                                         <li><a id="accordianToggleUkuran" class="badge-inverse accordion-toggle warnaFontSubmenu"
                                                href="#collapseUkuran"
                                                data-parent="#accordion2"
                                                data-toggle="collapse">Ukuran</a></li>
-                                    </sec:authorize>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <div class="accordion-group" style="border: none">
-
-                        <sec:authorize access="hasAnyRole('DISTRIBUTOR_R','ADMIN_IT')">
-                            <div class="accordion-heading" id="accordianHeadingDistributor">
-                                <a id="accordianToggleDistributor" class="badge badge-inverse accordion-toggle "
-                                   href="#"
-                                   data-parent="#accordion2"
-                                   data-toggle="collapse" style="text-decoration: none" data-stack="distributor"> <i class="icon-user icon-white"></i> Distributor </a>
-                            </div>
-                        </sec:authorize>
-                    </div>
-                    <div class="accordion-group" style="border: none">
-                        <sec:authorize access="hasAnyRole('PELANGGAN_R','ADMIN_IT')">
-                            <div class="accordion-heading" id="accordianHeadingPelanggan">
-                                <a id="accordianTogglePelanggan" class="badge badge-inverse accordion-toggle "
-                                   href="#"
-                                   data-parent="#accordion2"
-                                   data-toggle="collapse" style="text-decoration: none" data-stack="pelanggan"> <i class="icon-user icon-white"></i> Pelanggan </a>
-                            </div>
-                        </sec:authorize>
-                    </div>
-
-                    <div class="accordion-group" style="border: none">
-                        <sec:authorize access="hasAnyRole('DEPOSIT_R','ADMIN_IT')">
-                            <div class="accordion-heading" id="accordianHeadingDeposit">
-                                <a id="accordianToggleDeposit" class="badge badge-inverse accordion-toggle "
-                                   href="#collapseDeposit"
-                                   data-parent="#accordion2"
-                                   data-toggle="collapse" style="text-decoration: none" data-stack="deposit"> <i class="icon-plus-sign icon-white"></i> Deposit  </a>
-                            </div>
-                        </sec:authorize>
-
-
-                        <div id="collapseDeposit" class="accordion-body collapse" style="height: 0px;">
-                            <div class="accordion-inner bgSubmenu" style="box-shadow: 0 0 10px black inset; background-color: #ffffff;text-align: center">
-                                <ul class="nav nav-tabs nav-stacked">
-                                    <sec:authorize access="hasAnyRole('CASH_R','ADMIN_IT')">
-                                        <li><a id="accordianToggleCash" class="badge-inverse accordion-toggle warnaFontSubmenu"
-                                               href="#collapseCash"
-                                               data-parent="#accordion2" data-toggle="collapse">Cash</a></li>
-                                    </sec:authorize>
-                                    <sec:authorize access="hasAnyRole('BANK_R','ADMIN_IT')">
-                                        <li><a id="accordianToggleBank" class="badge-inverse accordion-toggle warnaFontSubmenu"
-                                               href="#collapseBank"
-                                               data-parent="#accordion2" data-toggle="collapse">Bank</a></li>
-                                    </sec:authorize>
-                                </ul>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-group" style="border: none">
-
-                        <sec:authorize access="hasAnyRole('TRANSAKSI_R','ADMIN_IT')">
-                            <div class="accordion-heading" id="accordianHeadingTransaksi">
-                                <a id="accordianToggleTransaksi" class="badge badge-inverse accordion-toggle "
-                                   href="#collapseTransaksi"
-                                   data-parent="#accordion2"
-                                   data-toggle="collapse" style="text-decoration: none" data-stack="transaksi"> <i class="icon-shopping-cart icon-white"></i> Transaksi  </a>
-                            </div>
-                        </sec:authorize>
-
-                        <div id="collapseTransaksi" class="accordion-body collapse" style="height: 0px;">
-                            <div class="accordion-inner bgSubmenu" style="box-shadow: 0 0 10px black inset; background-color: #ffffff;text-align: center">
-                                <ul class="nav nav-tabs nav-stacked">
-                                    <sec:authorize access="hasAnyRole('PEMBELIAN_R','ADMIN_IT')">
-                                        <li><a id="accordianTogglePembelian" class="badge-inverse accordion-toggle warnaFontSubmenu"
-                                               href="#collapsePembelian"
-                                               data-parent="#accordion2" data-toggle="collapse">Pembelian</a></li>
-                                    </sec:authorize>
-                                    <sec:authorize access="hasAnyRole('PENJUALAN_R','ADMIN_IT')">
-                                        <li><a id="accordianTogglePenjualan" class="badge-inverse accordion-toggle warnaFontSubmenu"
-                                               href="#collapsePenjualan"
-                                               data-parent="#accordion2" data-toggle="collapse">Penjualan</a></li>
-                                    </sec:authorize>
-                                    <sec:authorize access="hasAnyRole('ONGKOS_KIRIM_R','ADMIN_IT')">
-                                        <li><a id="accordianToggleOngkosKirim" class="badge-inverse accordion-toggle warnaFontSubmenu"
-                                               href="#collapseOngkosKirim"
-                                               data-parent="#accordion2" data-toggle="collapse">Ongkos Kirim</a></li>
-                                    </sec:authorize>
-                                    <sec:authorize access="hasAnyRole('KATEGORI_R','ADMIN_IT')">
-                                        <li><a id="accordianToggleKategori" class="badge-inverse accordion-toggle warnaFontSubmenu"
-                                               href="#collapseKategori"
-                                               data-parent="#accordion2" data-toggle="collapse">Kategori</a></li>
-                                    </sec:authorize>
-                                </ul>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-group" style="border: none">
-
-                        <sec:authorize access="hasAnyRole('REPORT_R','ADMIN_IT')">
-                            <div class="accordion-heading" id="accordianHeadingLaporan">
-                                <a class="badge badge-inverse accordion-toggle " href="#" data-parent="#accordion2"
-                                   data-toggle="collapse" style="text-decoration: none" data-stack="laporan"> <i class="icon-file icon-white"></i> Laporan </a>
-                            </div>
-                        </sec:authorize>
-
-                    </div>
-                    <div class="accordion-group" style="border: none">
-                        <div class="accordion-heading" id="accordianHeadingSetting">
-                            <a class="badge badge-inverse accordion-toggle " href="#collapseSetting" data-parent="#accordion2"
-                               data-toggle="collapse" style="text-decoration: none" data-stack="setting"> <i class="icon-cog icon-white"></i> Setting  </a>
-                        </div>
-                        <div id="collapseSetting" class="accordion-body collapse" style="height: 0px;">
-                            <div class="accordion-inner bgSubmenu" style="box-shadow: 0 0 10px black inset; background-color: #ffffff;text-align: center">
-                                <ul class="nav nav-tabs nav-stacked">
-                                    <sec:authorize access="hasAnyRole('DISKON_R','ADMIN_IT')">
-                                        <li><a id="accordianToggleDiskon" class="badge-inverse accordion-toggle warnaFontSubmenu"
-                                               href="#collapseDiskon"
-                                               data-parent="#accordion2"
-                                               data-toggle="collapse">Diskon</a></li>
-                                    </sec:authorize>
-                                    <sec:authorize access="hasAnyRole('USER_R','ADMIN_IT')">
-                                        <li><a id="accordianToggleUser" class="badge-inverse accordion-toggle warnaFontSubmenu"
-                                               href="#collapseUser"
-                                               data-parent="#accordion2"
-                                               data-toggle="collapse">User</a></li>
-                                    </sec:authorize>
-                                    <sec:authorize access="hasAnyRole('ROLE_GROUP_R','ADMIN_IT')">
-                                        <li><a id="accordianToggleRoleGroup" class="badge-inverse accordion-toggle warnaFontSubmenu"
-                                               href="#collapseRoleGroup"
-                                               data-parent="#accordion2"
-                                               data-toggle="collapse">Role Group</a></li>
-                                    </sec:authorize>
-                                </ul>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
+                 </div>
 
             </li>
         </ul>

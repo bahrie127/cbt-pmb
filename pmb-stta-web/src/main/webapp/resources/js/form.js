@@ -27,7 +27,7 @@ $(document).ready(function () {
                     $('#bundleList').html(result);
                 }else{
                     success = (result + "").toLowerCase() == "sukses" ? true : false;
-                    alert(result);
+                  //  alert(result);
 
                     //jika sukses matikan dialog
                     if(success){
