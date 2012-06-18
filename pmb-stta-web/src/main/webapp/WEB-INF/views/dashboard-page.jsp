@@ -13,7 +13,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Flatout Store</title>
+    <title>ADMIN CBT</title>
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css"/>"/>
@@ -57,9 +57,7 @@
     <div class="navbar-inner">
         <div class="container-fluid">
 
-            <a class="brand" href="<c:url value='/home'/>"><img class="logo-banner"
-                                                                src="<c:url value='/resources/img/logoflat.png'/>"
-                                                                alt=""></a>
+            <a class="brand" href="#">ADMIN</a>
 
             <div class="nav-collapse">
 
@@ -120,14 +118,6 @@
                                                href="#collapseSoal"
                                                data-parent="#accordion2"
                                                data-toggle="collapse">Soal</a></li>
-                                        <li><a id="accordianToggleWarna" class="badge-inverse accordion-toggle warnaFontSubmenu"
-                                               href="#collapseWarna"
-                                               data-parent="#accordion2"
-                                               data-toggle="collapse">Warna</a></li>
-                                        <li><a id="accordianToggleUkuran" class="badge-inverse accordion-toggle warnaFontSubmenu"
-                                               href="#collapseUkuran"
-                                               data-parent="#accordion2"
-                                               data-toggle="collapse">Ukuran</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -301,7 +291,7 @@
 <div style="clear: both;"></div>
 
 <div class="row" style="text-align: center">
-    <p> 2ndStack&copy; 2012</p>
+    <p> Saiful Bahri&copy; 2012</p>
 </div>
 
 </div>

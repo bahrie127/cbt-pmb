@@ -26,31 +26,21 @@
 <body>
 <div class="container" >
 
-    <spring:url value='/login' var="submit_url"/>
+    <spring:url value='/peserta' var="submit_url"/>
 
     <div class="span4" id="panel">
-        <form class="form-horizontal" action="${submit_url}" method="POST">
+        <form class="form-horizontal" action="${submit_url}" method="GET">
 
                 <%--<img src="<c:url value='/resources/img/logoflat.png'/>" style="width: 300px;height: 50px;margin-bottom: 17px;margin-top: -17px" />--%>
                 <br/>
                 <div class="control-group">
                     <h2 style="position: absolute;margin-left: 20px;color: #ffffff;">
-                        A d m i n <br/>P a n e l
+                        Peserta <br/>Panel
                     </h2>
                     <div class="controls">
                         <div class="input-prepend">
                             <span class="add-on"><i class="icon-user"></i></span>
-                            <input id="j_username" name="j_username" type="text" class="span2"  type="text" placeholder="username"/>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="control-group">
-
-                    <div class="controls">
-                        <div class="input-prepend">
-                            <span class="add-on"><i class="icon-lock"></i></span>
-                            <input id="j_password" name="j_password" type="password" class="span2"  type="password" placeholder="password"/>
+                            <input id="j_username" name="j_username" type="text" class="span2"  type="text" placeholder="No Pendaftaran"/>
                         </div>
                     </div>
                 </div>
@@ -58,8 +48,7 @@
 
                 <div class="pull-right">
 
-                    <button type="submit" class="btn btn-danger"><i class="icon-ok-sign"></i> Login</button>
-                    <button class="btn"><i class="icon-remove-sign"></i> Cancel</button>
+                    <button type="submit" class="btn btn-danger"><i class="icon-ok-sign"></i>Mulai</button>
                 </div>
         </form>
 
