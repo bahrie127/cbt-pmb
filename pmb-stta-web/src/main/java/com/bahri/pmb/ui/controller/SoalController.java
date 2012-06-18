@@ -9,7 +9,7 @@ import com.bahri.pmb.service.SoalService;
 import com.bahri.pmb.service.editor.JawabanEditor;
 import com.bahri.pmb.service.editor.KategoriEditor;
 import com.bahri.pmb.service.editor.SoalEditor;
-import org.codehaus.jackson.map.ObjectMapper;
+import com.bahri.pmb.simple.SimpleSoal;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.io.IOException;
 
 /**
  * Created by IntelliJ IDEA.
@@ -78,24 +77,24 @@ public class SoalController {
         modelMap.addAttribute("event", "INPUT");
         modelMap.addAttribute("httpMethod", "POST");
         modelMap.addAttribute("kategoriList",kategoriService.findKategoris());
-        modelMap.addAttribute("soal", new Soal());
+        modelMap.addAttribute("soal", new SimpleSoal());
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            modelMap.addAttribute("soalJson", objectMapper.writeValueAsString(new Soal()));
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        try {
+//            modelMap.addAttribute("soalJson", objectMapper.writeValueAsString(new Soal()));
+//        } catch (IOException e) {
+//            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+//        }
         return "soal/input";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public @ResponseBody String save(@Valid @ModelAttribute("soal") Soal soal, BindingResult bindingResult, ModelMap modelMap){
+    public @ResponseBody String save(@Valid @ModelAttribute("soal") SimpleSoal soal, BindingResult bindingResult, ModelMap modelMap){
         if(soal == null) return "Gagal";
         if(bindingResult.hasErrors()) return "Gagal";
 
         try{
-               soalService.save(soal);
+               soalService.save(soal.convertToSoal());
             return "Sukses";
         }catch (HibernateException e){
             return "Gagal";

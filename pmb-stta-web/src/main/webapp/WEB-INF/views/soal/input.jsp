@@ -42,7 +42,7 @@
                     <td>
                         <div class="controls">
                             &nbsp;&nbsp;
-                            <form:select path="" id="kategoriId" disabled="${enabledInput}"
+                            <form:select path="idKategori" id="kategoriId" disabled="${enabledInput}"
                                          style="width: 178px">
                                 <c:forEach items="${kategoriList}" var="kategoriItem">
                                     <form:option value="${kategoriItem.id}" label="${kategoriItem.nama}"/>
@@ -58,7 +58,7 @@
                     <td>
                         <div class="controls">
                             &nbsp;&nbsp;
-                            <form:input path="" id="pertanyaan" class="input-xlarge" disabled="${enabledInput}"/>
+                            <form:input path="pertanyaan" id="pertanyaan" class="input-xlarge" disabled="${enabledInput}"/>
                             &nbsp;
                             <span class="label label-info">*</span>
                         </div>
@@ -71,9 +71,10 @@
                     <td>
                         <div class="controls">
                             &nbsp;&nbsp;
-                            <form:input path="" id="jawabanA" class="input-xlarge" disabled="${enabledInput}"/>
+                            <form:input path="jawabanA" id="jawabanA" class="input-xlarge" disabled="${enabledInput}"/>
                             &nbsp;
-                            <span class="label label-info">*</span>
+
+                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="A" label="Benar"/>
                         </div>
                     </td>
                 </tr>
@@ -84,9 +85,10 @@
                     <td>
                         <div class="controls">
                             &nbsp;&nbsp;
-                            <form:input path="" id="jawabanB" class="input-xlarge" disabled="${enabledInput}"/>
+                            <form:input path="jawabanB" id="jawabanB" class="input-xlarge" disabled="${enabledInput}"/>
                             &nbsp;
-                            <span class="label label-info">*</span>
+
+                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="B" label="Benar"/>
                         </div>
                     </td>
                 </tr>
@@ -97,9 +99,10 @@
                     <td>
                         <div class="controls">
                             &nbsp;&nbsp;
-                            <form:input path="" id="jawabanC" class="input-xlarge" disabled="${enabledInput}"/>
+                            <form:input path="jawabanC" id="jawabanC" class="input-xlarge" disabled="${enabledInput}"/>
                             &nbsp;
-                            <span class="label label-info">*</span>
+
+                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="C" label="Benar"/>
                         </div>
                     </td>
                 </tr>
@@ -110,31 +113,32 @@
                     <td>
                         <div class="controls">
                             &nbsp;&nbsp;
-                            <form:input path="" id="jawabanD" class="input-xlarge" disabled="${enabledInput}"/>
+                            <form:input path="jawabanD" id="jawabanD" class="input-xlarge" disabled="${enabledInput}"/>
                             &nbsp;
-                            <span class="label label-info">*</span>
+
+                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="D" label="Benar"/>
                         </div>
                     </td>
                 </tr>
 
-                <tr>
-                    <td>
-                        <label class="control-label" for="kunci">Kunci</label>
-                    </td>
-                    <td>
-                        <div class="controls">
-                            &nbsp;&nbsp;
-                            <select id="kunci">
-                                <option value="A">A</option>
-                                <option value="B">B</option>
-                                <option value="C">C</option>
-                                <option value="D">D</option>
-                            </select>
-                            &nbsp;
-                            <span class="label label-info">*</span>
-                        </div>
-                    </td>
-                </tr>
+                <%--<tr>--%>
+                    <%--<td>--%>
+                        <%--<label class="control-label" for="kunci">Kunci</label>--%>
+                    <%--</td>--%>
+                    <%--<td>--%>
+                        <%--<div class="controls">--%>
+                            <%--&nbsp;&nbsp;--%>
+                            <%--<select id="kunci">--%>
+                                <%--<option value="A">A</option>--%>
+                                <%--<option value="B">B</option>--%>
+                                <%--<option value="C">C</option>--%>
+                                <%--<option value="D">D</option>--%>
+                            <%--</select>--%>
+                            <%--&nbsp;--%>
+                            <%--<span class="label label-info">*</span>--%>
+                        <%--</div>--%>
+                    <%--</td>--%>
+                <%--</tr>--%>
 
             </table>
 
@@ -150,7 +154,7 @@
         </div>
     </form:form>
 </div>
-<script type="text/javascript" src="<c:url value='/resources/js/soal/form.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/form.js'/>"></script>
 <script type="text/javascript">
-    soalInit(${soalJson});
+    //soalInit(${soalJson});
 </script>
