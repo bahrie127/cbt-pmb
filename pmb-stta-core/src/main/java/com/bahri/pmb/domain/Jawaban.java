@@ -1,5 +1,7 @@
 package com.bahri.pmb.domain;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
@@ -23,7 +25,8 @@ public class Jawaban {
     @Size(min = 1,max = 255)
     private String pilihan;
 
-    private Boolean right;
+    @Column(name = "kebenaran",nullable = false)
+    private Boolean kebenaran;
 
     public Long getId() {
         return id;
@@ -41,11 +44,11 @@ public class Jawaban {
         this.pilihan = pilihan;
     }
 
-    public Boolean getRight() {
-        return right;
+    public Boolean getKebenaran() {
+        return kebenaran;
     }
 
-    public void setRight(Boolean right) {
-        this.right = right;
+    public void setKebenaran(Boolean kebenaran) {
+        this.kebenaran = kebenaran;
     }
 }

@@ -3,6 +3,7 @@ $(document).ready(function () {
     //distributor
     var accordianToggleDistributor = $('#accordianToggleDistributor');
     var accordianToggleKategori = $('#accordianToggleKategori');
+    var accordianToggleSoal = $('#accordianToggleSoal');
     /**
      * Distributor Action
      */
@@ -23,6 +24,16 @@ $(document).ready(function () {
             $('#bundleNavbar').html(dataNavBar);
         });
         $.get('/cbt-pmb/kategori', function (data) {
+            $('#bundleList').html(data);
+        });
+    });
+
+    accordianToggleSoal.click(function () {
+        $('#myCarousel').remove();
+        $.get('/cbt-pmb/soal/navbar', function (dataNavBar) {
+            $('#bundleNavbar').html(dataNavBar);
+        });
+        $.get('/cbt-pmb/soal', function (data) {
             $('#bundleList').html(data);
         });
     });
@@ -423,4 +434,3 @@ $(function(){
 
 
 });
-

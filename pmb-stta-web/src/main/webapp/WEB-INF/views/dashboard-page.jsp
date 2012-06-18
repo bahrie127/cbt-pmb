@@ -116,10 +116,10 @@
                                                href="#collapseKategori"
                                                data-parent="#accordion2"
                                                data-toggle="collapse">Kategori</a></li>
-                                        <li><a id="accordianToggleTipe" class="badge-inverse accordion-toggle warnaFontSubmenu"
-                                               href="#collapseTipe"
+                                        <li><a id="accordianToggleSoal" class="badge-inverse accordion-toggle warnaFontSubmenu"
+                                               href="#collapseSoal"
                                                data-parent="#accordion2"
-                                               data-toggle="collapse">Tipe</a></li>
+                                               data-toggle="collapse">Soal</a></li>
                                         <li><a id="accordianToggleWarna" class="badge-inverse accordion-toggle warnaFontSubmenu"
                                                href="#collapseWarna"
                                                data-parent="#accordion2"

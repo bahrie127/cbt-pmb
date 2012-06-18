@@ -20,7 +20,7 @@ public class Ujian {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "calon_mahasiswa_",nullable = false)
+    @JoinColumn(name = "calon_mahasiswa_id",nullable = false)
     private CalonMahasiswa calonMahasiswa;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

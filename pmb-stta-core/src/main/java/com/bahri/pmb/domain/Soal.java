@@ -27,7 +27,7 @@ public class Soal {
     private String pertanyaan;
 
     @ManyToOne
-    @JoinColumn(name = "kategori_",nullable = false)
+    @JoinColumn(name = "kategori_id",nullable = false)
     private Kategori kategori;
 
     @Column(name = "is_view",nullable = true)
