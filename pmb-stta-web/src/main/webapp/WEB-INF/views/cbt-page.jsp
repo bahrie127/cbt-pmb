@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,10 +66,23 @@
 </div>
 
 <div class="container">
-
+    <c:url value="/soal" var="soal_url"/>
+    <c:set var="nomor" value="0" scope="page" />
 
 <div class="span12">
-           test test test
+    <form:form id="formInputUjian" class="modal-form" action="${soal_url}" method="POST"
+               modelAttribute="ujian">
+           <c:forEach items="${listSoal}" var="soalItem">
+               <c:set var="nomor" value="${nomor + 1}" scope="page"/>
+
+              ${nomor}<div>${soalItem.pertanyaan}</div><br/>
+
+               A<form:radiobutton path="" name="jawaban" value="${soalItem.jawabans[0].id}" label="${soalItem.jawabans[0].pilihan}"/><br/>
+               B<form:radiobutton path="" name="jawaban" value="${soalItem.jawabans[1].id}" label="${soalItem.jawabans[1].pilihan}"/><br/>
+               C<form:radiobutton path="" name="jawaban" value="${soalItem.jawabans[2].id}" label="${soalItem.jawabans[2].pilihan}"/><br/>
+               D<form:radiobutton path="" name="jawaban" value="${soalItem.jawabans[3].id}" label="${soalItem.jawabans[3].pilihan}"/><br/>
+           </c:forEach>
+    </form:form>
 </div>
 
 

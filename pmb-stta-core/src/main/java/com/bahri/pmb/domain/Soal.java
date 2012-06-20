@@ -23,7 +23,7 @@ public class Soal {
     @Column(name = "soal_id")
     private Long id;
 
-    @Column(name = "pertanyaan",nullable = false)
+    @Column(name = "pertanyaan",columnDefinition="TEXT",nullable = false)
     private String pertanyaan;
 
     @ManyToOne

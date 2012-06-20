@@ -21,7 +21,7 @@ public class Jawaban {
     @Column(name = "jawaban_id")
     private Long id;
 
-    @Column(name = "pilihan",nullable = false,length = 255)
+    @Column(name = "pilihan",nullable = false,columnDefinition="TEXT")
     @Size(min = 1,max = 255)
     private String pilihan;
 

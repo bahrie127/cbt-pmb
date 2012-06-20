@@ -3,6 +3,7 @@ package com.bahri.pmb.ui.controller;
 import com.bahri.pmb.domain.PengerjaanSoal;
 import com.bahri.pmb.domain.Ujian;
 import com.bahri.pmb.service.PengerjaanSoalService;
+import com.bahri.pmb.service.SoalService;
 import com.bahri.pmb.service.UjianService;
 import com.bahri.pmb.service.editor.PengerjaanSoalEditor;
 import com.bahri.pmb.service.editor.UjianEditor;
@@ -31,12 +32,18 @@ public class UjianController {
     private UjianService ujianService;
 
     @Autowired
+    @Qualifier("soalService")
+    private SoalService soalService;
+
+    @Autowired
     @Qualifier("pengerjaanSoalService")
     private PengerjaanSoalService pengerjaanSoalService;
 
     @RequestMapping(value = "mulai",method = RequestMethod.GET)
     public String ujianMulai(ModelMap modelMap){
-        modelMap.addAttribute("ujians",ujianService.findUjians());
+        modelMap.addAttribute("ujian",new Ujian());
+        modelMap.addAttribute("no",1);
+        modelMap.addAttribute("listSoal",soalService.findSoals());
         return "cbt-page";
     }
     
