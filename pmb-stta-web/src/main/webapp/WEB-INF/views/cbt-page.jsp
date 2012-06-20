@@ -77,10 +77,10 @@
 
               ${nomor}<div>${soalItem.pertanyaan}</div><br/>
 
-               A<form:radiobutton path="" name="jawaban" value="${soalItem.jawabans[0].id}" label="${soalItem.jawabans[0].pilihan}"/><br/>
-               B<form:radiobutton path="" name="jawaban" value="${soalItem.jawabans[1].id}" label="${soalItem.jawabans[1].pilihan}"/><br/>
-               C<form:radiobutton path="" name="jawaban" value="${soalItem.jawabans[2].id}" label="${soalItem.jawabans[2].pilihan}"/><br/>
-               D<form:radiobutton path="" name="jawaban" value="${soalItem.jawabans[3].id}" label="${soalItem.jawabans[3].pilihan}"/><br/>
+               A<form:radiobutton path="" name="jawaban${nomor}" value="${soalItem.jawabans[0].id}" label="${soalItem.jawabans[0].pilihan}"/><br/>
+               B<form:radiobutton path="" name="jawaban${nomor}" value="${soalItem.jawabans[1].id}" label="${soalItem.jawabans[1].pilihan}"/><br/>
+               C<form:radiobutton path="" name="jawaban${nomor}" value="${soalItem.jawabans[2].id}" label="${soalItem.jawabans[2].pilihan}"/><br/>
+               D<form:radiobutton path="" name="jawaban${nomor}" value="${soalItem.jawabans[3].id}" label="${soalItem.jawabans[3].pilihan}"/><br/>
            </c:forEach>
     </form:form>
 </div>
@@ -90,7 +90,7 @@
 <div style="clear: both;"></div>
 
 <div class="row" style="text-align: center">
-    <p> Saiful Bahri&copy; 2012</p>
+    <p> Saiful Bahri &copy; 2012</p>
 </div>
 
 </div>

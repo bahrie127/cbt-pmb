@@ -19,10 +19,10 @@ public class PengerjaanSoal {
     @Column(name = "pengerjaan_soal_id")
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "soal_id",nullable = false)
+    @JoinColumn(name = "soal_id",nullable = true)
     private Soal soal;
     @ManyToOne
-    @JoinColumn(name = "jawaban_id",nullable = false)
+    @JoinColumn(name = "jawaban_id",nullable = true)
     private Jawaban jawaban;
 
     public Long getId() {
