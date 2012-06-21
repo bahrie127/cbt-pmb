@@ -1,5 +1,6 @@
 package com.bahri.pmb.service.impl;
 
+import com.bahri.pmb.domain.CalonMahasiswa;
 import com.bahri.pmb.domain.Ujian;
 import com.bahri.pmb.service.UjianService;
 import org.hibernate.SessionFactory;
@@ -29,6 +30,11 @@ public class UjianServiceImpl implements UjianService{
     }
 
     @Override
+    public void update(Ujian ujian) {
+        sessionFactory.getCurrentSession().update(ujian);
+    }
+
+    @Override
     public void delete(Ujian ujian) {
         if(ujian!=null)
             sessionFactory.getCurrentSession().delete(ujian);
@@ -46,6 +52,11 @@ public class UjianServiceImpl implements UjianService{
     @Override
     public Ujian findUjian(Long id) {
         return (Ujian) sessionFactory.getCurrentSession().get(Ujian.class,id);
+    }
+
+    @Override
+    public Ujian findUjianByPendaftaran(CalonMahasiswa calonMahasiswa) {
+        return (Ujian) sessionFactory.getCurrentSession().createQuery("from Ujian o where o.calonMahasiswa=:calonMahasiswa").setParameter("calonMahasiswa",calonMahasiswa).uniqueResult();
     }
 
     @Override

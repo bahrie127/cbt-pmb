@@ -1,8 +1,6 @@
 package com.bahri.pmb.ui.controller;
 
-import com.bahri.pmb.domain.CalonMahasiswa;
-import com.bahri.pmb.domain.PengerjaanSoal;
-import com.bahri.pmb.domain.Ujian;
+import com.bahri.pmb.domain.*;
 import com.bahri.pmb.service.PengerjaanSoalService;
 import com.bahri.pmb.service.SoalService;
 import com.bahri.pmb.service.UjianService;
@@ -46,9 +44,14 @@ public class UjianController {
 
     @RequestMapping(value = "mulai",method = RequestMethod.GET)
     public String ujianMulai(ModelMap modelMap,@RequestParam(value = "noPendaftaran") Long noPendaftaran){
-        Ujian ujian=new Ujian();
+        Ujian ujian;
         CalonMahasiswa cm=new CalonMahasiswa();
         cm.setId(noPendaftaran);
+
+        ujian=ujianService.findUjianByPendaftaran(cm);
+
+        if(ujian==null){
+            ujian=new Ujian();
         ujian.setCalonMahasiswa(cm);
 
         List<PengerjaanSoal> pengerjaanSoals=new ArrayList<PengerjaanSoal>();
@@ -60,13 +63,31 @@ public class UjianController {
         ujian.setPengerjaanSoalList(pengerjaanSoals);
 
         ujianService.save(ujian);
-
+        }
         modelMap.addAttribute("ujian",ujian);
         modelMap.addAttribute("listSoal",soalService.findSoals());
         return "cbt-page";
     }
     
-    
+    @RequestMapping(value = "jawab",method = RequestMethod.GET)
+    public void jawab(@RequestParam(value = "calonMahasiswaId") Long calonMahasiswaId,
+                      @RequestParam(value = "ujianId") Long ujianId,
+                      @RequestParam(value = "pengerjaanSoalId") Long pengerjaanSoalId,
+                      @RequestParam(value = "soalId") Long soalId,
+                      @RequestParam(value = "jawabanId")Long jawabanId){
+
+        PengerjaanSoal pengerjaanSoal=new PengerjaanSoal();
+        pengerjaanSoal.setId(pengerjaanSoalId);
+        Soal soal=new Soal();
+        soal.setId(soalId);
+        Jawaban jawaban=new Jawaban();
+        jawaban.setId(jawabanId);
+        pengerjaanSoal.setSoal(soal);
+        pengerjaanSoal.setJawaban(jawaban);
+
+       pengerjaanSoalService.save(pengerjaanSoal);
+        
+    }
     
     
     @InitBinder

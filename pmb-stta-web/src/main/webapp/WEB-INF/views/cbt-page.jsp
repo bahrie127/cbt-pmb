@@ -67,20 +67,30 @@
 
 <div class="container">
     <c:url value="/soal" var="soal_url"/>
+    <c:url value="/ujian/jawab" var="jawab_url"/>
     <c:set var="nomor" value="0" scope="page" />
 
 <div class="span12">
     <form:form id="formInputUjian" class="modal-form" action="${soal_url}" method="POST"
                modelAttribute="ujian">
            <c:forEach items="${listSoal}" var="soalItem">
+               <c:set var="pengerjaanSoalId" value="${ujian.pengerjaanSoalList[nomor].id}" scope="page"/>
+               <c:set var="terjawabId" value="${ujian.pengerjaanSoalList[nomor].jawaban.id}" scope="page"/>
                <c:set var="nomor" value="${nomor + 1}" scope="page"/>
 
               ${nomor}<div>${soalItem.pertanyaan}</div><br/>
-
-               A<form:radiobutton path="" name="jawaban${nomor}" value="${soalItem.jawabans[0].id}" label="${soalItem.jawabans[0].pilihan}"/><br/>
-               B<form:radiobutton path="" name="jawaban${nomor}" value="${soalItem.jawabans[1].id}" label="${soalItem.jawabans[1].pilihan}"/><br/>
-               C<form:radiobutton path="" name="jawaban${nomor}" value="${soalItem.jawabans[2].id}" label="${soalItem.jawabans[2].pilihan}"/><br/>
-               D<form:radiobutton path="" name="jawaban${nomor}" value="${soalItem.jawabans[3].id}" label="${soalItem.jawabans[3].pilihan}"/><br/>
+               <c:set var="cek" value=""/>
+               <c:if test="${soalItem.jawabans[0].id==terjawabId}"><c:set var="cek" value="checked"/> </c:if>
+               A<form:radiobutton checked="${cek}" path="" name="jawaban${nomor}" value="${soalItem.jawabans[0].id}" label="${soalItem.jawabans[0].pilihan}" onclick="jawab('${jawab_url}','${ujian.id}','${ujian.calonMahasiswa.id}','${pengerjaanSoalId}','${soalItem.id}','${soalItem.jawabans[0].id}')"  /><br/>
+               <c:set var="cek" value=""/>
+               <c:if test="${soalItem.jawabans[1].id==terjawabId}"><c:set var="cek" value="checked"/> </c:if>
+               B<form:radiobutton checked="${cek}" path="" name="jawaban${nomor}" value="${soalItem.jawabans[1].id}" label="${soalItem.jawabans[1].pilihan}" onclick="jawab('${jawab_url}','${ujian.id}','${ujian.calonMahasiswa.id}','${pengerjaanSoalId}','${soalItem.id}','${soalItem.jawabans[1].id}')"/><br/>
+               <c:set var="cek" value=""/>
+               <c:if test="${soalItem.jawabans[2].id==terjawabId}"><c:set var="cek" value="checked"/> </c:if>
+               C<form:radiobutton checked="${cek}" path="" name="jawaban${nomor}" value="${soalItem.jawabans[2].id}" label="${soalItem.jawabans[2].pilihan}" onclick="jawab('${jawab_url}','${ujian.id}','${ujian.calonMahasiswa.id}','${pengerjaanSoalId}','${soalItem.id}','${soalItem.jawabans[2].id}')"/><br/>
+               <c:set var="cek" value=""/>
+               <c:if test="${soalItem.jawabans[3].id==terjawabId}"><c:set var="cek" value="checked"/> </c:if>
+               D<form:radiobutton checked="${cek}" path="" name="jawaban${nomor}" value="${soalItem.jawabans[3].id}" label="${soalItem.jawabans[3].pilihan}" onclick="jawab('${jawab_url}','${ujian.id}','${ujian.calonMahasiswa.id}','${pengerjaanSoalId}','${soalItem.id}','${soalItem.jawabans[3].id}')"/><br/>
            </c:forEach>
     </form:form>
 </div>
@@ -98,7 +108,17 @@
 
 <script src="<c:url value='/resources/js/bootstrap.js'/>"></script>
 <script src="<c:url value='/resources/js/bootstrap-stack.js'/>"></script>
-
+<script type="text/javascript">
+    function jawab(url, ujianId,calonMahasiswaId,pengerjaanSoalId,soalId,jawabanId) {
+        //  alert(page);
+        $.ajax({
+            url:url + "?ujianId=" + ujianId+"&calonMahasiswaId="+calonMahasiswaId+"&pengerjaanSoalId="+pengerjaanSoalId+"&soalId="+soalId+"&jawabanId="+jawabanId,
+            type:'GET',
+            success:function (result) {
+            }
+        });
+    }
+</script>
 
 </body>
 </html>
