@@ -1,5 +1,6 @@
 package com.bahri.pmb.ui.controller;
 
+import com.bahri.pmb.domain.CalonMahasiswa;
 import com.bahri.pmb.domain.PengerjaanSoal;
 import com.bahri.pmb.domain.Ujian;
 import com.bahri.pmb.service.PengerjaanSoalService;
@@ -15,6 +16,10 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -40,9 +45,23 @@ public class UjianController {
     private PengerjaanSoalService pengerjaanSoalService;
 
     @RequestMapping(value = "mulai",method = RequestMethod.GET)
-    public String ujianMulai(ModelMap modelMap){
-        modelMap.addAttribute("ujian",new Ujian());
-        modelMap.addAttribute("no",1);
+    public String ujianMulai(ModelMap modelMap,@RequestParam(value = "noPendaftaran") Long noPendaftaran){
+        Ujian ujian=new Ujian();
+        CalonMahasiswa cm=new CalonMahasiswa();
+        cm.setId(noPendaftaran);
+        ujian.setCalonMahasiswa(cm);
+
+        List<PengerjaanSoal> pengerjaanSoals=new ArrayList<PengerjaanSoal>();
+        for (int i=0;i<50;i++){
+            PengerjaanSoal pengerjaanSoal=new PengerjaanSoal();
+            pengerjaanSoals.add(pengerjaanSoal);
+        }
+
+        ujian.setPengerjaanSoalList(pengerjaanSoals);
+
+        ujianService.save(ujian);
+
+        modelMap.addAttribute("ujian",ujian);
         modelMap.addAttribute("listSoal",soalService.findSoals());
         return "cbt-page";
     }

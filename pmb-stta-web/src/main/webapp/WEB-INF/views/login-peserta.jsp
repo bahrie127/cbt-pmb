@@ -26,7 +26,7 @@
 <body>
 <div class="container" >
 
-    <spring:url value='/peserta' var="submit_url"/>
+    <spring:url value='/ujian/mulai' var="submit_url"/>
 
     <div class="span4" id="panel">
         <form class="form-horizontal" action="${submit_url}" method="GET">
@@ -40,7 +40,7 @@
                     <div class="controls">
                         <div class="input-prepend">
                             <span class="add-on"><i class="icon-user"></i></span>
-                            <input id="j_username" name="j_username" type="text" class="span2"  type="text" placeholder="No Pendaftaran"/>
+                            <input id="noPendaftaran" name="noPendaftaran" type="text" class="span2"  type="text" placeholder="No Pendaftaran"/>
                         </div>
                     </div>
                 </div>
