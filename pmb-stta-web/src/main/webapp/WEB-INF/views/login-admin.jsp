@@ -26,10 +26,10 @@
 <body>
 <div class="container" >
 
-    <spring:url value='/login' var="submit_url"/>
+    <spring:url value='/admin/dashboard' var="submit_url"/>
 
     <div class="span4" id="panel">
-        <form class="form-horizontal" action="${submit_url}" method="POST">
+        <form class="form-horizontal" action="${submit_url}" method="GET">
 
                 <%--<img src="<c:url value='/resources/img/logoflat.png'/>" style="width: 300px;height: 50px;margin-bottom: 17px;margin-top: -17px" />--%>
                 <br/>

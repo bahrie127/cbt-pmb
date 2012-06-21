@@ -31,7 +31,7 @@
 		<property name="maxUploadSize" value="10000000" />
 	</bean>
 
-    <mvc:view-controller path="/" view-name="dashboard-page"/>
+    <mvc:view-controller path="/" view-name="login-peserta"/>
 
     <!--<bean class="org.springframework.web.servlet.view.XmlViewResolver" p:location="/WEB-INF/jasper-views.xml" p:order="0"/>-->
     <!--<import resource="jasper-views.xml" />-->

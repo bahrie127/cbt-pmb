@@ -17,7 +17,7 @@ import java.util.Calendar;
 public class CalonMahasiswa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "calon_mahasiswa_id")
     private Long id;
 
