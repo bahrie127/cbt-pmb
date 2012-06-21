@@ -19,7 +19,7 @@
     <style type="text/css">
         body
         {
-            background-image: url("<c:url value='/resources/img/aaaaa.jpg'/>");
+            background-image: url("<c:url value='/resources/img/banner-bg.jpg'/>");
         }
     </style>
 </head>

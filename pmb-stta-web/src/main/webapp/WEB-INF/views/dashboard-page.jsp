@@ -22,20 +22,7 @@
         body {
             padding-top: 60px;
             padding-bottom: 40px;
-            background-image: linear-gradient(bottom, rgb(166,133,49) 6%, rgb(214,214,214) 42%, rgb(38,189,189) 84%);
-            background-image: -o-linear-gradient(bottom, rgb(166,133,49) 6%, rgb(214,214,214) 42%, rgb(38,189,189) 84%);
-            background-image: -moz-linear-gradient(bottom, rgb(166,133,49) 6%, rgb(214,214,214) 42%, rgb(38,189,189) 84%);
-            background-image: -webkit-linear-gradient(bottom, rgb(166,133,49) 6%, rgb(214,214,214) 42%, rgb(38,189,189) 84%);
-            background-image: -ms-linear-gradient(bottom, rgb(166,133,49) 6%, rgb(214,214,214) 42%, rgb(38,189,189) 84%);
-
-            background-image: -webkit-gradient(
-                linear,
-                left bottom,
-                left top,
-                color-stop(0.06, rgb(166,133,49)),
-                color-stop(0.42, rgb(214,214,214)),
-                color-stop(0.84, rgb(38,189,189))
-            );
+            background-image: url('<c:url value='/resources/img/banner-bg.jpg'/>');
         }
 
         .sidebar-nav {
@@ -85,6 +72,8 @@
 <div class="row-fluid">
 <div class="span2">
 
+
+
     <div class="well sidebar-nav sideContent" id="sidebar">
 
         <ul class="nav nav-list" style="background-color: #ffffff;">
@@ -95,7 +84,7 @@
                 <div id="accordion2" class="accordion" style="text-align: left">
                     <div class="accordion-group" style="border: none">
                         <div class="accordion-heading" >
-                            <a  class="badge badge-warning accordion-toggle "
+                            <a  class="badge accordion-toggle "
                                 href="<c:url value='/home'/>"
                                data-parent="#accordion2"
                                data-toggle="collapse" style="text-decoration: none" data-stack="dashboard"> <i class="icon-home icon-white"></i> Dashboard </a>
