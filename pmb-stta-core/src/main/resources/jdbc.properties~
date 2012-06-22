@@ -1,0 +1,7 @@
+ # DB Development
+hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+jdbc.driver = com.mysql.jdbc.Driver
+jdbc.url = jdbc:mysql://localhost/mgm?zeroDateTimeBehavior=convertToNull&autoReconnect=true
+jdbc.username = mgm
+jdbc.password = mErpatGroup789
+
