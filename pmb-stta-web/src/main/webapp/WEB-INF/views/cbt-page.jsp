@@ -74,9 +74,9 @@
     <form:form id="formInputUjian" class="modal-form" action="${soal_url}" method="POST"
                modelAttribute="ujian">
            <c:forEach items="${listSoal}" var="soalItem">
-               <c:set var="pengerjaanSoalId" value="${ujian.pengerjaanSoalList[nomor].id}" scope="page"/>
-               <c:set var="terjawabId" value="${ujian.pengerjaanSoalList[nomor].jawaban.id}" scope="page"/>
-               <c:set var="nomor" value="${nomor + 1}" scope="page"/>
+               <c:set var="pengerjaanSoalId" value="${ujian.pengerjaanSoalList[nomor].id}"/>
+               <c:set var="terjawabId" value="${ujian.pengerjaanSoalList[nomor].jawaban.id}"/>
+               <c:set var="nomor" value="${nomor + 1}"/>
 
               ${nomor}<div>${soalItem.pertanyaan}</div><br/>
                <c:set var="cek" value=""/>

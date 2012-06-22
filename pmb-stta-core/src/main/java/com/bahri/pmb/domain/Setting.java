@@ -20,6 +20,10 @@ public class Setting {
     @Column(name = "jumlah_soal_tampil",nullable = false)
     private int jumlahSoalTampil;
 
+    public Setting() {
+        jumlahSoalTampil=50;
+    }
+
     public Long getId() {
         return id;
     }
