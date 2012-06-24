@@ -58,6 +58,21 @@
     </tfoot>
 </table>
 
+<div class="row">
+    <div class="pagination pagination-centered ">
+        <ul>
+            <li>
+                <div class="btn-group">
+                    <button class="btn">1</button>
+                    <button class="btn">2</button>
+                    <button class="btn">3</button>
+                    <button class="btn">4</button>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>
 
 <script type="text/javascript" src="<c:url value='/resources/js/edit.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/resources/js/delete.js'/>"></script>

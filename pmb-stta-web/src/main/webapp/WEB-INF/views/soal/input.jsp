@@ -24,7 +24,7 @@
     <div class="modal-header">
         <a class="close" data-dismiss="modal">×</a>
 
-        <h3>${event} SOAL</h3>
+        <h3 style="text-align: center">${event} SOAL</h3>
     </div>
     <form:form id="formInputSoal" class="modal-form" action="${soal_url}" method="${httpMethod}"
                modelAttribute="soal">
@@ -74,7 +74,7 @@
                             <form:input path="jawabanA" id="jawabanA" class="input-xlarge" disabled="${enabledInput}"/>
                             &nbsp;
 
-                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="A" label="Benar"/>
+                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="A" /> Benar
                         </div>
                     </td>
                 </tr>
@@ -88,7 +88,7 @@
                             <form:input path="jawabanB" id="jawabanB" class="input-xlarge" disabled="${enabledInput}"/>
                             &nbsp;
 
-                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="B" label="Benar"/>
+                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="B" /> Benar
                         </div>
                     </td>
                 </tr>
@@ -102,7 +102,7 @@
                             <form:input path="jawabanC" id="jawabanC" class="input-xlarge" disabled="${enabledInput}"/>
                             &nbsp;
 
-                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="C" label="Benar"/>
+                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="C" /> Benar
                         </div>
                     </td>
                 </tr>
@@ -116,7 +116,7 @@
                             <form:input path="jawabanD" id="jawabanD" class="input-xlarge" disabled="${enabledInput}"/>
                             &nbsp;
 
-                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="D" label="Benar"/>
+                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="D"/> Benar
                         </div>
                     </td>
                 </tr>
