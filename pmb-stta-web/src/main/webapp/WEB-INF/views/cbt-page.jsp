@@ -23,13 +23,7 @@
         body {
             padding-top: 60px;
             padding-bottom: 40px;
-            background-image: linear-gradient(bottom, rgb(166, 133, 49) 6%, rgb(214, 214, 214) 42%, rgb(38, 189, 189) 84%);
-            background-image: -o-linear-gradient(bottom, rgb(166, 133, 49) 6%, rgb(214, 214, 214) 42%, rgb(38, 189, 189) 84%);
-            background-image: -moz-linear-gradient(bottom, rgb(166, 133, 49) 6%, rgb(214, 214, 214) 42%, rgb(38, 189, 189) 84%);
-            background-image: -webkit-linear-gradient(bottom, rgb(166, 133, 49) 6%, rgb(214, 214, 214) 42%, rgb(38, 189, 189) 84%);
-            background-image: -ms-linear-gradient(bottom, rgb(166, 133, 49) 6%, rgb(214, 214, 214) 42%, rgb(38, 189, 189) 84%);
-
-            background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.06, rgb(166, 133, 49)), color-stop(0.42, rgb(214, 214, 214)), color-stop(0.84, rgb(38, 189, 189)));
+            background: #808080
         }
 
         .sidebar-nav {
@@ -53,95 +47,176 @@
 
             <a class="brand" href="#">CBT STT ADISUTJIPTO YOGYAKARTA</a>
 
-            <!--/.nav-collapse -->
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+
+                    <li class="divider-vertical"></li>
+                    <li class="dropdown open">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Jumlah Soal : 50 soal</a></li>
+                            <li><a href="#">Waktu : 120 menit</a></li>
+                            <li><a href="#">Mulai : 15:00:00</a></li>
+                            <li><a href="#">Selesai : 15:00:00</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Sisa : 15:00:00</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
         </div>
     </div>
 </div>
 
-<div class="container">
+<div class="container well">
+
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="#">24 JUNI 2012  15:00:00</a>
+                <div class="nav-collapse">
+
+
+
+
+
+                </div><!-- /.nav-collapse -->
+            </div>
+        </div><!-- /navbar-inner -->
+    </div>
+
     <c:url value="/soal" var="soal_url"/>
     <c:url value="/ujian/jawab" var="jawab_url"/>
 
-    <c:set var="nomor" value="0" scope="page" />
+    <c:set var="nomor" value="0" scope="page"/>
 
-<div class="row-fluid" style="border: 1px solid black">
+    <div class="row-fluid" >
 
-    <form:form id="formInputUjian" class="modal-form form-horizontal" action="${soal_url}" method="POST"
-               modelAttribute="ujian">
-
-
-                <ol>
-           <c:forEach items="${listSoal}" var="soalItem">
-               <c:set var="pengerjaanSoalId" value="${ujian.pengerjaanSoalList[nomor].id}"/>
-               <c:set var="terjawabId" value="${ujian.pengerjaanSoalList[nomor].jawaban.id}"/>
-               <c:set var="nomor" value="${nomor + 1}"/>
-
-              <li class="well">${soalItem.pertanyaan}<br/>
-    <ul class="nav">
-    <li>
-         <table>
-    <tr>
-    <td>
-    <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}" value="${soalItem.jawabans[0].id}" label="" onclick="jawab('${jawab_url}','${ujian.id}','${ujian.calonMahasiswa.id}','${pengerjaanSoalId}','${soalItem.id}','${soalItem.jawabans[0].id}')"  />&nbsp;
-    </td>
-    <td>
-    &nbsp;
-    <c:set var="cek" value=""/>
-    <c:if test="${soalItem.jawabans[0].id==terjawabId}"><c:set var="cek" value="checked"/> </c:if>
-    A      &nbsp;
-    </td>
-
-    <td>
-    ${soalItem.jawabans[0].pilihan}
-    </td>
-    </tr>
-    </table>
+        <form:form id="formInputUjian" class="modal-form form-horizontal" action="${soal_url}" method="POST"
+                   modelAttribute="ujian">
 
 
-    </li>
-    <li>
+            <ol>
+                <c:forEach items="${listSoal}" var="soalItem">
+                    <c:set var="pengerjaanSoalId" value="${ujian.pengerjaanSoalList[nomor].id}"/>
+                    <c:set var="terjawabId" value="${ujian.pengerjaanSoalList[nomor].jawaban.id}"/>
+                    <c:set var="nomor" value="${nomor + 1}"/>
 
-    <ul class="nav nav-pills">
-    <li>
-    <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}" value="${soalItem.jawabans[1].id}" label="" onclick="jawab('${jawab_url}','${ujian.id}','${ujian.calonMahasiswa.id}','${pengerjaanSoalId}','${soalItem.id}','${soalItem.jawabans[1].id}')"/>
-    </li>
-    <li>
-    &nbsp;
-    <c:set var="cek" value=""/>
-    <c:if test="${soalItem.jawabans[1].id==terjawabId}"><c:set var="cek" value="checked"/> </c:if>
-    B &nbsp;
-    </li>
+                    <li>
+                    ${soalItem.pertanyaan}<br/>
+                        <ul class="nav">
+                            <li>
+                                <ul class="nav nav-pills">
+                                    <li>
+                                        <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}"
+                                                          value="${soalItem.jawabans[0].id}" label=""
+                                                          onclick="jawab('${jawab_url}','${ujian.id}','${ujian.calonMahasiswa.id}','${pengerjaanSoalId}','${soalItem.id}','${soalItem.jawabans[0].id}')"/>
 
-    <li>
-    ${soalItem.jawabans[1].pilihan}
-    </li>
-    </ul>
-
-
-    </li>
-    <li>
-    <c:set var="cek" value=""/>
-    <c:if test="${soalItem.jawabans[2].id==terjawabId}"><c:set var="cek" value="checked"/> </c:if>
-    C<form:radiobutton checked="${cek}" path="" name="jawaban${nomor}" value="${soalItem.jawabans[2].id}" label="${soalItem.jawabans[2].pilihan}" onclick="jawab('${jawab_url}','${ujian.id}','${ujian.calonMahasiswa.id}','${pengerjaanSoalId}','${soalItem.id}','${soalItem.jawabans[2].id}')"/>
-    </li>
-    <li>
-    <c:set var="cek" value=""/>
-    <c:if test="${soalItem.jawabans[3].id==terjawabId}"><c:set var="cek" value="checked"/> </c:if>
-    D<form:radiobutton checked="${cek}" path="" name="jawaban${nomor}" value="${soalItem.jawabans[3].id}" label="${soalItem.jawabans[3].pilihan}" onclick="jawab('${jawab_url}','${ujian.id}','${ujian.calonMahasiswa.id}','${pengerjaanSoalId}','${soalItem.id}','${soalItem.jawabans[3].id}')"/>
-    </li>
-    </ul>
-    </li>
+                                    </li>
+                                    <li>
+                                        &nbsp;
+                                        <c:set var="cek" value=""/>
+                                        <c:if test="${soalItem.jawabans[0].id==terjawabId}"><c:set var="cek"
+                                                                                                   value="checked"/>
+                                        </c:if>
+                                        A &nbsp;
+                                    </li>
+                                    <li>
+                                            ${soalItem.jawabans[0].pilihan}
+                                    </li>
+                                </ul>
 
 
 
+                            </li>
+                            <li>
+
+                                <ul class="nav nav-pills">
+                                    <li>
+                                        <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}"
+                                                          value="${soalItem.jawabans[1].id}" label=""
+                                                          onclick="jawab('${jawab_url}','${ujian.id}','${ujian.calonMahasiswa.id}','${pengerjaanSoalId}','${soalItem.id}','${soalItem.jawabans[1].id}')"/>
+
+                                    </li>
+                                    <li>
+                                        &nbsp;
+                                        <c:set var="cek" value=""/>
+                                        <c:if test="${soalItem.jawabans[1].id==terjawabId}"><c:set var="cek"
+                                                                                                   value="checked"/>
+                                        </c:if>
+                                        B &nbsp;
+                                    </li>
+
+                                    <li>
+                                            ${soalItem.jawabans[1].pilihan}
+                                    </li>
+                                </ul>
+
+
+                            </li>
+                            <li>
+                                <ul class="nav nav-pills">
+                                    <li>
+                                        <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}"
+                                                          value="${soalItem.jawabans[2].id}"
+
+                                                          onclick="jawab('${jawab_url}','${ujian.id}','${ujian.calonMahasiswa.id}','${pengerjaanSoalId}','${soalItem.id}','${soalItem.jawabans[2].id}')"/>
+
+                                    </li>
+                                    <li>
+                                        &nbsp;
+                                        <c:set var="cek" value=""/>
+                                        <c:if test="${soalItem.jawabans[2].id==terjawabId}"><c:set var="cek" value="checked"/>
+                                        </c:if>
+                                        C     &nbsp;
+                                    </li>
+                                    <li>
+                                            ${soalItem.jawabans[2].pilihan}
+                                    </li>
+                                </ul>
+
+                            </li>
+                            <li>
+                                <ul class="nav nav-pills">
+                                    <li>
+                                        <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}"
+                                                          value="${soalItem.jawabans[3].id}"
+
+                                                          onclick="jawab('${jawab_url}','${ujian.id}','${ujian.calonMahasiswa.id}','${pengerjaanSoalId}','${soalItem.id}','${soalItem.jawabans[3].id}')"/>
+
+                                    </li>
+                                    <li>
+                                        &nbsp;
+                                        <c:set var="cek" value=""/>
+                                        <c:if test="${soalItem.jawabans[3].id==terjawabId}"><c:set var="cek" value="checked"/>
+                                        </c:if>
+                                        D   &nbsp;
+                                    </li>
+                                    <li>
+                                            ${soalItem.jawabans[3].pilihan}
+                                    </li>
+                                </ul>
+
+                            </li>
+                        </ul>
+                        <hr>
+                    </li>
+
+
+                </c:forEach>
+            </ol>
 
 
 
-           </c:forEach>
-    </ol>
-    </form:form>
-</div>
 
+        </form:form>
+    </div>
 
 
     <div style="clear: both;"></div>
