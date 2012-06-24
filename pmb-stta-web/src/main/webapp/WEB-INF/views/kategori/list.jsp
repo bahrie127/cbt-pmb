@@ -23,9 +23,9 @@
 <table class="table table-striped table-bordered table-condensed table-center" style="margin-top: -10px;">
     <thead>
     <tr>
-        <th>ID</th>
+        <th class="span1">ID</th>
         <th>NAMA</th>
-        <th>ACTION</th>
+        <th class="span3">ACTION</th>
     </tr>
     </thead>
     <tbody>
@@ -57,6 +57,21 @@
 
     </tfoot>
 </table>
+<div class="row">
+    <div class="pagination pagination-centered ">
+        <ul>
+            <li>
+                <div class="btn-group">
+                    <button class="btn">1</button>
+                    <button class="btn">2</button>
+                    <button class="btn">3</button>
+                    <button class="btn">4</button>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>
 
 
 <script type="text/javascript" src="<c:url value='/resources/js/edit.js'/>"></script>

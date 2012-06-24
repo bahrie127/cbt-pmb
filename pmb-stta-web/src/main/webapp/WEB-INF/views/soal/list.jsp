@@ -23,9 +23,9 @@
 <table class="table table-striped table-bordered table-condensed table-center" style="margin-top: -10px;">
     <thead>
     <tr>
-        <th>ID</th>
+        <th class="span1">ID</th>
         <th>SOAL</th>
-        <th>ACTION</th>
+        <th class="span3">ACTION</th>
     </tr>
     </thead>
     <tbody>

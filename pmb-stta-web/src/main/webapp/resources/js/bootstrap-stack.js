@@ -343,92 +343,84 @@ $(function(){
 
 
     $('a[data-stack|="dashboard"]').click(function(){
-        $(this).removeClass('badge-inverse').addClass('badge-warning');
-        $('a[data-stack|="setting"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="barang"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="distributor"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="pelanggan"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="deposit"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="transaksi"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="laporan"]').removeClass('badge-warning').addClass('badge-inverse');
+        $(this).addClass('btn-danger');
+
+        $('a[data-stack|="barang"]').removeClass('btn-danger');
+
     });
 
     $('a[data-stack|="barang"]').click(function(){
-        $(this).removeClass('badge-inverse').addClass('badge-warning');
-        $('a[data-stack|="setting"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="dashboard"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="distributor"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="pelanggan"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="deposit"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="transaksi"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="laporan"]').removeClass('badge-warning').addClass('badge-inverse');
+        $(this).addClass('btn-danger');
+
+        $('a[data-stack|="dashboard"]').removeClass('btn-danger');
+
     });
 
-    $('a[data-stack|="distributor"]').click(function(){
-        $(this).removeClass('badge-inverse').addClass('badge-warning');
-        $('a[data-stack|="setting"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="barang"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="dashboard"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="pelanggan"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="deposit"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="transaksi"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="laporan"]').removeClass('badge-warning').addClass('badge-inverse');
-    });
-
-    $('a[data-stack|="pelanggan"]').click(function(){
-        $(this).removeClass('badge-inverse').addClass('badge-warning');
-        $('a[data-stack|="setting"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="barang"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="distributor"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="dashboard"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="deposit"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="transaksi"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="laporan"]').removeClass('badge-warning').addClass('badge-inverse');
-    });
-
-    $('a[data-stack|="deposit"]').click(function(){
-        $(this).removeClass('badge-inverse').addClass('badge-warning');
-        $('a[data-stack|="setting"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="barang"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="distributor"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="pelanggan"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="dashboard"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="transaksi"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="laporan"]').removeClass('badge-warning').addClass('badge-inverse');
-    });
-
-    $('a[data-stack|="transaksi"]').click(function(){
-        $(this).removeClass('badge-inverse').addClass('badge-warning');
-        $('a[data-stack|="setting"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="barang"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="distributor"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="pelanggan"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="deposit"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="dashboard"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="laporan"]').removeClass('badge-warning').addClass('badge-inverse');
-    });
-
-    $('a[data-stack|="laporan"]').click(function(){
-        $(this).removeClass('badge-inverse').addClass('badge-warning');
-        $('a[data-stack|="setting"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="barang"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="distributor"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="pelanggan"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="deposit"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="transaksi"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="dashboard"]').removeClass('badge-warning').addClass('badge-inverse');
-    });
-
-    $('a[data-stack|="setting"]').click(function(){
-        $(this).removeClass('badge-inverse').addClass('badge-warning');
-        $('a[data-stack|="dashboard"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="barang"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="distributor"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="pelanggan"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="deposit"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="transaksi"]').removeClass('badge-warning').addClass('badge-inverse');
-        $('a[data-stack|="laporan"]').removeClass('badge-warning').addClass('badge-inverse');
-    });
+//    $('a[data-stack|="distributor"]').click(function(){
+//        $(this).removeClass('badge-inverse').addClass('badge-warning');
+//        $('a[data-stack|="setting"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="barang"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="dashboard"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="pelanggan"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="deposit"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="transaksi"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="laporan"]').removeClass('badge-warning').addClass('badge-inverse');
+//    });
+//
+//    $('a[data-stack|="pelanggan"]').click(function(){
+//        $(this).removeClass('badge-inverse').addClass('badge-warning');
+//        $('a[data-stack|="setting"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="barang"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="distributor"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="dashboard"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="deposit"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="transaksi"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="laporan"]').removeClass('badge-warning').addClass('badge-inverse');
+//    });
+//
+//    $('a[data-stack|="deposit"]').click(function(){
+//        $(this).removeClass('badge-inverse').addClass('badge-warning');
+//        $('a[data-stack|="setting"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="barang"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="distributor"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="pelanggan"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="dashboard"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="transaksi"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="laporan"]').removeClass('badge-warning').addClass('badge-inverse');
+//    });
+//
+//    $('a[data-stack|="transaksi"]').click(function(){
+//        $(this).removeClass('badge-inverse').addClass('badge-warning');
+//        $('a[data-stack|="setting"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="barang"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="distributor"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="pelanggan"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="deposit"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="dashboard"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="laporan"]').removeClass('badge-warning').addClass('badge-inverse');
+//    });
+//
+//    $('a[data-stack|="laporan"]').click(function(){
+//        $(this).removeClass('badge-inverse').addClass('badge-warning');
+//        $('a[data-stack|="setting"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="barang"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="distributor"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="pelanggan"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="deposit"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="transaksi"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="dashboard"]').removeClass('badge-warning').addClass('badge-inverse');
+//    });
+//
+//    $('a[data-stack|="setting"]').click(function(){
+//        $(this).removeClass('badge-inverse').addClass('badge-warning');
+//        $('a[data-stack|="dashboard"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="barang"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="distributor"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="pelanggan"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="deposit"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="transaksi"]').removeClass('badge-warning').addClass('badge-inverse');
+//        $('a[data-stack|="laporan"]').removeClass('badge-warning').addClass('badge-inverse');
+//    });
 
 
 

@@ -24,40 +24,39 @@
     <div class="modal-header">
         <a class="close" data-dismiss="modal">×</a>
 
-        <h3>${event} KATEGORI</h3>
+        <h3 style="text-align: center">${event} KATEGORI</h3>
     </div>
     <form:form id="formInputKategori" class="modal-form" action="${kategori_url}" method="${httpMethod}"
                modelAttribute="kategori">
         <div class="modal-body">
 
-            <!--agar sejajar antara label dan inputan.-->
-            <table>
 
-                <form:hidden path="id"/>
+            <form:hidden path="id" class="form-horizontal"/>
 
-                    <%--Nama--%>
-                <tr>
-                    <td>
-                        <label class="control-label" for="textNama">Nama</label>
-                    </td>
-                    <td>
-                        <div class="controls">
-                            &nbsp;&nbsp;
-                            <form:input path="nama" id="textNama" class="input-xlarge" disabled="${enabledInput}"/>
-                            &nbsp;
-                            <span class="label label-info">*</span>
+                <%--Nama--%>
+            <fieldset>
+                <div class="control-group">
+
+                    <div class="controls">
+                        <div class="input-append" style="text-align: center">
+                            <form:input path="nama" id="textNama" class="span2 input-xlarge" disabled="${enabledInput}"
+                                        placeholder="Nama"/><span style="margin-top: -8px" class="add-on">*</span>
                         </div>
-                    </td>
-                </tr>
 
-            </table>
+                    </div>
+                </div>
+
+            </fieldset>
+
+
 
         </div>
         <div class="modal-footer">
 
                 <%--tombol hanya muncul waktu input dan edit--%>
             <c:if test="${!enabledInput}">
-                <button type="submit" class="btn btn-primary"><i class="icon-white icon-download-alt"></i> Simpan</button>
+                <button type="submit" class="btn btn-primary"><i class="icon-white icon-download-alt"></i> Simpan
+                </button>
                 <input type="reset" class="btn" data-dismiss="modal" value="Batal">
             </c:if>
 
