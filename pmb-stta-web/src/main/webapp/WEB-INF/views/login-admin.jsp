@@ -24,47 +24,68 @@
     </style>
 </head>
 <body>
-<div class="container" >
 
-    <spring:url value='/admin/dashboard' var="submit_url"/>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
 
-    <div class="span4" id="panel">
-        <form class="form-horizontal" action="${submit_url}" method="GET">
+            <a class="brand" href="./index.html">Computer-Based Testing</a>
 
-                <%--<img src="<c:url value='/resources/img/logoflat.png'/>" style="width: 300px;height: 50px;margin-bottom: 17px;margin-top: -17px" />--%>
-                <br/>
-                <div class="control-group">
-                    <h2 style="position: absolute;margin-left: 20px;color: #ffffff;">
-                        A d m i n <br/>P a n e l
-                    </h2>
-                    <div class="controls">
-                        <div class="input-prepend">
-                            <span class="add-on"><i class="icon-user"></i></span>
-                            <input id="j_username" name="j_username" type="text" class="span2"  type="text" placeholder="username"/>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="">
+                        <a href="./index.html"></a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 100px">
+
+    <div class="row">
+
+        <spring:url value='/admin/dashboard' var="submit_url"/>
+
+        <div class="span4 offset4">
+
+            <form  action="${submit_url}" method="GET"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="PW5uYWoLrgvxCJPrlbig8cHV5dw3bcwFLV4sE3GidIM="></div>
+                <fieldset>
+
+
+                    <div class="well">
+                        <h3>PANEL ADMIN</h3>
+                        <hr style="border-color: #ccc;">
+
+
+
+                        <div class="control-group ">
+                            <div class="controls">
+                                <input id="j_username" name="j_username" type="text" class="span2"  type="text" placeholder="username"/>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="control-group">
-
-                    <div class="controls">
-                        <div class="input-prepend">
-                            <span class="add-on"><i class="icon-lock"></i></span>
-                            <input id="j_password" name="j_password" type="password" class="span2"  type="password" placeholder="password"/>
+                        <div class="control-group ">
+                            <div class="controls">
+                                <input id="j_password" name="j_password" type="password" class="span2"  type="password" placeholder="password"/>
+                            </div>
                         </div>
+
+
+
+                        <div class="form-actions" style="border: 0; background-color: #f5f5f5; margin: 30px 0 0 0; padding: 0;">
+                            <button type="submit" class="btn btn-danger"><i class="icon-ok-sign icon-white"></i> Login</button>
+
+                        </div>
+
                     </div>
-                </div>
-            <hr>
-
-                <div class="pull-right">
-
-                    <button type="submit" class="btn btn-danger"><i class="icon-ok-sign"></i> Login</button>
-                    <button class="btn"><i class="icon-remove-sign"></i> Cancel</button>
-                </div>
-        </form>
-
+                </fieldset>
+            </form>    </div>
 
     </div>
+
 
     <c:if test="${not empty param.error}">
         <div class="alert alert-error">
