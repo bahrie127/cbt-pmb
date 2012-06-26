@@ -149,7 +149,7 @@
 <div style="clear: both;"></div>
 
 <div class="row" style="text-align: center">
-    <p> Saiful Bahri&copy; 2012</p>
+    <p> Saiful Bahri &copy; 2012</p>
 </div>
 
 </div>
