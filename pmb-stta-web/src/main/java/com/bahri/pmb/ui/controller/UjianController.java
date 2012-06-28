@@ -1,11 +1,15 @@
 package com.bahri.pmb.ui.controller;
 
 import com.bahri.pmb.domain.*;
+import com.bahri.pmb.service.CalonMahasiswaService;
 import com.bahri.pmb.service.PengerjaanSoalService;
 import com.bahri.pmb.service.SoalService;
 import com.bahri.pmb.service.UjianService;
 import com.bahri.pmb.service.editor.PengerjaanSoalEditor;
 import com.bahri.pmb.service.editor.UjianEditor;
+import com.bahri.pmb.simple.SimpleSoal;
+import com.bahri.pmb.util.CalendarUtil;
+import com.bahri.pmb.util.ConstantUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -42,9 +47,20 @@ public class UjianController {
     @Qualifier("pengerjaanSoalService")
     private PengerjaanSoalService pengerjaanSoalService;
 
+    @Autowired
+    @Qualifier("calonMahasiswaService")
+    private CalonMahasiswaService calonMahasiswaService;
+
+    List<SimpleSoal> soalList=new ArrayList<SimpleSoal>();
+    Ujian ujian;
+    Long noPendaftaran;
+
     @RequestMapping(value = "mulai",method = RequestMethod.GET)
     public String ujianMulai(ModelMap modelMap,@RequestParam(value = "noPendaftaran") Long noPendaftaran){
-        Ujian ujian;
+        this.noPendaftaran=noPendaftaran;
+        CalonMahasiswa calonMahasiswa=calonMahasiswaService.findCalonMahasiswa(noPendaftaran);
+
+
         CalonMahasiswa cm=new CalonMahasiswa();
         cm.setId(noPendaftaran);
 
@@ -64,11 +80,46 @@ public class UjianController {
 
         ujianService.save(ujian);
         }
+        
+        List<Soal> soals=soalService.findSoals();
+
+        int nomor=1;
+        for(Soal soal:soals){
+            SimpleSoal simpleSoal=new SimpleSoal();
+            simpleSoal.setNomor(nomor);
+            simpleSoal.setId(soal.getId());
+            simpleSoal.setJawabans(soal.getJawabans());
+            simpleSoal.setKategori(soal.getKategori());
+            simpleSoal.setPertanyaan(soal.getPertanyaan());
+            simpleSoal.setView(soal.getView());
+            soalList.add(simpleSoal);
+            nomor++;
+        }
+
+        modelMap.addAttribute("namaPeserta",calonMahasiswa.getNama());
+        modelMap.addAttribute("tanggal", CalendarUtil.dateToString(new GregorianCalendar()));
         modelMap.addAttribute("ujian",ujian);
-        modelMap.addAttribute("listSoal",soalService.findSoals());
+        modelMap.addAttribute("nomor","0");        
+        modelMap.addAttribute("url","/cbt-pmb/ujian");
+        modelMap.addAttribute("url_hasil","/cbt-pmb/ujian/hasil");
+        modelMap.addAttribute("listSoal", ConstantUtils.tampilkanDiPanelSoal(soalList, 10, 1));
         return "cbt-page";
     }
-    
+
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String find(ModelMap modelMap, @RequestParam(value = "page",defaultValue = "1") int page) {
+        CalonMahasiswa cm=new CalonMahasiswa();
+        cm.setId(noPendaftaran);
+
+        ujian=ujianService.findUjianByPendaftaran(cm);
+        modelMap.addAttribute("ujian",ujian);
+        modelMap.addAttribute("nomor",((page-1)*10)+"");
+        modelMap.addAttribute("listSoal", ConstantUtils.tampilkanDiPanelSoal(soalList, 10, page));
+        modelMap.addAttribute("url", "/cbt-pmb/ujian");
+        return "cbt/page";
+    }
+
     @RequestMapping(value = "jawab",method = RequestMethod.GET)
     public void jawab(@RequestParam(value = "calonMahasiswaId") Long calonMahasiswaId,
                       @RequestParam(value = "ujianId") Long ujianId,
@@ -88,7 +139,30 @@ public class UjianController {
        pengerjaanSoalService.save(pengerjaanSoal);
         
     }
-    
+
+    @RequestMapping(value = "hasil",method = RequestMethod.GET)
+    public String hasil(ModelMap modelMap){
+
+        CalonMahasiswa cm=new CalonMahasiswa();
+        cm.setId(noPendaftaran);
+
+        ujian=ujianService.findUjianByPendaftaran(cm);
+
+        int benar=0;
+
+        for(PengerjaanSoal pengerjaanSoal:ujian.getPengerjaanSoalList()){
+            if(pengerjaanSoal.getJawaban()!=null && pengerjaanSoal.getJawaban().getKebenaran()){
+                benar++;
+            }
+        }
+
+        ujian.setHasil(Float.parseFloat((benar*2)+""));
+
+        ujianService.save(ujian);
+        modelMap.addAttribute("hasil",benar*2);
+        return "cbt/hasil";
+
+    }
     
     @InitBinder
     protected void initBinder(WebDataBinder binder) throws Exception{

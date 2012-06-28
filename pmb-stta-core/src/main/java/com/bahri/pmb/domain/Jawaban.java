@@ -25,7 +25,7 @@ public class Jawaban {
     @Size(min = 1,max = 255)
     private String pilihan;
 
-    @Column(name = "kebenaran",nullable = false)
+    @Column(name = "kebenaran",nullable = false,columnDefinition="TINYINT(1)")
     private Boolean kebenaran;
 
     public Long getId() {

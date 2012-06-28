@@ -1,5 +1,12 @@
 package com.bahri.pmb.util;
 
+import com.bahri.pmb.domain.Soal;
+import com.bahri.pmb.domain.Ujian;
+import com.bahri.pmb.simple.SimpleSoal;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User: latief
@@ -99,5 +106,11 @@ public final class ConstantUtils {
         pagination[1] = kanan;
 
         return pagination;
+    }
+    
+    public static List<SimpleSoal> tampilkanDiPanelSoal(List<SimpleSoal> soals,int soalPerHalaman,int page){
+        List<SimpleSoal> returnSoal=new ArrayList<SimpleSoal>();
+        returnSoal=soals.subList(((page-1)*soalPerHalaman),(soalPerHalaman*page));
+        return returnSoal;
     }
 }

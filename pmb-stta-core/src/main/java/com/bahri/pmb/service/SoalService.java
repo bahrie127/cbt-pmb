@@ -1,6 +1,7 @@
 package com.bahri.pmb.service;
 
 import com.bahri.pmb.domain.Soal;
+import com.bahri.pmb.simple.SimpleSoal;
 
 import java.util.List;
 
@@ -17,5 +18,6 @@ public interface SoalService {
     public void deleteMore(Soal[] soals);
     public Soal findSoal(Long id);
     public List<Soal> findSoals();
+    public List<SimpleSoal> findSimpleSoals();
     public Long countSoals();
 }

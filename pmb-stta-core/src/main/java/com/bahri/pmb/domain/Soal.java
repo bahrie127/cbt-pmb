@@ -1,7 +1,5 @@
 package com.bahri.pmb.domain;
 
-import com.bahri.pmb.domain.enumeration.EnumJawaban;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Map;

@@ -2,6 +2,7 @@ package com.bahri.pmb.service.impl;
 
 import com.bahri.pmb.domain.Soal;
 import com.bahri.pmb.service.SoalService;
+import com.bahri.pmb.simple.SimpleSoal;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,11 @@ public class SoalServiceImpl implements SoalService{
 
     @Override
     public List<Soal> findSoals() {
+        return sessionFactory.getCurrentSession().createQuery("from Soal o order by o.id").list();
+    }
+
+    @Override
+    public List<SimpleSoal> findSimpleSoals() {
         return sessionFactory.getCurrentSession().createQuery("from Soal o order by o.id").list();
     }
 

@@ -94,7 +94,7 @@ public class SoalController {
         if(bindingResult.hasErrors()) return "Gagal";
 
         try{
-               soalService.save(soal.convertToSoal());
+              // soalService.save(soal.convertToSoal());
             return "Sukses";
         }catch (HibernateException e){
             return "Gagal";
