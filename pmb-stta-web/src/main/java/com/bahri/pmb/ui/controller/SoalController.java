@@ -10,6 +10,7 @@ import com.bahri.pmb.service.editor.JawabanEditor;
 import com.bahri.pmb.service.editor.KategoriEditor;
 import com.bahri.pmb.service.editor.SoalEditor;
 import com.bahri.pmb.simple.SimpleSoal;
+import com.bahri.pmb.util.ConstantUtils;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -50,8 +51,16 @@ public class SoalController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String find(ModelMap modelMap, @RequestParam(required = false, value = "page", defaultValue = "1") int page, @RequestParam(required = false, value = "max", defaultValue = "0")int max) {
-        modelMap.addAttribute("soals", soalService.findSoals());
+    public String find(ModelMap modelMap, @RequestParam(required = false, value = "page", defaultValue = "1") int page) {
+        int countPage=soalService.countPageSoals();
+        page = (page < 1 ? 1 : (page > countPage ? countPage : page));
+        modelMap.addAttribute("soals", soalService.findSoals(page));
+        modelMap.addAttribute("countPage", countPage);
+        modelMap.addAttribute("kiri", ConstantUtils.leftRightPagination(page, countPage)[0]);
+        modelMap.addAttribute("kanan", ConstantUtils.leftRightPagination(page, countPage)[1]);
+        modelMap.addAttribute("page", page);
+
+        modelMap.addAttribute("urlFunction", "/soal");
         return "soal/list";
     }
 

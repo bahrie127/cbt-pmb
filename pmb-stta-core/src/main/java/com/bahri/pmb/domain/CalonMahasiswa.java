@@ -1,7 +1,5 @@
 package com.bahri.pmb.domain;
 
-import com.bahri.pmb.domain.enumeration.JenisKelamin;
-
 import javax.persistence.*;
 import java.util.Calendar;
 
@@ -32,7 +30,7 @@ public class CalonMahasiswa {
     private Calendar tanggalLahir;
 
     @Column(name = "jenis_kelamin",nullable = false)
-    private JenisKelamin jenisKelamin;
+    private String jenisKelamin;
 
     @Column(name = "agama",nullable = false,length = 25)
     private String agama;
@@ -151,11 +149,11 @@ public class CalonMahasiswa {
         this.tanggalLahir = tanggalLahir;
     }
 
-    public JenisKelamin getJenisKelamin() {
+    public String getJenisKelamin() {
         return jenisKelamin;
     }
 
-    public void setJenisKelamin(JenisKelamin jenisKelamin) {
+    public void setJenisKelamin(String jenisKelamin) {
         this.jenisKelamin = jenisKelamin;
     }
 

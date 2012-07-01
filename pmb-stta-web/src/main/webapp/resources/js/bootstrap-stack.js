@@ -4,6 +4,7 @@ $(document).ready(function () {
     var accordianToggleDistributor = $('#accordianToggleDistributor');
     var accordianToggleKategori = $('#accordianToggleKategori');
     var accordianToggleSoal = $('#accordianToggleSoal');
+    var accordianToggleUser = $('#accordianToggleUser');
     /**
      * Distributor Action
      */
@@ -34,6 +35,16 @@ $(document).ready(function () {
             $('#bundleNavbar').html(dataNavBar);
         });
         $.get('/cbt-pmb/soal', function (data) {
+            $('#bundleList').html(data);
+        });
+    });
+
+    accordianToggleUser.click(function () {
+        $('#myCarousel').remove();
+        $.get('/cbt-pmb/user/navbar', function (dataNavBar) {
+            $('#bundleNavbar').html(dataNavBar);
+        });
+        $.get('/cbt-pmb/user', function (data) {
             $('#bundleList').html(data);
         });
     });

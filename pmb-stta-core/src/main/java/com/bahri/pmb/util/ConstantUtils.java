@@ -1,7 +1,5 @@
 package com.bahri.pmb.util;
 
-import com.bahri.pmb.domain.Soal;
-import com.bahri.pmb.domain.Ujian;
 import com.bahri.pmb.simple.SimpleSoal;
 
 import java.util.ArrayList;
@@ -69,7 +67,13 @@ public final class ConstantUtils {
     /**
      * max pagination record
      */
-    public final static int PAGE_MAX_RECORD = 25;
+    public final static int PAGE_MAX_RECORD = 5;
+
+    /**
+     * max pagination record soal
+     */
+    public final static int PAGE_RECORD_SOAL = 10;
+
     /**
      * max left pagination
      */

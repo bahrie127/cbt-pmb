@@ -5,6 +5,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.security.Principal;
+
 /**
  * Created by IntelliJ IDEA.
  * User: bahrie
@@ -27,7 +29,27 @@ public class AdminController {
     }
 
     @RequestMapping(value = "dashboard", method = RequestMethod.GET)
-    public String dashboard(ModelMap modelMap){
+    public String dashboard(ModelMap modelMap,Principal principal){
+        
+        String name=principal.getName();
+        modelMap.addAttribute("username",name);
+        modelMap.addAttribute("message","sukses");
+        
         return "dashboard-page";
+    }
+
+    @RequestMapping(value="/loginfailed", method = RequestMethod.GET)
+    public String loginerror(ModelMap model) {
+
+        model.addAttribute("paramError", "error");
+        return "login-admin";
+
+    }
+
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String logout(ModelMap model) {
+
+        return "login-admin";
+
     }
 }

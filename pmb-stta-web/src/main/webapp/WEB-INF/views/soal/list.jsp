@@ -58,20 +58,44 @@
     </tfoot>
 </table>
 
-<div class="row">
-    <div class="pagination pagination-centered ">
-        <ul>
-            <li>
-                <div class="btn-group">
-                    <button class="btn">1</button>
-                    <button class="btn">2</button>
-                    <button class="btn">3</button>
-                    <button class="btn">4</button>
-                </div>
-            </li>
+<div class="pagination btn-toolbar">
 
-        </ul>
-    </div>
+    <c:url value="${urlFunction}" var="url"/>
+    <ul class="btn-group">
+
+        <c:if test="${page-kiri>1}">
+            <li class="active" onclick="toPage('${url}',1)">
+                <button style="cursor: pointer" class="btn">«</button>
+            </li>
+            <li class="active" onclick="toPage('${url}',${page-1})">
+                <button style="cursor: pointer" class="btn"><</button>
+            </li>
+        </c:if>
+        <c:forEach var="i" begin="${page-kiri}" step="1" end="${page-1}">
+            <li class="active" onclick="toPage('${url}',${i})" >
+                <button style="cursor: pointer" class="btn">${i}</button>
+            </li>
+        </c:forEach>
+
+        <li class="active" onclick="toPage('${url}',${page})">
+            <button style="cursor: pointer;color: blue" class="btn active">${page}</button>
+        </li>
+        <c:forEach var="i" begin="${page+1}" step="1" end="${page+kanan}">
+            <li class="active" onclick="toPage('${url}',${i})">
+                <button style="cursor: pointer" class="btn">${i}</button>
+            </li>
+        </c:forEach>
+
+        <c:if test="${page+kanan<countPage}">
+            <li class="active" onclick="toPage('${url}',${page+1})">
+                <button style="cursor: pointer" class="btn">></button>
+            </li>
+            <li class="active" onclick="toPage('${url}',${countPage})">
+                <button style="cursor: pointer" class="btn">»</button>
+            </li>
+        </c:if>
+
+    </ul>
 </div>
 
 <script type="text/javascript" src="<c:url value='/resources/js/edit.js'/>"></script>

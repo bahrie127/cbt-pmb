@@ -57,7 +57,7 @@
                             <li><a href="#"><i class="icon-lock"></i>&nbsp;Change Password</a></li>
 
                             <li class="divider"></li>
-                            <li><a href="<c:url value='/logout'/>"><i class="icon-off"></i>&nbsp;Log out</a></li>
+                            <li><a href="<c:url value="/logout" />"><i class="icon-off"></i>&nbsp;Log out</a></li>
                         </ul>
                     </li>
 
@@ -82,14 +82,14 @@
 
 
                 <div id="accordion2" class="accordion" style="text-align: left">
-                    <div class="accordion-group" style="border: none">
-                        <div class="accordion-heading" >
-                            <a  class="btn accordion-toggle "
-                                href="<c:url value='/home'/>"
-                               data-parent="#accordion2"
-                               data-toggle="collapse" style="text-decoration: none;text-align: left;" data-stack="dashboard"> <i class="icon-home icon-white"></i> Dashboard </a>
-                        </div>
-                    </div>
+                    <%--<div class="accordion-group" style="border: none">--%>
+                        <%--<div class="accordion-heading" >--%>
+                            <%--<a  class="btn accordion-toggle "--%>
+                                <%--href="<c:url value='/home'/>"--%>
+                               <%--data-parent="#accordion2"--%>
+                               <%--data-toggle="collapse" style="text-decoration: none;text-align: left;" data-stack="dashboard"> <i class="icon-home icon-white"></i> Dashboard </a>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <div class="accordion-group batasAtas" style="border: none">
                         <div class="accordion-heading" id="accordianHeadingBarang" >
                             <a class="btn accordion-toggle " href="#collapseBarang" data-parent="#accordion2"
@@ -107,7 +107,12 @@
                                                href="#collapseSoal"
                                                data-parent="#accordion2"
                                                data-toggle="collapse">Soal</a></li>
+                                    <li><a id="accordianToggleUser" class=" accordion-toggle "
+                                           href="#collapseUser"
+                                           data-parent="#accordion2"
+                                           data-toggle="collapse">User</a></li>
                                 </ul>
+
                             </div>
                         </div>
                     </div>

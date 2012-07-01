@@ -99,22 +99,28 @@
     <div class="row">
         <div class="pagination pagination-centered ">
             <ul class="btn-group">
-                <li  class="active" onclick="toPage('${url}',1)">
-                    <button style="cursor: pointer" class="btn">1</button>
-                </li>
-                <li  class="active" onclick="toPage('${url}',2)">
-                    <button style="cursor: pointer" class="btn">2</button>
-                </li>
-                <li  class="active" onclick="toPage('${url}',3)">
-                    <button style="cursor: pointer" class="btn">3</button>
-                </li>
-                <li  class="active" onclick="toPage('${url}',4)">
-                    <button style="cursor: pointer" class="btn">4</button>
-                </li>
-                <li  class="active" onclick="toPage('${url}',5)">
-                    <button style="cursor: pointer" class="btn">5</button>
+                <%--<li  class="active" onclick="toPage('${url}',1)">--%>
+                    <%--<button style="cursor: pointer" class="btn">1</button>--%>
+                <%--</li>--%>
+                <%--<li  class="active" onclick="toPage('${url}',2)">--%>
+                    <%--<button style="cursor: pointer" class="btn">2</button>--%>
+                <%--</li>--%>
+                <%--<li  class="active" onclick="toPage('${url}',3)">--%>
+                    <%--<button style="cursor: pointer" class="btn">3</button>--%>
+                <%--</li>--%>
+                <%--<li  class="active" onclick="toPage('${url}',4)">--%>
+                    <%--<button style="cursor: pointer" class="btn">4</button>--%>
+                <%--</li>--%>
+                <%--<li  class="active" onclick="toPage('${url}',5)">--%>
+                    <%--<button style="cursor: pointer" class="btn">5</button>--%>
 
-                </li>
+                <%--</li>--%>
+
+                    <c:forEach var="i" begin="1" step="1" end="${countPage}">
+                        <li class="active" onclick="toPage('${url}',${i})">
+                            <button style="cursor: pointer" class="btn">${i}</button>
+                        </li>
+                    </c:forEach>
 
             </ul>
         </div>

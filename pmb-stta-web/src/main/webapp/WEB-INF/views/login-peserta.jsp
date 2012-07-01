@@ -57,12 +57,11 @@
                     <h2>Selamat datang </h2>
 
                     <p>Login dengan menggunakan nomor pendaftaran anda
-                        <a href="/users/sign_up"><br>Belum terdaftar ?</a>
                     </p>
 
                     <div class="well">
 
-                        <a href="/users/auth/facebook" class="btn btn-large btn-primary">
+                        <a href="#" class="btn btn-large btn-primary">
                             PANEL PESERTA</a>
 
                         <hr style="border-color: #ccc;">
@@ -92,10 +91,10 @@
 
 
 
-    <c:if test="${not empty param.error}">
+    <c:if test="${not empty param}">
         <div class="alert alert-error">
-            <strong>Login Tidak Berhasil!</strong><br/>
-            Periksa kembali username dan password anda.
+            <strong>Kesalahan</strong><br/>
+            Nomor Pendaftaran tidak tersedia,periksa kembali nomor pendaftaran.
         </div>
     </c:if>
 

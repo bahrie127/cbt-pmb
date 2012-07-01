@@ -18,6 +18,8 @@ public interface SoalService {
     public void deleteMore(Soal[] soals);
     public Soal findSoal(Long id);
     public List<Soal> findSoals();
+    public List<Soal> findSoals(int page);
     public List<SimpleSoal> findSimpleSoals();
     public Long countSoals();
+    public int countPageSoals();
 }

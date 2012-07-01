@@ -20,12 +20,12 @@ public class Jawaban {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "jawaban_id")
     private Long id;
-
-    @Column(name = "pilihan",nullable = false,columnDefinition="TEXT")
+                                               //,columnDefinition="TEXT"
+    @Column(name = "pilihan",nullable = false)
     @Size(min = 1,max = 255)
     private String pilihan;
-
-    @Column(name = "kebenaran",nullable = false,columnDefinition="TINYINT(1)")
+                                                 //,columnDefinition="TINYINT(1)"
+    @Column(name = "kebenaran",nullable = false)
     private Boolean kebenaran;
 
     public Long getId() {

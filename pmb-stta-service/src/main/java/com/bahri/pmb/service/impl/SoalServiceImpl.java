@@ -3,6 +3,8 @@ package com.bahri.pmb.service.impl;
 import com.bahri.pmb.domain.Soal;
 import com.bahri.pmb.service.SoalService;
 import com.bahri.pmb.simple.SimpleSoal;
+import com.bahri.pmb.util.ConstantUtils;
+import com.bahri.pmb.util.HibernateUtil;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,6 +57,12 @@ public class SoalServiceImpl implements SoalService{
     }
 
     @Override
+    public List<Soal> findSoals(int page) {
+        List<Soal> soalList= HibernateUtil.createQueryResultPagination(sessionFactory.getCurrentSession().createQuery("from Soal o order by o.id"),((page-1) * ConstantUtils.PAGE_MAX_RECORD), ConstantUtils.PAGE_MAX_RECORD).list();
+        return soalList;
+    }
+
+    @Override
     public List<SimpleSoal> findSimpleSoals() {
         return sessionFactory.getCurrentSession().createQuery("from Soal o order by o.id").list();
     }
@@ -62,5 +70,12 @@ public class SoalServiceImpl implements SoalService{
     @Override
     public Long countSoals() {
         return (Long) sessionFactory.getCurrentSession().createQuery("select count (o) from Soal o").uniqueResult();
+    }
+
+    @Override
+    public int countPageSoals() {
+        Long countRecords = countSoals();
+        int countPages = (int) Math.ceil((double) countRecords / (double) ConstantUtils.PAGE_MAX_RECORD);
+        return countPages;
     }
 }

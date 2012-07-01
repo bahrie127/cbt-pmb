@@ -51,122 +51,127 @@ public class UjianController {
     @Qualifier("calonMahasiswaService")
     private CalonMahasiswaService calonMahasiswaService;
 
-    List<SimpleSoal> soalList=new ArrayList<SimpleSoal>();
+    List<SimpleSoal> soalList = new ArrayList<SimpleSoal>();
     Ujian ujian;
     Long noPendaftaran;
 
-    @RequestMapping(value = "mulai",method = RequestMethod.GET)
-    public String ujianMulai(ModelMap modelMap,@RequestParam(value = "noPendaftaran") Long noPendaftaran){
-        this.noPendaftaran=noPendaftaran;
-        CalonMahasiswa calonMahasiswa=calonMahasiswaService.findCalonMahasiswa(noPendaftaran);
+    @RequestMapping(value = "mulai", method = RequestMethod.GET)
+    public String ujianMulai(ModelMap modelMap, @RequestParam(value = "noPendaftaran") Long noPendaftaran) {
+        this.noPendaftaran = noPendaftaran;
+        CalonMahasiswa calonMahasiswa = calonMahasiswaService.findCalonMahasiswa(noPendaftaran);
 
+        if (calonMahasiswa != null) {
+            CalonMahasiswa cm = new CalonMahasiswa();
+            cm.setId(noPendaftaran);
 
-        CalonMahasiswa cm=new CalonMahasiswa();
-        cm.setId(noPendaftaran);
+            ujian = ujianService.findUjianByPendaftaran(cm);
 
-        ujian=ujianService.findUjianByPendaftaran(cm);
+            if (ujian == null) {
+                ujian = new Ujian();
+                ujian.setCalonMahasiswa(cm);
 
-        if(ujian==null){
-            ujian=new Ujian();
-        ujian.setCalonMahasiswa(cm);
+                List<PengerjaanSoal> pengerjaanSoals = new ArrayList<PengerjaanSoal>();
+                for (int i = 0; i < 50; i++) {
+                    PengerjaanSoal pengerjaanSoal = new PengerjaanSoal();
+                    pengerjaanSoals.add(pengerjaanSoal);
+                }
 
-        List<PengerjaanSoal> pengerjaanSoals=new ArrayList<PengerjaanSoal>();
-        for (int i=0;i<50;i++){
-            PengerjaanSoal pengerjaanSoal=new PengerjaanSoal();
-            pengerjaanSoals.add(pengerjaanSoal);
+                ujian.setPengerjaanSoalList(pengerjaanSoals);
+
+                ujianService.save(ujian);
+            }
+
+            List<Soal> soals = soalService.findSoals();
+
+            int nomor = 1;
+            for (Soal soal : soals) {
+                SimpleSoal simpleSoal = new SimpleSoal();
+                simpleSoal.setNomor(nomor);
+                simpleSoal.setId(soal.getId());
+                simpleSoal.setJawabans(soal.getJawabans());
+                simpleSoal.setKategori(soal.getKategori());
+                simpleSoal.setPertanyaan(soal.getPertanyaan());
+                simpleSoal.setView(soal.getView());
+                soalList.add(simpleSoal);
+                nomor++;
+            }
+
+            modelMap.addAttribute("namaPeserta", calonMahasiswa.getNama());
+            modelMap.addAttribute("tanggal", CalendarUtil.dateToString(new GregorianCalendar()));
+            modelMap.addAttribute("ujian", ujian);
+            modelMap.addAttribute("nomor", "0");
+            modelMap.addAttribute("url", "/cbt-pmb/ujian");
+            modelMap.addAttribute("url_hasil", "/cbt-pmb/ujian/hasil");
+            modelMap.addAttribute("listSoal", ConstantUtils.tampilkanDiPanelSoal(soalList, ConstantUtils.PAGE_RECORD_SOAL, 1));
+            modelMap.addAttribute("countPage", (int) Math.ceil((double) soalList.size() / (double) ConstantUtils.PAGE_RECORD_SOAL));
+            return "cbt-page";
+        } else {
+            modelMap.addAttribute("param", "gagal");
+            return "login-peserta";
         }
-
-        ujian.setPengerjaanSoalList(pengerjaanSoals);
-
-        ujianService.save(ujian);
-        }
-        
-        List<Soal> soals=soalService.findSoals();
-
-        int nomor=1;
-        for(Soal soal:soals){
-            SimpleSoal simpleSoal=new SimpleSoal();
-            simpleSoal.setNomor(nomor);
-            simpleSoal.setId(soal.getId());
-            simpleSoal.setJawabans(soal.getJawabans());
-            simpleSoal.setKategori(soal.getKategori());
-            simpleSoal.setPertanyaan(soal.getPertanyaan());
-            simpleSoal.setView(soal.getView());
-            soalList.add(simpleSoal);
-            nomor++;
-        }
-
-        modelMap.addAttribute("namaPeserta",calonMahasiswa.getNama());
-        modelMap.addAttribute("tanggal", CalendarUtil.dateToString(new GregorianCalendar()));
-        modelMap.addAttribute("ujian",ujian);
-        modelMap.addAttribute("nomor","0");        
-        modelMap.addAttribute("url","/cbt-pmb/ujian");
-        modelMap.addAttribute("url_hasil","/cbt-pmb/ujian/hasil");
-        modelMap.addAttribute("listSoal", ConstantUtils.tampilkanDiPanelSoal(soalList, 10, 1));
-        return "cbt-page";
     }
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public String find(ModelMap modelMap, @RequestParam(value = "page",defaultValue = "1") int page) {
-        CalonMahasiswa cm=new CalonMahasiswa();
+    public String find(ModelMap modelMap, @RequestParam(value = "page", defaultValue = "1") int page) {
+        CalonMahasiswa cm = new CalonMahasiswa();
         cm.setId(noPendaftaran);
 
-        ujian=ujianService.findUjianByPendaftaran(cm);
-        modelMap.addAttribute("ujian",ujian);
-        modelMap.addAttribute("nomor",((page-1)*10)+"");
-        modelMap.addAttribute("listSoal", ConstantUtils.tampilkanDiPanelSoal(soalList, 10, page));
+        ujian = ujianService.findUjianByPendaftaran(cm);
+        modelMap.addAttribute("ujian", ujian);
+        modelMap.addAttribute("nomor", ((page - 1) * ConstantUtils.PAGE_RECORD_SOAL) + "");
+        modelMap.addAttribute("listSoal", ConstantUtils.tampilkanDiPanelSoal(soalList, ConstantUtils.PAGE_RECORD_SOAL, page));
         modelMap.addAttribute("url", "/cbt-pmb/ujian");
         return "cbt/page";
     }
 
-    @RequestMapping(value = "jawab",method = RequestMethod.GET)
+    @RequestMapping(value = "jawab", method = RequestMethod.GET)
     public void jawab(@RequestParam(value = "calonMahasiswaId") Long calonMahasiswaId,
                       @RequestParam(value = "ujianId") Long ujianId,
                       @RequestParam(value = "pengerjaanSoalId") Long pengerjaanSoalId,
                       @RequestParam(value = "soalId") Long soalId,
-                      @RequestParam(value = "jawabanId")Long jawabanId){
+                      @RequestParam(value = "jawabanId") Long jawabanId) {
 
-        PengerjaanSoal pengerjaanSoal=new PengerjaanSoal();
+        PengerjaanSoal pengerjaanSoal = new PengerjaanSoal();
         pengerjaanSoal.setId(pengerjaanSoalId);
-        Soal soal=new Soal();
+        Soal soal = new Soal();
         soal.setId(soalId);
-        Jawaban jawaban=new Jawaban();
+        Jawaban jawaban = new Jawaban();
         jawaban.setId(jawabanId);
         pengerjaanSoal.setSoal(soal);
         pengerjaanSoal.setJawaban(jawaban);
 
-       pengerjaanSoalService.save(pengerjaanSoal);
-        
+        pengerjaanSoalService.save(pengerjaanSoal);
+
     }
 
-    @RequestMapping(value = "hasil",method = RequestMethod.GET)
-    public String hasil(ModelMap modelMap){
+    @RequestMapping(value = "hasil", method = RequestMethod.GET)
+    public String hasil(ModelMap modelMap) {
 
-        CalonMahasiswa cm=new CalonMahasiswa();
+        CalonMahasiswa cm = new CalonMahasiswa();
         cm.setId(noPendaftaran);
 
-        ujian=ujianService.findUjianByPendaftaran(cm);
+        ujian = ujianService.findUjianByPendaftaran(cm);
 
-        int benar=0;
+        int benar = 0;
 
-        for(PengerjaanSoal pengerjaanSoal:ujian.getPengerjaanSoalList()){
-            if(pengerjaanSoal.getJawaban()!=null && pengerjaanSoal.getJawaban().getKebenaran()){
+        for (PengerjaanSoal pengerjaanSoal : ujian.getPengerjaanSoalList()) {
+            if (pengerjaanSoal.getJawaban() != null && pengerjaanSoal.getJawaban().getKebenaran()) {
                 benar++;
             }
         }
-
-        ujian.setHasil(Float.parseFloat((benar*2)+""));
+        float hasil=((float)benar/ujian.getPengerjaanSoalList().size())*(float)100;
+        ujian.setHasil(hasil);
 
         ujianService.save(ujian);
-        modelMap.addAttribute("hasil",benar*2);
+        modelMap.addAttribute("hasil", hasil);
         return "cbt/hasil";
 
     }
-    
+
     @InitBinder
-    protected void initBinder(WebDataBinder binder) throws Exception{
+    protected void initBinder(WebDataBinder binder) throws Exception {
         binder.registerCustomEditor(Ujian.class, new UjianEditor(ujianService));
-        binder.registerCustomEditor(PengerjaanSoal.class,new PengerjaanSoalEditor(pengerjaanSoalService));
+        binder.registerCustomEditor(PengerjaanSoal.class, new PengerjaanSoalEditor(pengerjaanSoalService));
     }
 }
