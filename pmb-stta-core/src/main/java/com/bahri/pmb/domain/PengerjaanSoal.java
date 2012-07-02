@@ -48,4 +48,26 @@ public class PengerjaanSoal {
     public void setJawaban(Jawaban jawaban) {
         this.jawaban = jawaban;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PengerjaanSoal that = (PengerjaanSoal) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (jawaban != null ? !jawaban.equals(that.jawaban) : that.jawaban != null) return false;
+        if (soal != null ? !soal.equals(that.soal) : that.soal != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (soal != null ? soal.hashCode() : 0);
+        result = 31 * result + (jawaban != null ? jawaban.hashCode() : 0);
+        return result;
+    }
 }

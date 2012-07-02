@@ -35,6 +35,10 @@ public class Soal {
     @JoinColumn(name = "soal_id")
     private List<Jawaban> jawabans;
 
+    public Soal() {
+        isView=0L;
+    }
+
     public Long getId() {
         return id;
     }
@@ -73,5 +77,31 @@ public class Soal {
 
     public void setJawabans(List<Jawaban> jawabans) {
         this.jawabans = jawabans;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Soal soal = (Soal) o;
+
+        if (id != null ? !id.equals(soal.id) : soal.id != null) return false;
+        if (isView != null ? !isView.equals(soal.isView) : soal.isView != null) return false;
+        if (jawabans != null ? !jawabans.equals(soal.jawabans) : soal.jawabans != null) return false;
+        if (kategori != null ? !kategori.equals(soal.kategori) : soal.kategori != null) return false;
+        if (pertanyaan != null ? !pertanyaan.equals(soal.pertanyaan) : soal.pertanyaan != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (pertanyaan != null ? pertanyaan.hashCode() : 0);
+        result = 31 * result + (kategori != null ? kategori.hashCode() : 0);
+        result = 31 * result + (isView != null ? isView.hashCode() : 0);
+        result = 31 * result + (jawabans != null ? jawabans.hashCode() : 0);
+        return result;
     }
 }

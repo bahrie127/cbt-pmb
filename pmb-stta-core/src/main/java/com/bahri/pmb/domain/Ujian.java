@@ -1,7 +1,11 @@
 package com.bahri.pmb.domain;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -29,6 +33,8 @@ public class Ujian {
 
     @Column(name = "hasil",nullable = true)
     private Float hasil;
+
+
 
     public Long getId() {
         return id;
@@ -61,4 +67,6 @@ public class Ujian {
     public void setHasil(Float hasil) {
         this.hasil = hasil;
     }
+
+
 }

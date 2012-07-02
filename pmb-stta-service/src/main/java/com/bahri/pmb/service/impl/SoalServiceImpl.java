@@ -57,6 +57,16 @@ public class SoalServiceImpl implements SoalService{
     }
 
     @Override
+    public List<Soal> findSoalsByKategori(Long idKategori,int banyak) {
+        return sessionFactory.getCurrentSession().createQuery("from Soal o where o.kategori.id=:idKategori order by o.isView asc ").setParameter("idKategori",idKategori).setMaxResults(banyak).list();
+    }
+
+    @Override
+    public List<Soal> findSoalsKurang(int kurang) {
+        return sessionFactory.getCurrentSession().createQuery("from Soal o order by o.isView desc ").setMaxResults(kurang).list();
+    }
+
+    @Override
     public List<Soal> findSoals(int page) {
         List<Soal> soalList= HibernateUtil.createQueryResultPagination(sessionFactory.getCurrentSession().createQuery("from Soal o order by o.id"),((page-1) * ConstantUtils.PAGE_MAX_RECORD), ConstantUtils.PAGE_MAX_RECORD).list();
         return soalList;

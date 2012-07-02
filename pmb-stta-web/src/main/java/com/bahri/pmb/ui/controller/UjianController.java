@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -49,6 +47,10 @@ public class UjianController {
     private KategoriService kategoriService;
 
     @Autowired
+    @Qualifier("penampungSoalService")
+    private PenampungSoalService penampungSoalService;
+
+    @Autowired
     @Qualifier("pengerjaanSoalService")
     private PengerjaanSoalService pengerjaanSoalService;
 
@@ -57,6 +59,7 @@ public class UjianController {
     private CalonMahasiswaService calonMahasiswaService;
 
     List<SimpleSoal> soalList = new ArrayList<SimpleSoal>();
+    List<Soal> soals = new ArrayList<Soal>();
     Ujian ujian;
     Long noPendaftaran;
 
@@ -83,24 +86,46 @@ public class UjianController {
 
                 ujian.setPengerjaanSoalList(pengerjaanSoals);
 
+                this.getSoals();
+
+                int nomor = 1;
+                for (Soal soal : soals) {
+                    SimpleSoal simpleSoal = new SimpleSoal();
+                    simpleSoal.setNomor(nomor);
+                    simpleSoal.setId(soal.getId());
+                    simpleSoal.setJawabans(soal.getJawabans());
+                    simpleSoal.setKategori(soal.getKategori());
+                    simpleSoal.setPertanyaan(soal.getPertanyaan());
+                    simpleSoal.setView(soal.getView());
+                    soalList.add(simpleSoal);
+                    soal.setView((soal.getView() == null ? 0 : soal.getView()) + 1);
+                    soalService.save(soal);
+                    nomor++;
+                }
+
                 ujianService.save(ujian);
-            }
+                
+                PenampungSoal penampungSoal=new PenampungSoal();
+                penampungSoal.setIdUjian(ujian.getId());
+                penampungSoal.setSoalList(soals);
+                
+                penampungSoalService.save(penampungSoal);
 
-            List<Soal> soals = soalService.findSoals();
-
-            int nomor = 1;
-            for (Soal soal : soals) {
-                SimpleSoal simpleSoal = new SimpleSoal();
-                simpleSoal.setNomor(nomor);
-                simpleSoal.setId(soal.getId());
-                simpleSoal.setJawabans(soal.getJawabans());
-                simpleSoal.setKategori(soal.getKategori());
-                simpleSoal.setPertanyaan(soal.getPertanyaan());
-                simpleSoal.setView(soal.getView());
-                soalList.add(simpleSoal);
-                soal.setView((soal.getView() == null ? 0 : soal.getView()) + 1);
-                soalService.save(soal);
-                nomor++;
+            }else {
+                List<Soal> fromPenampung=penampungSoalService.getByUjian(ujian.getId()).getSoalList();
+                soals=fromPenampung;
+                int nomor = 1;
+                for (Soal soal : soals) {
+                    SimpleSoal simpleSoal = new SimpleSoal();
+                    simpleSoal.setNomor(nomor);
+                    simpleSoal.setId(soal.getId());
+                    simpleSoal.setJawabans(soal.getJawabans());
+                    simpleSoal.setKategori(soal.getKategori());
+                    simpleSoal.setPertanyaan(soal.getPertanyaan());
+                    simpleSoal.setView(soal.getView());
+                    soalList.add(simpleSoal);
+                    nomor++;
+                }
             }
 
             modelMap.addAttribute("namaPeserta", calonMahasiswa.getNama());
@@ -118,8 +143,28 @@ public class UjianController {
         }
     }
 
-    public void getSoals(){
-        int soalPerkategori= (int) (settingService.getSetting().getJumlahSoalTampil()/kategoriService.countKategoris());
+    public void getSoals() {
+        int jumlahSoal = settingService.getSetting().getJumlahSoalTampil();
+        int jumlahKategori = Integer.parseInt(kategoriService.countKategoris() + "");
+        int soalPerkategori = (int) Math.floor((double) jumlahSoal / (double) jumlahKategori);
+
+        for (int i = 1; i <= jumlahKategori; i++) {
+            List<Soal> soalByKategori = soalService.findSoalsByKategori(Long.parseLong(i + ""), soalPerkategori);
+            for (Soal soal : soalByKategori) {
+                soals.add(soal);
+            }
+        }
+
+        int jumlahSoalSetelahKategori = soals.size();
+        if (jumlahSoal > jumlahSoalSetelahKategori) {
+            int kurangSoal = jumlahSoal - jumlahSoalSetelahKategori;
+            List<Soal> soalKurang = soalService.findSoalsKurang(kurangSoal);
+            for (Soal soal : soalKurang) {
+                soals.add(soal);
+            }
+        }
+
+
     }
 
 
@@ -171,7 +216,7 @@ public class UjianController {
                 benar++;
             }
         }
-        float hasil=((float)benar/ujian.getPengerjaanSoalList().size())*(float)100;
+        float hasil = ((float) benar / ujian.getPengerjaanSoalList().size()) * (float) 100;
         ujian.setHasil(hasil);
 
         ujianService.save(ujian);

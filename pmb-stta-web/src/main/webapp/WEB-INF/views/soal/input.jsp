@@ -121,24 +121,6 @@
                     </td>
                 </tr>
 
-                <%--<tr>--%>
-                    <%--<td>--%>
-                        <%--<label class="control-label" for="kunci">Kunci</label>--%>
-                    <%--</td>--%>
-                    <%--<td>--%>
-                        <%--<div class="controls">--%>
-                            <%--&nbsp;&nbsp;--%>
-                            <%--<select id="kunci">--%>
-                                <%--<option value="A">A</option>--%>
-                                <%--<option value="B">B</option>--%>
-                                <%--<option value="C">C</option>--%>
-                                <%--<option value="D">D</option>--%>
-                            <%--</select>--%>
-                            <%--&nbsp;--%>
-                            <%--<span class="label label-info">*</span>--%>
-                        <%--</div>--%>
-                    <%--</td>--%>
-                <%--</tr>--%>
 
             </table>
 
