@@ -9,9 +9,9 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<c:url value="/kategori/edit" var="kategoriUrlEdit"/>
-<c:url value="/kategori" var="kategoriUrlDetail"/>
-<c:url value="/kategori" var="kategoriUrlDelete"/>
+<c:url value="/setting/edit" var="settingUrlEdit"/>
+<c:url value="/setting" var="settingUrlDetail"/>
+<c:url value="/setting" var="settingUrlDelete"/>
 
 <style type="text/css">
     .table-center tr th {
@@ -24,30 +24,25 @@
     <thead>
     <tr>
         <th class="span1">ID</th>
-        <th>NAMA</th>
+        <th>Jumlah Soal</th>
         <th class="span3">ACTION</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${kategoris}" var="kategori">
 
         <tr>
             <td class="span1" style="text-align: center"><a href="#"
-                                                            onclick="detailClick('${kategoriUrlDetail}',${kategori.id})">${kategori.id}</a>
+                                                            onclick="detailClick('${settingUrlDetail}',${settings.id})">${settings.id}</a>
             </td>
-            <td>${kategori.nama}</td>
+            <td style="text-align: center">${settings.jumlahSoalTampil}</td>
             <td>
                 <div align="center">
-                    <a class="btn minus btn-danger" href="#"
-                       onclick="buttonDeleteClick('${kategoriUrlDelete}',${kategori.id})"><i
-                            class="icon-trash icon-white" title="minus"></i> Delete</a>
                     <a class="btn edit btn-info" href="#"
-                       onclick="buttonEditClick('${kategoriUrlEdit}',${kategori.id})"><i
+                       onclick="buttonEditClick('${settingUrlEdit}',${settings.id})"><i
                             class="icon-edit icon-white" title="edit"></i> Edit</a>
                 </div>
             </td>
         </tr>
-    </c:forEach>
     </tbody>
     <tfoot>
     <tr>

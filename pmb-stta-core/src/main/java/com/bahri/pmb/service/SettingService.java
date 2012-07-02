@@ -13,5 +13,5 @@ public interface SettingService {
 
     public void save(Setting setting);
 
-    public Setting getSetting(Long id);
+    public Setting getSetting();
 }

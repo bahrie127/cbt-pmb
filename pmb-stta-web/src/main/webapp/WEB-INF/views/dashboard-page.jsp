@@ -111,6 +111,10 @@
                                            href="#collapseUser"
                                            data-parent="#accordion2"
                                            data-toggle="collapse">User</a></li>
+                                    <li><a id="accordianToggleSetting" class=" accordion-toggle "
+                                           href="#collapseSetting"
+                                           data-parent="#accordion2"
+                                           data-toggle="collapse">Setting</a></li>
                                 </ul>
 
                             </div>

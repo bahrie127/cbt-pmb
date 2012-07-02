@@ -1,10 +1,7 @@
 package com.bahri.pmb.ui.controller;
 
 import com.bahri.pmb.domain.*;
-import com.bahri.pmb.service.CalonMahasiswaService;
-import com.bahri.pmb.service.PengerjaanSoalService;
-import com.bahri.pmb.service.SoalService;
-import com.bahri.pmb.service.UjianService;
+import com.bahri.pmb.service.*;
 import com.bahri.pmb.service.editor.PengerjaanSoalEditor;
 import com.bahri.pmb.service.editor.UjianEditor;
 import com.bahri.pmb.simple.SimpleSoal;
@@ -44,6 +41,14 @@ public class UjianController {
     private SoalService soalService;
 
     @Autowired
+    @Qualifier("settingService")
+    private SettingService settingService;
+
+    @Autowired
+    @Qualifier("kategoriService")
+    private KategoriService kategoriService;
+
+    @Autowired
     @Qualifier("pengerjaanSoalService")
     private PengerjaanSoalService pengerjaanSoalService;
 
@@ -71,7 +76,7 @@ public class UjianController {
                 ujian.setCalonMahasiswa(cm);
 
                 List<PengerjaanSoal> pengerjaanSoals = new ArrayList<PengerjaanSoal>();
-                for (int i = 0; i < 50; i++) {
+                for (int i = 0; i < settingService.getSetting().getJumlahSoalTampil(); i++) {
                     PengerjaanSoal pengerjaanSoal = new PengerjaanSoal();
                     pengerjaanSoals.add(pengerjaanSoal);
                 }
@@ -93,6 +98,8 @@ public class UjianController {
                 simpleSoal.setPertanyaan(soal.getPertanyaan());
                 simpleSoal.setView(soal.getView());
                 soalList.add(simpleSoal);
+                soal.setView((soal.getView() == null ? 0 : soal.getView()) + 1);
+                soalService.save(soal);
                 nomor++;
             }
 
@@ -109,6 +116,10 @@ public class UjianController {
             modelMap.addAttribute("param", "gagal");
             return "login-peserta";
         }
+    }
+
+    public void getSoals(){
+        int soalPerkategori= (int) (settingService.getSetting().getJumlahSoalTampil()/kategoriService.countKategoris());
     }
 
 

@@ -27,7 +27,7 @@ public class SettingServiceImpl implements SettingService{
     }
 
     @Override
-    public Setting getSetting(Long id) {
-        return (Setting) sessionFactory.getCurrentSession().get(Setting.class,id);
+    public Setting getSetting() {
+        return (Setting) sessionFactory.getCurrentSession().get(Setting.class,1L);
     }
 }

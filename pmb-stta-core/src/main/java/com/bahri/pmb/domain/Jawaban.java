@@ -21,11 +21,11 @@ public class Jawaban {
     @Column(name = "jawaban_id")
     private Long id;
                                                //,columnDefinition="TEXT"
-    @Column(name = "pilihan",nullable = false)
+    @Column(name = "pilihan",nullable = false,columnDefinition="TEXT")
     @Size(min = 1,max = 255)
     private String pilihan;
                                                  //,columnDefinition="TINYINT(1)"
-    @Column(name = "kebenaran",nullable = false)
+    @Column(name = "kebenaran",nullable = false,columnDefinition="TINYINT(1)")
     private Boolean kebenaran;
 
     public Long getId() {
