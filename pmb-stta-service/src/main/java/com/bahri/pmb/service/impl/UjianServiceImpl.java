@@ -3,6 +3,7 @@ package com.bahri.pmb.service.impl;
 import com.bahri.pmb.domain.CalonMahasiswa;
 import com.bahri.pmb.domain.Ujian;
 import com.bahri.pmb.service.UjianService;
+import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,7 +57,9 @@ public class UjianServiceImpl implements UjianService{
 
     @Override
     public Ujian findUjianByPendaftaran(CalonMahasiswa calonMahasiswa) {
-        return (Ujian) sessionFactory.getCurrentSession().createQuery("from Ujian o where o.calonMahasiswa=:calonMahasiswa").setParameter("calonMahasiswa",calonMahasiswa).uniqueResult();
+        Ujian ujian=(Ujian) sessionFactory.getCurrentSession().createQuery("from Ujian o where o.calonMahasiswa=:calonMahasiswa").setParameter("calonMahasiswa",calonMahasiswa).uniqueResult();
+        Hibernate.initialize(ujian.getPengerjaanSoalList());
+        return ujian;
     }
 
     @Override

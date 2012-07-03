@@ -21,7 +21,7 @@ public class Role implements GrantedAuthority {
 
     @Id
     @Column(length = 50, name = "authority",unique = false)
-    @Size(max = 50, min = 1)
+   // @Size(max = 50, min = 1)
     private String authority;
 
     public Role() {

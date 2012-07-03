@@ -5,6 +5,7 @@ import com.bahri.pmb.service.SoalService;
 import com.bahri.pmb.simple.SimpleSoal;
 import com.bahri.pmb.util.ConstantUtils;
 import com.bahri.pmb.util.HibernateUtil;
+import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,7 +49,9 @@ public class SoalServiceImpl implements SoalService{
 
     @Override
     public Soal findSoal(Long id) {
-        return (Soal) sessionFactory.getCurrentSession().get(Soal.class,id);
+        Soal soal=(Soal) sessionFactory.getCurrentSession().get(Soal.class,id);
+        Hibernate.initialize(soal.getJawabans());
+        return soal;
     }
 
     @Override

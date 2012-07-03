@@ -19,9 +19,9 @@ public class Soal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "soal_id")
-    private Long id;
+    private Long id;                      //,columnDefinition="TEXT"
 
-    @Column(name = "pertanyaan",columnDefinition="TEXT",nullable = false)
+    @Column(name = "pertanyaan",nullable = false,columnDefinition="TEXT")
     private String pertanyaan;
 
     @ManyToOne

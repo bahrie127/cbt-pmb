@@ -27,8 +27,12 @@ public class Ujian {
     @JoinColumn(name = "calon_mahasiswa_id",nullable = false)
     private CalonMahasiswa calonMahasiswa;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "ujian_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "pengerjaan_soal_list",
+            joinColumns = {@JoinColumn(table = "ujian",name = "ujian_id")},
+            inverseJoinColumns = {@JoinColumn(table = "pengerjaan_soal",name = "pengerjaan_soal_id")}
+    )
     private List<PengerjaanSoal> pengerjaanSoalList;
 
     @Column(name = "hasil",nullable = true)

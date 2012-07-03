@@ -18,7 +18,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-@Table(name = "user")
+@Table(name = "admin")
 public class User implements UserDetails {
 
     @Id

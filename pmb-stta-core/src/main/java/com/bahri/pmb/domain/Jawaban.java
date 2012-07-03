@@ -22,10 +22,10 @@ public class Jawaban {
     private Long id;
                                                //,columnDefinition="TEXT"
     @Column(name = "pilihan",nullable = false,columnDefinition="TEXT")
-    @Size(min = 1,max = 255)
+    //@Size(min = 1,max = 255)
     private String pilihan;
                                                  //,columnDefinition="TINYINT(1)"
-    @Column(name = "kebenaran",nullable = false,columnDefinition="TINYINT(1)")
+    @Column(name = "kebenaran",nullable = false,columnDefinition="BOOLEAN")
     private Boolean kebenaran;
 
     public Long getId() {
