@@ -130,18 +130,20 @@ public class SoalController {
 
         modelMap.addAttribute("event", "EDIT");
         modelMap.addAttribute("httpMethod", "PUT");
-        modelMap.addAttribute("soal", soal);
+        modelMap.addAttribute("kategoriList",kategoriService.findKategoris());
+        modelMap.addAttribute("soal", soal.convertToSimpleSoal());
         return "soal/input";
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public @ResponseBody String update(@Valid @ModelAttribute("soal") Soal soal, BindingResult bindingResult, ModelMap modelMap){
+    public @ResponseBody String update(@Valid @ModelAttribute("soal") SimpleSoal soal, BindingResult bindingResult, ModelMap modelMap){
 
         if(soal == null) return "Gagal";
         if(bindingResult.hasErrors()) return "Gagal";
 
         try{
-            soalService.save(soal);
+            soalService.save(soal.convertToSoal());
+            System.out.println();
             return "Sukses";
         }catch (HibernateException e){
             return "Gagal";

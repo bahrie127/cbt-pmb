@@ -58,6 +58,7 @@ public class UjianServiceImpl implements UjianService{
     @Override
     public Ujian findUjianByPendaftaran(CalonMahasiswa calonMahasiswa) {
         Ujian ujian=(Ujian) sessionFactory.getCurrentSession().createQuery("from Ujian o where o.calonMahasiswa=:calonMahasiswa").setParameter("calonMahasiswa",calonMahasiswa).uniqueResult();
+        if(ujian!=null)
         Hibernate.initialize(ujian.getPengerjaanSoalList());
         return ujian;
     }

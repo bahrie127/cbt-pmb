@@ -25,7 +25,6 @@ public class SimpleSoal extends Soal{
     public void setNomor(int nomor) {
         this.nomor = nomor;
     }
-
     private Long idKategori;
     private String pertanyaan;
     private String jawabanA;
@@ -33,6 +32,7 @@ public class SimpleSoal extends Soal{
     private String jawabanC;
     private String jawabanD;
     private String kebenaran;
+
 
     public Long getIdKategori() {
         return idKategori;
@@ -92,6 +92,7 @@ public class SimpleSoal extends Soal{
     
     public Soal convertToSoal(){
         Soal soal=new Soal();
+        soal.setId(super.getId());
         soal.setPertanyaan(pertanyaan);
         Kategori kategori=new Kategori();
         kategori.setId(idKategori);

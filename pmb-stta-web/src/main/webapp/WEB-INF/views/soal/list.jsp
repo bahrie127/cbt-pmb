@@ -38,9 +38,9 @@
             <td>${soal.pertanyaan}</td>
             <td>
                 <div align="center">
-                    <a class="btn minus btn-danger" href="#"
-                       onclick="buttonDeleteClick('${soalUrlDelete}',${soal.id})"><i
-                            class="icon-trash icon-white" title="minus"></i> Delete</a>
+                    <%--<a class="btn minus btn-danger" href="#"--%>
+                       <%--onclick="buttonDeleteClick('${soalUrlDelete}',${soal.id})"><i--%>
+                            <%--class="icon-trash icon-white" title="minus"></i> Delete</a>--%>
                     <a class="btn edit btn-info" href="#"
                        onclick="buttonEditClick('${soalUrlEdit}',${soal.id})"><i
                             class="icon-edit icon-white" title="edit"></i> Edit</a>

@@ -1,6 +1,11 @@
 package com.bahri.pmb.domain;
 
+import com.bahri.pmb.simple.SimpleSoal;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -103,5 +108,27 @@ public class Soal {
         result = 31 * result + (isView != null ? isView.hashCode() : 0);
         result = 31 * result + (jawabans != null ? jawabans.hashCode() : 0);
         return result;
+    }
+
+    public SimpleSoal convertToSimpleSoal(){
+        SimpleSoal simpleSoal=new SimpleSoal();
+        simpleSoal.setId(id);
+        simpleSoal.setPertanyaan(pertanyaan);
+        simpleSoal.setIdKategori(kategori.getId());
+        simpleSoal.setJawabanA(jawabans.get(0).getPilihan());
+        simpleSoal.setJawabanB(jawabans.get(1).getPilihan());
+        simpleSoal.setJawabanC(jawabans.get(2).getPilihan());
+        simpleSoal.setJawabanD(jawabans.get(3).getPilihan());
+        String kebenaran="";
+        if(jawabans.get(0).getKebenaran())
+            kebenaran="A";
+        else if(jawabans.get(1).getKebenaran())
+            kebenaran="B";
+        else if(jawabans.get(2).getKebenaran())
+            kebenaran="C";
+        else if(jawabans.get(3).getKebenaran())
+            kebenaran="D";
+        simpleSoal.setKebenaran(kebenaran);
+        return simpleSoal;
     }
 }

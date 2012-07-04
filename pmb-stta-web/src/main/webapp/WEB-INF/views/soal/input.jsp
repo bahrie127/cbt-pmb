@@ -45,7 +45,7 @@
                             <form:select path="idKategori" id="kategoriId" disabled="${enabledInput}"
                                          style="width: 178px">
                                 <c:forEach items="${kategoriList}" var="kategoriItem">
-                                    <form:option value="${kategoriItem.id}" label="${kategoriItem.nama}"/>
+                                    <form:option value="${kategoriItem.id}" label="${kategoriItem.nama}" selected="${(soal.idKategori==kategoriItem.id)?true:''}"/>
                                 </c:forEach>
                             </form:select>
                         </div>
@@ -74,7 +74,7 @@
                             <form:input path="jawabanA" id="jawabanA" class="input-xlarge" disabled="${enabledInput}"/>
                             &nbsp;
 
-                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="A" /> Benar
+                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="A" checked="${(soal.kebenaran=='A'?true:'')}"/> Benar
                         </div>
                     </td>
                 </tr>
@@ -88,7 +88,7 @@
                             <form:input path="jawabanB" id="jawabanB" class="input-xlarge" disabled="${enabledInput}"/>
                             &nbsp;
 
-                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="B" /> Benar
+                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="B" checked="${(soal.kebenaran=='B'?true:'')}"/> Benar
                         </div>
                     </td>
                 </tr>
@@ -102,7 +102,7 @@
                             <form:input path="jawabanC" id="jawabanC" class="input-xlarge" disabled="${enabledInput}"/>
                             &nbsp;
 
-                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="C" /> Benar
+                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="C" checked="${(soal.kebenaran=='C'?true:'')}"/> Benar
                         </div>
                     </td>
                 </tr>
@@ -116,11 +116,10 @@
                             <form:input path="jawabanD" id="jawabanD" class="input-xlarge" disabled="${enabledInput}"/>
                             &nbsp;
 
-                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="D"/> Benar
+                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="D" checked="${(soal.kebenaran=='D'?true:'')}"/> Benar
                         </div>
                     </td>
                 </tr>
-
 
             </table>
 

@@ -28,13 +28,14 @@ public class PenampungSoalServiceImpl implements PenampungSoalService{
 
     @Override
     public void save(PenampungSoal penampungSoal) {
-        sessionFactory.getCurrentSession().saveOrUpdate(penampungSoal);
+        sessionFactory.getCurrentSession().save(penampungSoal);
     }
 
     @Override
     public PenampungSoal getByUjian(Long idUjian) {
-        PenampungSoal penampungSoal=(PenampungSoal) sessionFactory.getCurrentSession().createQuery("from PenampungSoal o where o.idUjian=:idUjian").setParameter("idUjian",idUjian).uniqueResult();
-        Hibernate.initialize(penampungSoal.getSoalList());
+        PenampungSoal penampungSoal=(PenampungSoal) sessionFactory.getCurrentSession().createQuery("from PenampungSoal o where o.idUjian=:idUjian order by o.id").setParameter("idUjian",idUjian).uniqueResult();
+//        if(penampungSoal!=null)
+//        Hibernate.initialize(penampungSoal.getSoalList());
         return penampungSoal;
     }
 }

@@ -7,6 +7,7 @@ import com.bahri.pmb.service.editor.UjianEditor;
 import com.bahri.pmb.simple.SimpleSoal;
 import com.bahri.pmb.util.CalendarUtil;
 import com.bahri.pmb.util.ConstantUtils;
+import com.bahri.pmb.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -58,8 +59,8 @@ public class UjianController {
     @Qualifier("calonMahasiswaService")
     private CalonMahasiswaService calonMahasiswaService;
 
-    List<SimpleSoal> soalList = new ArrayList<SimpleSoal>();
-    List<Soal> soals = new ArrayList<Soal>();
+    List<SimpleSoal> soalList;
+    List<Soal> soals;
     Ujian ujian;
     Long noPendaftaran;
 
@@ -87,7 +88,7 @@ public class UjianController {
                 ujian.setPengerjaanSoalList(pengerjaanSoals);
 
                 this.getSoals();
-
+                soalList=new ArrayList<SimpleSoal>();
                 int nomor = 1;
                 for (Soal soal : soals) {
                     SimpleSoal simpleSoal = new SimpleSoal();
@@ -115,6 +116,7 @@ public class UjianController {
                 List<Soal> fromPenampung=penampungSoalService.getByUjian(ujian.getId()).getSoalList();
                 soals=fromPenampung;
                 int nomor = 1;
+                soalList=new ArrayList<SimpleSoal>();
                 for (Soal soal : soals) {
                     SimpleSoal simpleSoal = new SimpleSoal();
                     simpleSoal.setNomor(nomor);
@@ -144,6 +146,7 @@ public class UjianController {
     }
 
     public void getSoals() {
+        soals=new ArrayList<Soal>();
         int jumlahSoal = settingService.getSetting().getJumlahSoalTampil();
         int jumlahKategori = Integer.parseInt(kategoriService.countKategoris() + "");
         int soalPerkategori = (int) Math.floor((double) jumlahSoal / (double) jumlahKategori);
@@ -164,7 +167,71 @@ public class UjianController {
             }
         }
 
+        soals=setRandomSoal(soals);
 
+        for(Soal soal:soals){
+            soal.setJawabans(setRandomJawaban(soal.getJawabans()));
+        }
+
+
+    }
+
+    public List<Soal> setRandomSoal(List<Soal> soalSebelumRandoms) {
+        List<Soal> listAcak = new ArrayList<Soal>();
+        Soal sb = new Soal();
+        for (int i = 0; i < soalSebelumRandoms.size(); i++) {
+            listAcak.add(sb);
+        }
+        boolean ulang = false;
+        int n = 0, m = 0;
+        int loop = 0;
+        int angka = 0;
+        do {
+            ulang = false;
+            n = RandomUtil.nextRandom(soalSebelumRandoms.size());
+            for (int c = 0; c < soalSebelumRandoms.size(); c++) {
+                if (soalSebelumRandoms.get(n).getId() == listAcak.get(c).getId()) {
+                    ulang = true;
+                    break;
+                }
+
+            }
+            if (ulang) {
+                continue;
+            }
+            listAcak.set(m, soalSebelumRandoms.get(n));
+            m++;
+        } while (m < soalSebelumRandoms.size());
+        return listAcak;
+    }
+
+    public List<Jawaban> setRandomJawaban(List<Jawaban> jawabanSebelumRandoms) {
+        List<Jawaban> listAcakJawaban = new ArrayList<Jawaban>();
+        Jawaban jawaban=new Jawaban();
+        for (int i = 0; i < jawabanSebelumRandoms.size(); i++) {
+            listAcakJawaban.add(jawaban);
+        }
+        boolean ulang = false;
+        int n = 0, m = 0;
+        int loop = 0;
+        int angka = 0;
+        do {
+            ulang = false;
+            n = RandomUtil.nextRandom(jawabanSebelumRandoms.size());
+            for (int c = 0; c < jawabanSebelumRandoms.size(); c++) {
+                if (jawabanSebelumRandoms.get(n).getId() == listAcakJawaban.get(c).getId()) {
+                    ulang = true;
+                    break;
+                }
+
+            }
+            if (ulang) {
+                continue;
+            }
+            listAcakJawaban.set(m, jawabanSebelumRandoms.get(n));
+            m++;
+        } while (m < jawabanSebelumRandoms.size());
+        return listAcakJawaban;
     }
 
 
