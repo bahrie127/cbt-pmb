@@ -40,6 +40,14 @@ public class Soal {
     @JoinColumn(name = "soal_id")
     private List<Jawaban> jawabans;
 
+    public Soal(Long id, String pertanyaan, Kategori kategori, Long view, List<Jawaban> jawabans) {
+        this.id = id;
+        this.pertanyaan = pertanyaan;
+        this.kategori = kategori;
+        isView = view;
+        this.jawabans = jawabans;
+    }
+
     public Soal() {
         isView=0L;
     }

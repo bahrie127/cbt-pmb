@@ -1,6 +1,7 @@
 package com.bahri.pmb.service;
 
 import com.bahri.pmb.domain.CalonMahasiswa;
+import com.bahri.pmb.domain.PengerjaanSoal;
 import com.bahri.pmb.domain.Ujian;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public interface UjianService {
     public void deleteMore(Ujian[] ujians);
     public Ujian findUjian(Long id);
     public Ujian findUjianByPendaftaran(CalonMahasiswa calonMahasiswa);
+    public List<PengerjaanSoal> findPengerjaanSoalByPendaftaran(CalonMahasiswa calonMahasiswa);
     public List<Ujian> findUjians();
 
     public Long countUjians();

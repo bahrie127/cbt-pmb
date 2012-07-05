@@ -2,6 +2,7 @@ package com.bahri.pmb.service.impl;
 
 import com.bahri.pmb.domain.PenampungSoal;
 import com.bahri.pmb.domain.Setting;
+import com.bahri.pmb.domain.Soal;
 import com.bahri.pmb.service.PenampungSoalService;
 import com.bahri.pmb.service.SettingService;
 import org.hibernate.Hibernate;
@@ -33,9 +34,23 @@ public class PenampungSoalServiceImpl implements PenampungSoalService{
 
     @Override
     public PenampungSoal getByUjian(Long idUjian) {
-        PenampungSoal penampungSoal=(PenampungSoal) sessionFactory.getCurrentSession().createQuery("from PenampungSoal o where o.idUjian=:idUjian order by o.id").setParameter("idUjian",idUjian).uniqueResult();
+        PenampungSoal penampungSoal=(PenampungSoal) sessionFactory.getCurrentSession().createQuery("from PenampungSoal o where o.idUjian=:idUjian").setParameter("idUjian",idUjian).uniqueResult();
 //        if(penampungSoal!=null)
 //        Hibernate.initialize(penampungSoal.getSoalList());
         return penampungSoal;
+    }
+
+    @Override
+    public List<Soal> getSoalFromPenampungSoal(Long idUjian) {
+        return sessionFactory.getCurrentSession().createQuery("select new com.bahri.pmb.domain.Soal(" +
+                " ss.id, "+
+                " ss.pertanyaan, "+
+                " ss.kategori, "+
+                " ss.isView, "+
+                " ss.jawabans"+
+                ")"+
+        "from "+
+        "PenampungSoal ps join ps.soalList ss where ps.idUjian=:idUjian " +
+                " order by ss.id ").setParameter("idUjian",idUjian).list();
     }
 }

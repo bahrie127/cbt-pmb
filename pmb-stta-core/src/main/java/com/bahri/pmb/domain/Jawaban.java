@@ -28,6 +28,15 @@ public class Jawaban {
     @Column(name = "kebenaran",nullable = false,columnDefinition="BOOLEAN")
     private Boolean kebenaran;
 
+    public Jawaban() {
+    }
+
+    public Jawaban(Long id, String pilihan, Boolean kebenaran) {
+        this.id = id;
+        this.pilihan = pilihan;
+        this.kebenaran = kebenaran;
+    }
+
     public Long getId() {
         return id;
     }

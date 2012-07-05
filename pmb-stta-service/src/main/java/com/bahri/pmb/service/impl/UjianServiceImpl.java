@@ -1,6 +1,7 @@
 package com.bahri.pmb.service.impl;
 
 import com.bahri.pmb.domain.CalonMahasiswa;
+import com.bahri.pmb.domain.PengerjaanSoal;
 import com.bahri.pmb.domain.Ujian;
 import com.bahri.pmb.service.UjianService;
 import org.hibernate.Hibernate;
@@ -61,6 +62,16 @@ public class UjianServiceImpl implements UjianService{
         if(ujian!=null)
         Hibernate.initialize(ujian.getPengerjaanSoalList());
         return ujian;
+    }
+
+    @Override
+    public List<PengerjaanSoal> findPengerjaanSoalByPendaftaran(CalonMahasiswa calonMahasiswa) {
+        return sessionFactory.getCurrentSession().createQuery("select new com.bahri.pmb.domain.PengerjaanSoal(" +
+                " ps.id, " +
+                " ps.soal, " +
+                " ps.jawaban " +
+                ")" +
+                "from Ujian u join u.pengerjaanSoalList ps where u.calonMahasiswa=:calonMahasiswa order by ps.soal.id ").setParameter("calonMahasiswa",calonMahasiswa).list();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.bahri.pmb.service;
 
 import com.bahri.pmb.domain.PenampungSoal;
+import com.bahri.pmb.domain.Soal;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface PenampungSoalService {
     public void save(PenampungSoal penampungSoal);
 
     public PenampungSoal getByUjian(Long idUjian);
+    
+    public List<Soal> getSoalFromPenampungSoal(Long idUjian);
 }

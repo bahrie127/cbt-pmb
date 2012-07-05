@@ -72,22 +72,23 @@ public class UjianController {
         if (calonMahasiswa != null) {
             CalonMahasiswa cm = new CalonMahasiswa();
             cm.setId(noPendaftaran);
-
+            ujian=new Ujian();
             ujian = ujianService.findUjianByPendaftaran(cm);
 
             if (ujian == null) {
                 ujian = new Ujian();
                 ujian.setCalonMahasiswa(cm);
-
+                this.getSoals();
                 List<PengerjaanSoal> pengerjaanSoals = new ArrayList<PengerjaanSoal>();
                 for (int i = 0; i < settingService.getSetting().getJumlahSoalTampil(); i++) {
                     PengerjaanSoal pengerjaanSoal = new PengerjaanSoal();
+                    pengerjaanSoal.setSoal(soals.get(i));
                     pengerjaanSoals.add(pengerjaanSoal);
                 }
 
                 ujian.setPengerjaanSoalList(pengerjaanSoals);
 
-                this.getSoals();
+
                 soalList=new ArrayList<SimpleSoal>();
                 int nomor = 1;
                 for (Soal soal : soals) {
@@ -105,7 +106,7 @@ public class UjianController {
                 }
 
                 ujianService.save(ujian);
-                
+
                 PenampungSoal penampungSoal=new PenampungSoal();
                 penampungSoal.setIdUjian(ujian.getId());
                 penampungSoal.setSoalList(soals);
@@ -115,6 +116,7 @@ public class UjianController {
             }else {
                 List<Soal> fromPenampung=penampungSoalService.getByUjian(ujian.getId()).getSoalList();
                 soals=fromPenampung;
+                soals=samakanList(soals,ujian.getPengerjaanSoalList());
                 int nomor = 1;
                 soalList=new ArrayList<SimpleSoal>();
                 for (Soal soal : soals) {
@@ -128,6 +130,8 @@ public class UjianController {
                     soalList.add(simpleSoal);
                     nomor++;
                 }
+                
+                
             }
 
             modelMap.addAttribute("namaPeserta", calonMahasiswa.getNama());
@@ -145,6 +149,27 @@ public class UjianController {
         }
     }
 
+    public List<Soal> samakanList(List<Soal> belumSamaPenampung,List<PengerjaanSoal> dariUjian){
+        List<Soal> sudahSama=new ArrayList<Soal>();
+        Soal sb = new Soal();
+        for (int i = 0; i < belumSamaPenampung.size(); i++) {
+            sudahSama.add(sb);
+        }
+        int m=0;
+        do {
+           
+            for (int c = 0; c < dariUjian.size(); c++) {
+                if (belumSamaPenampung.get(c).getId() == dariUjian.get(m).getSoal().getId()) {
+                    sudahSama.set(m, belumSamaPenampung.get(c));
+                    break;
+                }
+
+            }
+            m++;
+        } while (m < belumSamaPenampung.size());
+        return sudahSama;
+    }
+    
     public void getSoals() {
         soals=new ArrayList<Soal>();
         int jumlahSoal = settingService.getSetting().getJumlahSoalTampil();

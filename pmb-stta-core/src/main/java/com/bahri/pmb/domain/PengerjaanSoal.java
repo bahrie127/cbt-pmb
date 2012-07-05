@@ -25,6 +25,15 @@ public class PengerjaanSoal {
     @JoinColumn(name = "jawaban_id",nullable = true)
     private Jawaban jawaban;
 
+    public PengerjaanSoal() {
+    }
+
+    public PengerjaanSoal(Long id, Soal soal, Jawaban jawaban) {
+        this.id = id;
+        this.soal = soal;
+        this.jawaban = jawaban;
+    }
+
     public Long getId() {
         return id;
     }
