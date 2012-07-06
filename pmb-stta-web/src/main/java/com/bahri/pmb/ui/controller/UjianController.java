@@ -266,6 +266,24 @@ public class UjianController {
         cm.setId(noPendaftaran);
 
         ujian = ujianService.findUjianByPendaftaran(cm);
+
+        List<Soal> fromPenampung=penampungSoalService.getByUjian(ujian.getId()).getSoalList();
+        soals=fromPenampung;
+        soals=samakanList(soals,ujian.getPengerjaanSoalList());
+        int nomor = 1;
+        soalList=new ArrayList<SimpleSoal>();
+        for (Soal soal : soals) {
+            SimpleSoal simpleSoal = new SimpleSoal();
+            simpleSoal.setNomor(nomor);
+            simpleSoal.setId(soal.getId());
+            simpleSoal.setJawabans(soal.getJawabans());
+            simpleSoal.setKategori(soal.getKategori());
+            simpleSoal.setPertanyaan(soal.getPertanyaan());
+            simpleSoal.setView(soal.getView());
+            soalList.add(simpleSoal);
+            nomor++;
+        }
+
         modelMap.addAttribute("ujian", ujian);
         modelMap.addAttribute("nomor", ((page - 1) * ConstantUtils.PAGE_RECORD_SOAL) + "");
         modelMap.addAttribute("listSoal", ConstantUtils.tampilkanDiPanelSoal(soalList, ConstantUtils.PAGE_RECORD_SOAL, page));
