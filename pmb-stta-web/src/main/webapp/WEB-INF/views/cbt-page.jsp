@@ -71,21 +71,6 @@
 
                     </li>
                 </ul>
-                <%--<ul class="nav pull-right">--%>
-
-                    <%--<li class="divider-vertical"></li>--%>
-                    <%--<li class="dropdown open">--%>
-                        <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown"> </a>--%>
-                        <%--<ul class="dropdown-menu">--%>
-                            <%--<li><a href="#">Jumlah Soal : 50 soal</a></li>--%>
-                            <%--<li><a href="#">Waktu : 120 menit</a></li>--%>
-                            <%--<li><a href="#">Mulai : 15:00:00</a></li>--%>
-                            <%--<li><a href="#">Selesai : 15:00:00</a></li>--%>
-                            <%--<li class="divider"></li>--%>
-                            <%--<li><a href="#">Sisa : 15:00:00</a></li>--%>
-                        <%--</ul>--%>
-                    <%--</li>--%>
-                <%--</ul>--%>
 
             </div>
         </div>
@@ -261,6 +246,20 @@
         </form:form>
     </div>
 
+
+    <div class="row">
+        <div class="pagination pagination-centered ">
+            <ul class="btn-group">
+
+                <c:forEach var="i" begin="1" step="1" end="${countPage}">
+                    <li class="active" onclick="toPage('${url}',${i})">
+                        <button style="cursor: pointer" class="btn">${i}</button>
+                    </li>
+                </c:forEach>
+
+            </ul>
+        </div>
+    </div>
 
     <div style="clear: both;"></div>
 
