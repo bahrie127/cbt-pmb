@@ -35,7 +35,7 @@
             <td class="span1" style="text-align: center"><a href="#"
                                                             onclick="detailClick('${kategoriUrlDetail}',${kategori.id})">${kategori.id}</a>
             </td>
-            <td>${kategori.nama}</td>
+            <td style="text-align: center">${kategori.nama}</td>
             <td>
                 <div align="center">
                     <a class="btn minus btn-danger" href="#"

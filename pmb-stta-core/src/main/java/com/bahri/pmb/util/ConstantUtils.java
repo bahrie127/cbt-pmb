@@ -1,5 +1,6 @@
 package com.bahri.pmb.util;
 
+import com.bahri.pmb.domain.PengerjaanSoal;
 import com.bahri.pmb.simple.SimpleSoal;
 
 import java.util.ArrayList;
@@ -111,10 +112,16 @@ public final class ConstantUtils {
 
         return pagination;
     }
-    
+
     public static List<SimpleSoal> tampilkanDiPanelSoal(List<SimpleSoal> soals,int soalPerHalaman,int page){
-        List<SimpleSoal> returnSoal=new ArrayList<SimpleSoal>();
+        List<SimpleSoal> returnSoal;
         returnSoal=soals.subList(((page-1)*soalPerHalaman),(soalPerHalaman*page));
         return returnSoal;
+    }
+
+    public static List<PengerjaanSoal> tampilkanDiPanelPengerjaanSoal(List<PengerjaanSoal> pengerjaanSoals,int soalPerHalaman,int page){
+        List<PengerjaanSoal> returnPengerjaanSoal;
+        returnPengerjaanSoal=pengerjaanSoals.subList(((page-1)*soalPerHalaman),(soalPerHalaman*page));
+        return returnPengerjaanSoal;
     }
 }

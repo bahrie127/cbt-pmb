@@ -92,6 +92,7 @@ public class SimpleSoal extends Soal{
     
     public Soal convertToSoal(){
         Soal soal=new Soal();
+        if(super.getId()!=null)
         soal.setId(super.getId());
         soal.setPertanyaan(pertanyaan);
         Kategori kategori=new Kategori();

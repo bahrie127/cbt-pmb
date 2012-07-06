@@ -5,6 +5,7 @@ $(document).ready(function () {
     var accordianToggleKategori = $('#accordianToggleKategori');
     var accordianToggleSoal = $('#accordianToggleSoal');
     var accordianToggleUser = $('#accordianToggleUser');
+    var accordianToggleHasil = $('#accordianToggleHasil');
     var accordianToggleSetting = $('#accordianToggleSetting');
     /**
      * Distributor Action
@@ -46,6 +47,16 @@ $(document).ready(function () {
             $('#bundleNavbar').html(dataNavBar);
         });
         $.get('/cbt-pmb/user', function (data) {
+            $('#bundleList').html(data);
+        });
+    });
+
+    accordianToggleHasil.click(function () {
+        $('#myCarousel').remove();
+        $.get('/cbt-pmb/hasilUjian/navbar', function (dataNavBar) {
+            $('#bundleNavbar').html(dataNavBar);
+        });
+        $.get('/cbt-pmb/hasilUjian', function (data) {
             $('#bundleList').html(data);
         });
     });

@@ -20,6 +20,10 @@ public class Setting {
     @Column(name = "jumlah_soal_tampil",nullable = false)
     private int jumlahSoalTampil;
 
+    //dalam jam
+    @Column(name = "waktu_pengerjaan",nullable = false)
+    private int waktuPengerjaan;
+
     public Setting() {
         jumlahSoalTampil=50;
     }
@@ -38,5 +42,13 @@ public class Setting {
 
     public void setJumlahSoalTampil(int jumlahSoalTampil) {
         this.jumlahSoalTampil = jumlahSoalTampil;
+    }
+
+    public int getWaktuPengerjaan() {
+        return waktuPengerjaan;
+    }
+
+    public void setWaktuPengerjaan(int waktuPengerjaan) {
+        this.waktuPengerjaan = waktuPengerjaan;
     }
 }

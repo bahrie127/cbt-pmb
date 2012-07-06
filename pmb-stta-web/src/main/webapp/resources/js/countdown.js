@@ -53,7 +53,7 @@ if (typeof(BackColor)=="undefined")
 if (typeof(ForeColor)=="undefined")
     ForeColor= "white";
 if (typeof(TargetDate)=="undefined")
-    TargetDate = "07/05/2012 10:15 PM";
+    TargetDate = "07/06/2012 14:39";
 if (typeof(DisplayFormat)=="undefined")
     DisplayFormat = "%%D%% Days, %%H%% Hours, %%M%% Minutes, %%S%% Seconds.";
 if (typeof(CountActive)=="undefined")

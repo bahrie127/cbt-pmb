@@ -34,12 +34,12 @@
     <tbody>
     <c:forEach items="${users}" var="user">
         <tr>
-            <td><a href="#" onclick="detailClick('${userUrlDetail}','${user.username}')">${user.username}</a></td>
-            <td>${user.name}</td>
-            <td>${user.address}</td>
-            <td>${user.role.authority}</td>
-            <td>
-                <div>
+            <td style="text-align: center"><a href="#" onclick="detailClick('${userUrlDetail}','${user.username}')">${user.username}</a></td>
+            <td style="text-align: center">${user.name}</td>
+            <td style="text-align: center">${user.address}</td>
+            <td style="text-align: center">${user.role.authority}</td>
+            <td style="text-align: center">
+                <div style="text-align: center">
                         <a class="btn minus" href="#"
                            onclick="buttonDeleteClick('${userUrlDelete}','${user.username}')"><i
                                 class="icon-minus-sign" title="minus"></i></a>

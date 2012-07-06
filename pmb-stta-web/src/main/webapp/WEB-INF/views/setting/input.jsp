@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <c:set var="enabledInput" value="${event == 'DETAIL'}"/>
-        <c:url value="/setting" var="setting_url"/>
+<c:url value="/setting" var="setting_url"/>
 
 <div id="modal" class="modal hide fade in">
     <div class="modal-header">
@@ -21,25 +21,54 @@
     <form:form id="formInputsetting" class="modal-form" action="${setting_url}" method="${httpMethod}"
                modelAttribute="setting">
         <div class="modal-body">
+            <table style="text-align: center">
 
+                <form:hidden path="id" class="form-horizontal"/>
 
-            <form:hidden path="id" class="form-horizontal"/>
-
-                <%--Nama--%>
-            <fieldset>
-                <div class="control-group">
-
-                    <div class="controls">
-                        <div class="input-append" style="text-align: center">
-                            <form:input path="jumlahSoalTampil" id="textJumlahSoal" class="span2 input-xlarge" disabled="${enabledInput}"
-                                        placeholder="Jumlah Soal"/><span style="margin-top: -8px" class="add-on">*</span>
+                <tr>
+                    <td>
+                        <label class="control-label" for="textJumlahSoal">Jumlah Soal Tampil</label>
+                    </td>
+                    <td>
+                        <div class="controls">
+                            &nbsp;&nbsp;
+                            <form:input
+                                    path="jumlahSoalTampil" id="textJumlahSoal" class="span2 input-xlarge"
+                                    disabled="${enabledInput}"
+                                    placeholder="Jumlah Soal"/>
                         </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="control-label" for="textWaktuPengerjaan">Waktu Pengerjaan (Jam)</label>
+                    </td>
+                    <td>
+                        <div class="controls">
+                            &nbsp;&nbsp;
+                            <form:input path="waktuPengerjaan" id="textWaktuPengerjaan"
+                                        class="span2 input-xlarge" disabled="${enabledInput}"
+                                        placeholder="Waktu Pengerjaan"/>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+                <%--Nama--%>
+                <%--<fieldset>--%>
+                <%--<div class="control-group">--%>
 
-                    </div>
-                </div>
+                <%--<div class="controls">--%>
+                <%--<div class="input-append inline" style="text-align: center">--%>
+                <%----%>
+                <%--</div>--%>
+                <%--<div class="input-append" style="text-align: center">--%>
+                <%----%>
+                <%--</div>--%>
 
-            </fieldset>
+                <%--</div>--%>
+                <%--</div>--%>
 
+                <%--</fieldset>--%>
 
 
         </div>

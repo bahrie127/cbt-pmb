@@ -66,12 +66,7 @@ public class UjianServiceImpl implements UjianService{
 
     @Override
     public List<PengerjaanSoal> findPengerjaanSoalByPendaftaran(CalonMahasiswa calonMahasiswa) {
-        return sessionFactory.getCurrentSession().createQuery("select new com.bahri.pmb.domain.PengerjaanSoal(" +
-                " ps.id, " +
-                " ps.soal, " +
-                " ps.jawaban " +
-                ")" +
-                "from Ujian u join u.pengerjaanSoalList ps where u.calonMahasiswa=:calonMahasiswa order by ps.soal.id ").setParameter("calonMahasiswa",calonMahasiswa).list();
+        return sessionFactory.getCurrentSession().createQuery("select o.pengerjaanSoalList from Ujian o  where o.calonMahasiswa=:calonMahasiswa").setParameter("calonMahasiswa",calonMahasiswa).list();
     }
 
     @Override

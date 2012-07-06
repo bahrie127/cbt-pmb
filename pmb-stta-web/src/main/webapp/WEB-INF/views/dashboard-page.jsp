@@ -51,12 +51,12 @@
                 <ul class="nav pull-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><sec:authentication
-                                property="principal.username"/> username <b class="caret"></b></a>
+                                property="principal.username"/><b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="icon-user"></i>&nbsp;Account Setting</a></li>
-                            <li><a href="#"><i class="icon-lock"></i>&nbsp;Change Password</a></li>
+                            <%--<li><a href="#"><i class="icon-user"></i>&nbsp;Account Setting</a></li>--%>
+                            <%--<li><a href="#"><i class="icon-lock"></i>&nbsp;Change Password</a></li>--%>
 
-                            <li class="divider"></li>
+                            <%--<li class="divider"></li>--%>
                             <li><a href="<c:url value="/logout" />"><i class="icon-off"></i>&nbsp;Log out</a></li>
                         </ul>
                     </li>
@@ -111,6 +111,10 @@
                                            href="#collapseUser"
                                            data-parent="#accordion2"
                                            data-toggle="collapse">User</a></li>
+                                    <li><a id="accordianToggleHasil" class=" accordion-toggle "
+                                           href="#collapseHasil"
+                                           data-parent="#accordion2"
+                                           data-toggle="collapse">Hasil Ujian</a></li>
                                     <li><a id="accordianToggleSetting" class=" accordion-toggle "
                                            href="#collapseSetting"
                                            data-parent="#accordion2"

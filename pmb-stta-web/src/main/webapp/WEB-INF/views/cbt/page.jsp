@@ -21,24 +21,24 @@
 
 
     <ul class="nav">
-        <c:forEach items="${listSoal}" var="soalItem">
-            <c:set var="pengerjaanSoalId" value="${ujian.pengerjaanSoalList[nomor].id}"/>
-            <c:set var="terjawabId" value="${ujian.pengerjaanSoalList[nomor].jawaban.id}"/>
+        <c:forEach items="${ujian}" var="pengerjaanSoalItem">
+            <c:set var="pengerjaanSoalId" value="${pengerjaanSoalItem.id}"/>
+            <c:set var="terjawabId" value="${pengerjaanSoalItem.jawaban.id}"/>
             <c:set var="nomor" value="${nomor + 1}"/>
 
             <li>
-                ${soalItem.nomor}. ${soalItem.pertanyaan}<br/>
+                    ${nomor}. ${pengerjaanSoalItem.soal.pertanyaan}<br/>
                 <ul class="nav">
                     <li>
                         <ul class="nav nav-pills" style="margin-left: 15px">
                             <li>
                                 <c:set var="cek" value=""/>
-                                <c:if test="${soalItem.jawabans[0].id==terjawabId}"><c:set var="cek"
-                                                                                           value="checked"/>
+                                <c:if test="${pengerjaanSoalItem.soal.jawabans[0].id==terjawabId}"><c:set var="cek"
+                                                                                                          value="checked"/>
                                 </c:if>
                                 <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}"
-                                                  value="${soalItem.jawabans[0].id}" label=""
-                                                  onclick="jawab('${jawab_url}','${ujian.id}','${ujian.calonMahasiswa.id}','${pengerjaanSoalId}','${soalItem.id}','${soalItem.jawabans[0].id}')"/>
+                                                  value="${pengerjaanSoalItem.soal.jawabans[0].id}" label=""
+                                                  onclick="jawab('${jawab_url}','0','0','${pengerjaanSoalId}','${pengerjaanSoalItem.soal.id}','${pengerjaanSoalItem.soal.jawabans[0].id}')"/>
 
                             </li>
                             <li>
@@ -47,24 +47,21 @@
                                 A &nbsp;
                             </li>
                             <li>
-                                ${soalItem.jawabans[0].pilihan}
+                                    ${pengerjaanSoalItem.soal.jawabans[0].pilihan}
                             </li>
                         </ul>
-
-
-
                     </li>
                     <li>
 
                         <ul class="nav nav-pills" style="margin-left: 15px">
                             <li>
                                 <c:set var="cek" value=""/>
-                                <c:if test="${soalItem.jawabans[1].id==terjawabId}"><c:set var="cek"
-                                                                                           value="checked"/>
+                                <c:if test="${pengerjaanSoalItem.soal.jawabans[1].id==terjawabId}"><c:set var="cek"
+                                                                                                          value="checked"/>
                                 </c:if>
                                 <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}"
-                                                  value="${soalItem.jawabans[1].id}" label=""
-                                                  onclick="jawab('${jawab_url}','${ujian.id}','${ujian.calonMahasiswa.id}','${pengerjaanSoalId}','${soalItem.id}','${soalItem.jawabans[1].id}')"/>
+                                                  value="${pengerjaanSoalItem.soal.jawabans[1].id}" label=""
+                                                  onclick="jawab('${jawab_url}','0','0','${pengerjaanSoalId}','${pengerjaanSoalItem.soal.id}','${pengerjaanSoalItem.soal.jawabans[1].id}')"/>
 
                             </li>
                             <li>
@@ -74,7 +71,7 @@
                             </li>
 
                             <li>
-                                ${soalItem.jawabans[1].pilihan}
+                                    ${pengerjaanSoalItem.soal.jawabans[1].pilihan}
                             </li>
                         </ul>
 
@@ -84,12 +81,12 @@
                         <ul class="nav nav-pills" style="margin-left: 15px">
                             <li>
                                 <c:set var="cek" value=""/>
-                                <c:if test="${soalItem.jawabans[2].id==terjawabId}"><c:set var="cek" value="checked"/>
+                                <c:if test="${pengerjaanSoalItem.soal.jawabans[2].id==terjawabId}"><c:set var="cek" value="checked"/>
                                 </c:if>
                                 <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}"
-                                                  value="${soalItem.jawabans[2].id}"
+                                                  value="${pengerjaanSoalItem.soal.jawabans[2].id}"
 
-                                                  onclick="jawab('${jawab_url}','${ujian.id}','${ujian.calonMahasiswa.id}','${pengerjaanSoalId}','${soalItem.id}','${soalItem.jawabans[2].id}')"/>
+                                                  onclick="jawab('${jawab_url}','0','0','${pengerjaanSoalId}','${pengerjaanSoalItem.soal.id}','${pengerjaanSoalItem.soal.jawabans[2].id}')"/>
 
                             </li>
                             <li>
@@ -98,7 +95,7 @@
                                 C     &nbsp;
                             </li>
                             <li>
-                                ${soalItem.jawabans[2].pilihan}
+                                    ${pengerjaanSoalItem.soal.jawabans[2].pilihan}
                             </li>
                         </ul>
 
@@ -107,12 +104,12 @@
                         <ul class="nav nav-pills" style="margin-left: 15px">
                             <li>
                                 <c:set var="cek" value=""/>
-                                <c:if test="${soalItem.jawabans[3].id==terjawabId}"><c:set var="cek" value="checked"/>
+                                <c:if test="${pengerjaanSoalItem.soal.jawabans[3].id==terjawabId}"><c:set var="cek" value="checked"/>
                                 </c:if>
                                 <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}"
-                                                  value="${soalItem.jawabans[3].id}"
+                                                  value="${pengerjaanSoalItem.soal.jawabans[3].id}"
 
-                                                  onclick="jawab('${jawab_url}','${ujian.id}','${ujian.calonMahasiswa.id}','${pengerjaanSoalId}','${soalItem.id}','${soalItem.jawabans[3].id}')"/>
+                                                  onclick="jawab('${jawab_url}','0','0','${pengerjaanSoalId}','${pengerjaanSoalItem.soal.id}','${pengerjaanSoalItem.soal.jawabans[3].id}')"/>
 
                             </li>
                             <li>
@@ -121,7 +118,7 @@
                                 D   &nbsp;
                             </li>
                             <li>
-                                ${soalItem.jawabans[3].pilihan}
+                                    ${pengerjaanSoalItem.soal.jawabans[3].pilihan}
                             </li>
                         </ul>
 
@@ -133,6 +130,7 @@
 
         </c:forEach>
     </ul>
+
 
 
 

@@ -105,6 +105,21 @@ public final class CalendarUtil {
     }
 
     /**
+     * Kembalian waktu format dd-MM-yyyy hh:mm:ss
+     *
+     * @param calendar
+     * @return
+     */
+    public static String timeToStringUjian(Calendar calendar,int jam) {
+        if (calendar == null) return null;
+         String time= fixLength2Digit(calendar.get(Calendar.MONTH)+ 1) + "/" +
+                 (fixLength2Digit(calendar.get(Calendar.DATE) )) + "/" +
+                 calendar.get(Calendar.YEAR)+" "+fixLength2Digit(calendar.get(Calendar.HOUR)+2) + ":" +
+                 calendar.get(Calendar.MINUTE)+" "+(calendar.get(Calendar.AM_PM)==1?"PM":"AM");
+        return time;
+    }
+
+    /**
      * Kembalian format hh:mm:ss
      *
      * @param calendar

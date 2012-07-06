@@ -48,10 +48,6 @@ public class UjianController {
     private KategoriService kategoriService;
 
     @Autowired
-    @Qualifier("penampungSoalService")
-    private PenampungSoalService penampungSoalService;
-
-    @Autowired
     @Qualifier("pengerjaanSoalService")
     private PengerjaanSoalService pengerjaanSoalService;
 
@@ -59,13 +55,20 @@ public class UjianController {
     @Qualifier("calonMahasiswaService")
     private CalonMahasiswaService calonMahasiswaService;
 
-    List<SimpleSoal> soalList;
     List<Soal> soals;
+    List<PengerjaanSoal> pengerjaanSoals;
     Ujian ujian;
-    Long noPendaftaran;
-
+    Long noPendaftaran=0L;
+    String waktu;
     @RequestMapping(value = "mulai", method = RequestMethod.GET)
     public String ujianMulai(ModelMap modelMap, @RequestParam(value = "noPendaftaran") Long noPendaftaran) {
+        if(this.noPendaftaran==0L){
+                waktu=CalendarUtil.timeToStringUjian(new GregorianCalendar(),settingService.getSetting().getWaktuPengerjaan());
+        }else {
+            if(this.noPendaftaran!=noPendaftaran){
+                waktu=CalendarUtil.timeToStringUjian(new GregorianCalendar(),settingService.getSetting().getWaktuPengerjaan());
+            }
+        }
         this.noPendaftaran = noPendaftaran;
         CalonMahasiswa calonMahasiswa = calonMahasiswaService.findCalonMahasiswa(noPendaftaran);
 
@@ -80,68 +83,33 @@ public class UjianController {
                 ujian.setCalonMahasiswa(cm);
                 this.getSoals();
                 List<PengerjaanSoal> pengerjaanSoals = new ArrayList<PengerjaanSoal>();
+                Jawaban jawaban=new Jawaban();
+                jawaban.setId(0L);
                 for (int i = 0; i < settingService.getSetting().getJumlahSoalTampil(); i++) {
                     PengerjaanSoal pengerjaanSoal = new PengerjaanSoal();
                     pengerjaanSoal.setSoal(soals.get(i));
+                    pengerjaanSoal.setJawaban(jawaban);
                     pengerjaanSoals.add(pengerjaanSoal);
                 }
 
                 ujian.setPengerjaanSoalList(pengerjaanSoals);
 
-
-                soalList=new ArrayList<SimpleSoal>();
-                int nomor = 1;
-                for (Soal soal : soals) {
-                    SimpleSoal simpleSoal = new SimpleSoal();
-                    simpleSoal.setNomor(nomor);
-                    simpleSoal.setId(soal.getId());
-                    simpleSoal.setJawabans(soal.getJawabans());
-                    simpleSoal.setKategori(soal.getKategori());
-                    simpleSoal.setPertanyaan(soal.getPertanyaan());
-                    simpleSoal.setView(soal.getView());
-                    soalList.add(simpleSoal);
-                    soal.setView((soal.getView() == null ? 0 : soal.getView()) + 1);
-                    soalService.save(soal);
-                    nomor++;
-                }
-
                 ujianService.save(ujian);
 
-                PenampungSoal penampungSoal=new PenampungSoal();
-                penampungSoal.setIdUjian(ujian.getId());
-                penampungSoal.setSoalList(soals);
-                
-                penampungSoalService.save(penampungSoal);
+                this.pengerjaanSoals=pengerjaanSoals;
 
             }else {
-                List<Soal> fromPenampung=penampungSoalService.getByUjian(ujian.getId()).getSoalList();
-                soals=fromPenampung;
-                soals=samakanList(soals,ujian.getPengerjaanSoalList());
-                int nomor = 1;
-                soalList=new ArrayList<SimpleSoal>();
-                for (Soal soal : soals) {
-                    SimpleSoal simpleSoal = new SimpleSoal();
-                    simpleSoal.setNomor(nomor);
-                    simpleSoal.setId(soal.getId());
-                    simpleSoal.setJawabans(soal.getJawabans());
-                    simpleSoal.setKategori(soal.getKategori());
-                    simpleSoal.setPertanyaan(soal.getPertanyaan());
-                    simpleSoal.setView(soal.getView());
-                    soalList.add(simpleSoal);
-                    nomor++;
-                }
-                
-                
+                pengerjaanSoals=ujianService.findPengerjaanSoalByPendaftaran(cm);
             }
 
             modelMap.addAttribute("namaPeserta", calonMahasiswa.getNama());
             modelMap.addAttribute("tanggal", CalendarUtil.dateToString(new GregorianCalendar()));
-            modelMap.addAttribute("ujian", ujian);
+            modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, ConstantUtils.PAGE_RECORD_SOAL, 1));
             modelMap.addAttribute("nomor", "0");
             modelMap.addAttribute("url", "/cbt-pmb/ujian");
             modelMap.addAttribute("url_hasil", "/cbt-pmb/ujian/hasil");
-            modelMap.addAttribute("listSoal", ConstantUtils.tampilkanDiPanelSoal(soalList, ConstantUtils.PAGE_RECORD_SOAL, 1));
-            modelMap.addAttribute("countPage", (int) Math.ceil((double) soalList.size() / (double) ConstantUtils.PAGE_RECORD_SOAL));
+            modelMap.addAttribute("waktu", waktu);
+            modelMap.addAttribute("countPage", (int) Math.ceil((double) pengerjaanSoals.size() / (double) ConstantUtils.PAGE_RECORD_SOAL));
             return "cbt-page";
         } else {
             modelMap.addAttribute("param", "gagal");
@@ -149,27 +117,6 @@ public class UjianController {
         }
     }
 
-    public List<Soal> samakanList(List<Soal> belumSamaPenampung,List<PengerjaanSoal> dariUjian){
-        List<Soal> sudahSama=new ArrayList<Soal>();
-        Soal sb = new Soal();
-        for (int i = 0; i < belumSamaPenampung.size(); i++) {
-            sudahSama.add(sb);
-        }
-        int m=0;
-        do {
-           
-            for (int c = 0; c < dariUjian.size(); c++) {
-                if (belumSamaPenampung.get(c).getId() == dariUjian.get(m).getSoal().getId()) {
-                    sudahSama.set(m, belumSamaPenampung.get(c));
-                    break;
-                }
-
-            }
-            m++;
-        } while (m < belumSamaPenampung.size());
-        return sudahSama;
-    }
-    
     public void getSoals() {
         soals=new ArrayList<Soal>();
         int jumlahSoal = settingService.getSetting().getJumlahSoalTampil();
@@ -180,6 +127,8 @@ public class UjianController {
             List<Soal> soalByKategori = soalService.findSoalsByKategori(Long.parseLong(i + ""), soalPerkategori);
             for (Soal soal : soalByKategori) {
                 soals.add(soal);
+                soal.setView((soal.getView() == null ? 0 : soal.getView()) + 1);
+                soalService.save(soal);
             }
         }
 
@@ -189,6 +138,8 @@ public class UjianController {
             List<Soal> soalKurang = soalService.findSoalsKurang(kurangSoal);
             for (Soal soal : soalKurang) {
                 soals.add(soal);
+                soal.setView((soal.getView() == null ? 0 : soal.getView()) + 1);
+                soalService.save(soal);
             }
         }
 
@@ -209,8 +160,6 @@ public class UjianController {
         }
         boolean ulang = false;
         int n = 0, m = 0;
-        int loop = 0;
-        int angka = 0;
         do {
             ulang = false;
             n = RandomUtil.nextRandom(soalSebelumRandoms.size());
@@ -238,8 +187,6 @@ public class UjianController {
         }
         boolean ulang = false;
         int n = 0, m = 0;
-        int loop = 0;
-        int angka = 0;
         do {
             ulang = false;
             n = RandomUtil.nextRandom(jawabanSebelumRandoms.size());
@@ -267,26 +214,9 @@ public class UjianController {
 
         ujian = ujianService.findUjianByPendaftaran(cm);
 
-        List<Soal> fromPenampung=penampungSoalService.getByUjian(ujian.getId()).getSoalList();
-        soals=fromPenampung;
-        soals=samakanList(soals,ujian.getPengerjaanSoalList());
-        int nomor = 1;
-        soalList=new ArrayList<SimpleSoal>();
-        for (Soal soal : soals) {
-            SimpleSoal simpleSoal = new SimpleSoal();
-            simpleSoal.setNomor(nomor);
-            simpleSoal.setId(soal.getId());
-            simpleSoal.setJawabans(soal.getJawabans());
-            simpleSoal.setKategori(soal.getKategori());
-            simpleSoal.setPertanyaan(soal.getPertanyaan());
-            simpleSoal.setView(soal.getView());
-            soalList.add(simpleSoal);
-            nomor++;
-        }
-
-        modelMap.addAttribute("ujian", ujian);
+        pengerjaanSoals=ujianService.findPengerjaanSoalByPendaftaran(cm);
+        modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, ConstantUtils.PAGE_RECORD_SOAL, page));
         modelMap.addAttribute("nomor", ((page - 1) * ConstantUtils.PAGE_RECORD_SOAL) + "");
-        modelMap.addAttribute("listSoal", ConstantUtils.tampilkanDiPanelSoal(soalList, ConstantUtils.PAGE_RECORD_SOAL, page));
         modelMap.addAttribute("url", "/cbt-pmb/ujian");
         return "cbt/page";
     }

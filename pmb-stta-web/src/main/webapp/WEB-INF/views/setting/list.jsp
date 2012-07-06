@@ -25,6 +25,7 @@
     <tr>
         <th class="span1">ID</th>
         <th>Jumlah Soal</th>
+        <th>Waktu Pengerjaan (jam)</th>
         <th class="span3">ACTION</th>
     </tr>
     </thead>
@@ -35,6 +36,7 @@
                                                             onclick="detailClick('${settingUrlDetail}',${settings.id})">${settings.id}</a>
             </td>
             <td style="text-align: center">${settings.jumlahSoalTampil}</td>
+            <td style="text-align: center">${settings.waktuPengerjaan}</td>
             <td>
                 <div align="center">
                     <a class="btn edit btn-info" href="#"
