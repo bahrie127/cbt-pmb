@@ -29,7 +29,8 @@ function calcage(secs, num1, num2) {
 
 function CountBack(secs) {
     if (secs < 0) {
-//        document.getElementById("cntdwn").innerHTML = FinishMessage;
+//        document.getElementById("cntdwn").innerHTML = FinishMessage;autoklik
+        document.getElementById("autoklik").click();
 
         return;
     }
