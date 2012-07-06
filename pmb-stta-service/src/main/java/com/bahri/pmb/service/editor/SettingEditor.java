@@ -26,7 +26,7 @@ public class SettingEditor extends PropertyEditorSupport {
         try {
             long id = Long.parseLong(text);
 
-            Setting result = SettingService.getSetting(id);
+            Setting result = SettingService.getSetting();
 
             if (result != null) {
                 setValue(result);

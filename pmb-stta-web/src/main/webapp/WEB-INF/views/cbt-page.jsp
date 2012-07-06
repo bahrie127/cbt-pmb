@@ -48,9 +48,18 @@
             <a class="brand" href="#">CBT STT ADISUTJIPTO YOGYAKARTA</a>
 
             <div class="nav-collapse collapse">
-                <ul class="nav">
+                <ul class="nav pull-right">
+                    <li>
+                        <a href="" >
+                            <script language="JavaScript" src="<c:url value='/resources/js/countdown.js'/>"></script>
+                        </a>
+
+                    </li>
                     <li class="">
-                        <a href="${url_hasil}">SELESAI</a>
+                        <a href="${url_hasil}" id="autoklik">
+                            <button class="badge badge-error" >SELESAI</button>
+                        </a>
+
                     </li>
                 </ul>
                 <%--<ul class="nav pull-right">--%>
@@ -84,10 +93,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="#">${tanggal}  NAMA: ${namaPeserta}</a>
+                <a class="brand" href="#">  NAMA: ${namaPeserta}</a>
                 <div class="nav-collapse">
 
+                    <ul class="nav pull-right">
+                        <li>
+                            <a href="#" style="font-size: 15px"> ${tanggal}</a>
 
+                        </li>
+                    </ul>
 
 
 
@@ -147,7 +161,7 @@
                     ${soalItem.nomor}. ${soalItem.pertanyaan}<br/>
                         <ul class="nav">
                             <li>
-                                <ul class="nav nav-pills">
+                                <ul class="nav nav-pills" style="margin-left: 15px">
                                     <li>
                                         <c:set var="cek" value=""/>
                                         <c:if test="${soalItem.jawabans[0].id==terjawabId}"><c:set var="cek"
@@ -170,7 +184,7 @@
                             </li>
                             <li>
 
-                                <ul class="nav nav-pills">
+                                <ul class="nav nav-pills" style="margin-left: 15px">
                                     <li>
                                         <c:set var="cek" value=""/>
                                         <c:if test="${soalItem.jawabans[1].id==terjawabId}"><c:set var="cek"
@@ -195,7 +209,7 @@
 
                             </li>
                             <li>
-                                <ul class="nav nav-pills">
+                                <ul class="nav nav-pills" style="margin-left: 15px">
                                     <li>
                                         <c:set var="cek" value=""/>
                                         <c:if test="${soalItem.jawabans[2].id==terjawabId}"><c:set var="cek" value="checked"/>
@@ -218,7 +232,7 @@
 
                             </li>
                             <li>
-                                <ul class="nav nav-pills">
+                                <ul class="nav nav-pills" style="margin-left: 15px">
                                     <li>
                                         <c:set var="cek" value=""/>
                                         <c:if test="${soalItem.jawabans[3].id==terjawabId}"><c:set var="cek" value="checked"/>
@@ -294,7 +308,7 @@
 </script>
 
 <script language="JavaScript">
-    TargetDate = "11/19/2020 4:00 PM";
+    TargetDate = "07/05/2012 10:04 PM";
     BackColor = "red";
     ForeColor = "white";
     CountActive = true;
@@ -303,7 +317,7 @@
     DisplayFormat = "%%D%% Hari, %%H%% Jam, %%M%% Menit, %%S%% Detik.";
     FinishMessage = "Waktunya telah tiba!";
 </script>
-<script language="JavaScript" src="http://scripts.hashemian.com/js/countdown.js"></script>
+
 
 
 </body>

@@ -30,7 +30,7 @@
                 ${soalItem.nomor}. ${soalItem.pertanyaan}<br/>
                 <ul class="nav">
                     <li>
-                        <ul class="nav nav-pills">
+                        <ul class="nav nav-pills" style="margin-left: 15px">
                             <li>
                                 <c:set var="cek" value=""/>
                                 <c:if test="${soalItem.jawabans[0].id==terjawabId}"><c:set var="cek"
@@ -56,7 +56,7 @@
                     </li>
                     <li>
 
-                        <ul class="nav nav-pills">
+                        <ul class="nav nav-pills" style="margin-left: 15px">
                             <li>
                                 <c:set var="cek" value=""/>
                                 <c:if test="${soalItem.jawabans[1].id==terjawabId}"><c:set var="cek"
@@ -81,7 +81,7 @@
 
                     </li>
                     <li>
-                        <ul class="nav nav-pills">
+                        <ul class="nav nav-pills" style="margin-left: 15px">
                             <li>
                                 <c:set var="cek" value=""/>
                                 <c:if test="${soalItem.jawabans[2].id==terjawabId}"><c:set var="cek" value="checked"/>
@@ -104,7 +104,7 @@
 
                     </li>
                     <li>
-                        <ul class="nav nav-pills">
+                        <ul class="nav nav-pills" style="margin-left: 15px">
                             <li>
                                 <c:set var="cek" value=""/>
                                 <c:if test="${soalItem.jawabans[3].id==terjawabId}"><c:set var="cek" value="checked"/>

@@ -92,11 +92,11 @@
                     <%--</div>--%>
                     <div class="accordion-group batasAtas" style="border: none">
                         <div class="accordion-heading" id="accordianHeadingBarang" >
-                            <a class="btn accordion-toggle " href="#collapseBarang" data-parent="#accordion2"
+                            <a class="btn accordion-toggle btn-danger " href="#collapseBarang" data-parent="#accordion2"
                                data-toggle="collapse" style="text-decoration: none;text-align: left" id="chevron1" data-stack="barang"> <i class="icon-barcode icon-white"></i> Menu
                                  </a>
                         </div>
-                        <div id="collapseBarang" class="accordion-body collapse" style="height: 0px;">
+                        <div id="collapseBarang" class="accordion-body collapse in" style="height: auto;">
                             <div class="accordion-inner bgSubmenu" style=" background-color: #ffffff;text-align: center">
                                 <ul class="nav nav-tabs nav-stacked">
                                         <li><a id="accordianToggleKategori" class="accordion-toggle "
