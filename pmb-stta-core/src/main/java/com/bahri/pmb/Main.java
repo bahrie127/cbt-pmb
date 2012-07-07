@@ -1,5 +1,7 @@
 package com.bahri.pmb;
 
+import java.util.GregorianCalendar;
+
 /**
  * Created by IntelliJ IDEA.
  * User: latief
@@ -9,7 +11,8 @@ package com.bahri.pmb;
  */
 public class Main {
     public static void main(String [] args){
-        boolean b = false;
+//        boolean b = false;
+        Long b=new GregorianCalendar().getTimeInMillis();
         System.out.println(b);
     }
 }

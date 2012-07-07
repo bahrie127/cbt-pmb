@@ -98,7 +98,7 @@ public class UjianController {
 
                 ujian.setPengerjaanSoalList(pengerjaanSoals);
 
-                ujianService.save(ujian);
+              //  ujianService.save(ujian);
 
                 this.pengerjaanSoals=pengerjaanSoals;
 

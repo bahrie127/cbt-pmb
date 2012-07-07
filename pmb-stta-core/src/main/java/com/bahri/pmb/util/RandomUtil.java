@@ -1,5 +1,6 @@
 package com.bahri.pmb.util;
 
+import java.util.GregorianCalendar;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -46,6 +47,10 @@ public class RandomUtil {
         AtomicLong seed = RandomUtil.seed;
         do {
             oldseed = seed.get();
+            if(oldseed==0){
+                seed.set(new GregorianCalendar().getTimeInMillis());
+                oldseed = seed.get();
+            }
             nextseed = (oldseed * multiplier + addend) & mask;
         } while (!seed.compareAndSet(oldseed, nextseed));
         return (int)(nextseed >>> (48 - bits));

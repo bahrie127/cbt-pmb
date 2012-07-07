@@ -263,7 +263,59 @@
 
     <div style="clear: both;"></div>
 
+    <style type="text/css">
+        #toTop {
+            display:none;
+            text-decoration:none;
+            position:fixed;
+            bottom:10px;
+            right:10px;
+            overflow:hidden;
+            width:51px;
+            height:51px;
+            border:none;
+            text-indent:100%;
+            background:url(<c:url value='/resources/js/backtop/ui.totop.png'/>) no-repeat left top;
+            z-index: 1
 
+        }
+
+        #toTopHover {
+            background:url(<c:url value='/resources/js/backtop/ui.totop.png'/>) no-repeat left -51px;
+            width:51px;
+            height:51px;
+            display:block;
+            overflow:hidden;
+            float:left;
+            opacity: 0;
+            -moz-opacity: 0;
+            filter:alpha(opacity=0);
+        }
+
+        #toTop:active, #toTop:focus {
+            outline:none;
+        }
+    </style>
+
+    <script src="<c:url value='/resources/js/backtop/easing.js'/>" type="text/javascript"></script>
+    <!-- UItoTop plugin -->
+    <script src="<c:url value='/resources/js/backtop/totop.js'/>" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            /*
+             var defaults = {
+             containerID: 'toTop', // fading element id
+             containerHoverID: 'toTopHover', // fading element hover id
+             scrollSpeed: 1200,
+             easingType: 'linear'
+             };
+             */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
 
     <div class="row" style="text-align: center">
         <p> Saiful Bahri &copy; 2012</p>
