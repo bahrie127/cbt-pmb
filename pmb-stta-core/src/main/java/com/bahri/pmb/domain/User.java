@@ -66,6 +66,7 @@ public class User implements UserDetails {
         Role role1=new Role();
         role1.setAuthority("ADMIN_IT");
         setRole(role1);
+        enabled=true;
     }
 
     public String getName() {

@@ -19,6 +19,10 @@
             <div class="nav-collapse">
 
                 <ul class="nav pull-right">
+                    <li class="">
+                        <a id="buttonUploadSoal" class="plus" href="#" rel="tooltip" title="UPLOAD SOAL"><i class="icon-arrow-up icon-white"
+                                ></i></a>
+                    </li>
                         <li class="">
                             <a id="buttonAddSoal" class="plus" href="#" rel="tooltip" title="ADD"><i class="icon-plus-sign icon-white"
                                                                                   ></i></a>
@@ -27,10 +31,10 @@
                         <a id="buttonRefreshSoal" href="#" rel="tooltip" title="REFRESH"><i class="icon-refresh icon-white"
                                                                      ></i></a>
                     </li>
-                    <li>
-                        <a id="buttonSearchSoal" href="#" class="plus" rel="tooltip" title="SEARCH"><i class="icon-search icon-white"
-                                                                                 ></i></a>
-                    </li>
+                    <%--<li>--%>
+                        <%--<a id="buttonSearchSoal" href="#" class="plus" rel="tooltip" title="SEARCH"><i class="icon-search icon-white"--%>
+                                                                                 <%--></i></a>--%>
+                    <%--</li>--%>
 
                 </ul>
 

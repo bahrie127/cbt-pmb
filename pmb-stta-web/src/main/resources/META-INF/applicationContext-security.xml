@@ -30,7 +30,7 @@
         <authentication-provider ref="daoAuthenticationProvider"/>
         <authentication-provider>
             <user-service>
-                <user name="2ndadmin" authorities="ADMIN_IT" password="2ndadmin"/>
+                <user name="adminpmb" authorities="ADMIN_IT" password="admincbt"/>
             </user-service>
         </authentication-provider>
     </authentication-manager>

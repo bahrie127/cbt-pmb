@@ -27,7 +27,6 @@ public class RandomUtil {
     private static final long mask = (1L << 48) - 1;
 
     public static int nextRandom(int n) {
-        Random random=new Random();
         if (n<=0)
             throw new IllegalArgumentException("n must be positive");
 

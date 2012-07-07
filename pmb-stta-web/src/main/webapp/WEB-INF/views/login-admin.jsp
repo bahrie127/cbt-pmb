@@ -12,16 +12,25 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Computer-Based Testing PMB STTA</title>
+    <title>Computer-Based Test PMB STTA</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/validationEngine.jquery.css'/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/style.css'/>"/>
     <%--<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>"/>--%>
     <script type="text/javascript" src="<c:url value='/resources/js/jquery.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/resources/js/jquery.validationEngine-en.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/resources/js/jquery.validationEngine.js'/>"></script>
     <style type="text/css">
         body
         {
             background-image: url("<c:url value='/resources/img/banner-bg.jpg'/>");
         }
     </style>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+// binds form submission and fields to the validation engine
+            jQuery("#formLoginPeserta").validationEngine();
+        });
+    </script>
 </head>
 <body>
 
@@ -29,12 +38,12 @@
     <div class="navbar-inner">
         <div class="container">
 
-            <a class="brand" href="./index.html">Computer-Based Testing</a>
+            <a class="brand" href="#">Computer-Based Testing</a>
 
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li class="">
-                        <a href="./index.html"></a>
+                        <a href="#"></a>
                     </li>
 
                 </ul>
@@ -63,13 +72,13 @@
 
                         <div class="control-group ">
                             <div class="controls">
-                                <input id="j_username" name="j_username" type="text" class="span2"  type="text" placeholder="username"/>
+                                <input id="j_username" name="j_username" type="text" class="span2 validate[required] text-input"  type="text" placeholder="username"/>
                             </div>
                         </div>
 
                         <div class="control-group ">
                             <div class="controls">
-                                <input id="j_password" name="j_password" type="password" class="span2"  type="password" placeholder="password"/>
+                                <input id="j_password" name="j_password" type="password" class="span2 validate[required] text-input"  type="password" placeholder="password"/>
                             </div>
                         </div>
 

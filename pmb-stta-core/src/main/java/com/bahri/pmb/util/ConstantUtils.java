@@ -68,7 +68,7 @@ public final class ConstantUtils {
     /**
      * max pagination record
      */
-    public final static int PAGE_MAX_RECORD = 5;
+    public final static int PAGE_MAX_RECORD = 20;
 
     /**
      * max pagination record soal

@@ -1,10 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: latief
-  Date: 3/20/12
-  Time: 11:25 AM
-  To change this template use File | Settings | File Templates.
---%>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+// binds form submission and fields to the validation engine
+        jQuery("#formInputKategori").validationEngine();
+    });
+</script>
+
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -39,7 +39,7 @@
 
                     <div class="controls">
                         <div class="input-append" style="text-align: center">
-                            <form:input path="nama" id="textNama" class="span2 input-xlarge" disabled="${enabledInput}"
+                            <form:input path="nama" id="textNama" class="span2 input-xlarge validate[required] text-input" disabled="${enabledInput}"
                                         placeholder="Nama"/><span style="margin-top: -8px" class="add-on">*</span>
                         </div>
 

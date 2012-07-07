@@ -4,6 +4,7 @@ $(document).ready(function () {
     var accordianToggleDistributor = $('#accordianToggleDistributor');
     var accordianToggleKategori = $('#accordianToggleKategori');
     var accordianToggleSoal = $('#accordianToggleSoal');
+    var accordianToggleUploadSoal = $('#accordianToggleUploadSoal');
     var accordianToggleUser = $('#accordianToggleUser');
     var accordianToggleHasil = $('#accordianToggleHasil');
     var accordianToggleSetting = $('#accordianToggleSetting');
@@ -41,6 +42,13 @@ $(document).ready(function () {
         });
     });
 
+    accordianToggleUploadSoal.click(function () {
+        $.get('/cbt-pmb/soal/form', function (data) {
+            $('#fillMyModalPlus').html(data);
+            $('#modal').modal('show');
+        });
+    });
+
     accordianToggleUser.click(function () {
         $('#myCarousel').remove();
         $.get('/cbt-pmb/user/navbar', function (dataNavBar) {
@@ -72,16 +80,15 @@ $(document).ready(function () {
     });
 
 
-    $('div.pagination ul li').click(function(){
+    $('div.pagination ul li').click(function () {
         $(this).addClass('active');
     });
 });
 
-$.fn.serializeObject = function()
-{
+$.fn.serializeObject = function () {
     var o = {};
     var a = this.serializeArray();
-    $.each(a, function() {
+    $.each(a, function () {
         if (o[this.name]) {
             if (!o[this.name].push) {
                 o[this.name] = [o[this.name]];
@@ -94,7 +101,8 @@ $.fn.serializeObject = function()
     return o;
 };
 
-var reload = function(){};
+var reload = function () {
+};
 
 
 //-----------------------------theme chart-------------------------------------
@@ -372,17 +380,17 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 
 //animasi sidebar
 
-$(function(){
+$(function () {
 
 
-    $('a[data-stack|="dashboard"]').click(function(){
+    $('a[data-stack|="dashboard"]').click(function () {
         $(this).addClass('btn-danger');
 
         $('a[data-stack|="barang"]').removeClass('btn-danger');
 
     });
 
-    $('a[data-stack|="barang"]').click(function(){
+    $('a[data-stack|="barang"]').click(function () {
         $(this).addClass('btn-danger');
 
         $('a[data-stack|="dashboard"]').removeClass('btn-danger');
@@ -454,8 +462,6 @@ $(function(){
 //        $('a[data-stack|="transaksi"]').removeClass('badge-warning').addClass('badge-inverse');
 //        $('a[data-stack|="laporan"]').removeClass('badge-warning').addClass('badge-inverse');
 //    });
-
-
 
 
 });

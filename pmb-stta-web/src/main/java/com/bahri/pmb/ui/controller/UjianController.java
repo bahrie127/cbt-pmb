@@ -61,20 +61,24 @@ public class UjianController {
     Long noPendaftaran=0L;
     String waktu;
     @RequestMapping(value = "mulai", method = RequestMethod.GET)
-    public String ujianMulai(ModelMap modelMap, @RequestParam(value = "noPendaftaran") Long noPendaftaran) {
+    public String ujianMulai(ModelMap modelMap, @RequestParam(value = "noPendaftaran") String noPendaftaran) {
+        if(!(noPendaftaran).matches("\\p{Digit}+")) {
+            modelMap.addAttribute("param", "gagal");
+            return "login-peserta";
+        }
         if(this.noPendaftaran==0L){
                 waktu=CalendarUtil.timeToStringUjian(new GregorianCalendar(),settingService.getSetting().getWaktuPengerjaan());
         }else {
-            if(this.noPendaftaran!=noPendaftaran){
+            if(this.noPendaftaran!=Long.parseLong(noPendaftaran)){
                 waktu=CalendarUtil.timeToStringUjian(new GregorianCalendar(),settingService.getSetting().getWaktuPengerjaan());
             }
         }
-        this.noPendaftaran = noPendaftaran;
-        CalonMahasiswa calonMahasiswa = calonMahasiswaService.findCalonMahasiswa(noPendaftaran);
+        this.noPendaftaran = Long.parseLong(noPendaftaran);
+        CalonMahasiswa calonMahasiswa = calonMahasiswaService.findCalonMahasiswa(this.noPendaftaran);
 
         if (calonMahasiswa != null) {
             CalonMahasiswa cm = new CalonMahasiswa();
-            cm.setId(noPendaftaran);
+            cm.setId(this.noPendaftaran);
             ujian=new Ujian();
             ujian = ujianService.findUjianByPendaftaran(cm);
 

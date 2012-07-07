@@ -21,6 +21,13 @@ reload = function(){
     });
 };
 
+$('#buttonUploadSoal').click(function(){
+    $.get('/cbt-pmb/soal/form', function (data) {
+        $('#fillMyModalPlus').html(data);
+        $('#modal').modal('show');
+    });
+});
+
 $('#buttonAddSoal').click(function(){
     $.get('/cbt-pmb/soal/new', function (data) {
         $('#fillMyModalPlus').html(data);

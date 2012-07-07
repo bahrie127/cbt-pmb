@@ -1,10 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: latief
-  Date: 3/20/12
-  Time: 11:25 AM
-  To change this template use File | Settings | File Templates.
---%>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+// binds form submission and fields to the validation engine
+        jQuery("#formInputSoal").validationEngine();
+    });
+</script>
+
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -42,10 +42,12 @@
                     <td>
                         <div class="controls">
                             &nbsp;&nbsp;
-                            <form:select path="idKategori" id="kategoriId" disabled="${enabledInput}"
+                            <form:select class="validate[required] text-input" path="idKategori" id="kategoriId" disabled="${enabledInput}"
                                          style="width: 178px">
+                                <form:option value="">---pilih---</form:option>
                                 <c:forEach items="${kategoriList}" var="kategoriItem">
-                                    <form:option value="${kategoriItem.id}" label="${kategoriItem.nama}" selected="${(soal.idKategori==kategoriItem.id)?true:''}"/>
+                                    <form:option value="${kategoriItem.id}" label="${kategoriItem.nama}"
+                                                 selected="${(soal.idKategori==kategoriItem.id)?true:''}"/>
                                 </c:forEach>
                             </form:select>
                         </div>
@@ -58,7 +60,8 @@
                     <td>
                         <div class="controls">
                             &nbsp;&nbsp;
-                            <form:input path="pertanyaan" id="pertanyaan" class="input-xlarge" disabled="${enabledInput}"/>
+                            <form:input  path="pertanyaan" id="pertanyaan" class="input-xlarge validate[required] text-input"
+                                        disabled="${enabledInput}"/>
                             &nbsp;
                             <span class="label label-info">*</span>
                         </div>
@@ -74,7 +77,9 @@
                             <form:input path="jawabanA" id="jawabanA" class="input-xlarge" disabled="${enabledInput}"/>
                             &nbsp;
 
-                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="A" checked="${(soal.kebenaran=='A'?true:'')}"/> Benar
+                            <span class="label label-info">*</span><form:radiobutton class="validate[required] radio" path="kebenaran" value="A"
+                                                                                     checked="${(soal.kebenaran=='A'?true:'')}"/>
+                            Benar
                         </div>
                     </td>
                 </tr>
@@ -85,10 +90,12 @@
                     <td>
                         <div class="controls">
                             &nbsp;&nbsp;
-                            <form:input path="jawabanB" id="jawabanB" class="input-xlarge" disabled="${enabledInput}"/>
+                            <form:input path="jawabanB" id="jawabanB" class="input-xlarge validate[required] text-input" disabled="${enabledInput}"/>
                             &nbsp;
 
-                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="B" checked="${(soal.kebenaran=='B'?true:'')}"/> Benar
+                            <span class="label label-info">*</span><form:radiobutton class="validate[required] radio" path="kebenaran" value="B"
+                                                                                     checked="${(soal.kebenaran=='B'?true:'')}"/>
+                            Benar
                         </div>
                     </td>
                 </tr>
@@ -99,10 +106,12 @@
                     <td>
                         <div class="controls">
                             &nbsp;&nbsp;
-                            <form:input path="jawabanC" id="jawabanC" class="input-xlarge" disabled="${enabledInput}"/>
+                            <form:input path="jawabanC" id="jawabanC" class="input-xlarge validate[required] text-input" disabled="${enabledInput}"/>
                             &nbsp;
 
-                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="C" checked="${(soal.kebenaran=='C'?true:'')}"/> Benar
+                            <span class="label label-info">*</span><form:radiobutton class="validate[required] radio" path="kebenaran" value="C"
+                                                                                     checked="${(soal.kebenaran=='C'?true:'')}"/>
+                            Benar
                         </div>
                     </td>
                 </tr>
@@ -113,10 +122,12 @@
                     <td>
                         <div class="controls">
                             &nbsp;&nbsp;
-                            <form:input path="jawabanD" id="jawabanD" class="input-xlarge" disabled="${enabledInput}"/>
+                            <form:input path="jawabanD" id="jawabanD" class="input-xlarge validate[required] text-input" disabled="${enabledInput}"/>
                             &nbsp;
 
-                            <span class="label label-info">*</span><form:radiobutton path="kebenaran" value="D" checked="${(soal.kebenaran=='D'?true:'')}"/> Benar
+                            <span class="label label-info">*</span><form:radiobutton class="validate[required] radio" path="kebenaran" value="D"
+                                                                                     checked="${(soal.kebenaran=='D'?true:'')}"/>
+                            Benar
                         </div>
                     </td>
                 </tr>
@@ -128,7 +139,8 @@
 
                 <%--tombol hanya muncul waktu input dan edit--%>
             <c:if test="${!enabledInput}">
-                <button type="submit" class="btn btn-primary"><i class="icon-white icon-download-alt"></i> Simpan</button>
+                <button type="submit" class="btn btn-primary"><i class="icon-white icon-download-alt"></i> Simpan
+                </button>
                 <input type="reset" class="btn" data-dismiss="modal" value="Batal">
             </c:if>
 

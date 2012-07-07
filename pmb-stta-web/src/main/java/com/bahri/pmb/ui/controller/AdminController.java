@@ -1,5 +1,8 @@
 package com.bahri.pmb.ui.controller;
 
+import com.bahri.pmb.service.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +21,27 @@ import java.security.Principal;
 @RequestMapping(value = "admin")
 public class AdminController {
 
+    @Autowired
+    @Qualifier("ujianService")
+    private UjianService ujianService;
+
+    @Autowired
+    @Qualifier("soalService")
+    private SoalService soalService;
+
+    @Autowired
+    @Qualifier("settingService")
+    private SettingService settingService;
+
+    @Autowired
+    @Qualifier("kategoriService")
+    private KategoriService kategoriService;
+
+    @Autowired
+    @Qualifier("userService")
+    private UserService userService;
+
+
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
         return "redirect:/admin/login";
@@ -34,7 +58,12 @@ public class AdminController {
         String name=principal.getName();
         modelMap.addAttribute("username",name);
         modelMap.addAttribute("message","sukses");
-        
+        modelMap.addAttribute("jumlahSoal",soalService.countSoals());
+        modelMap.addAttribute("jumlahKategori",kategoriService.countKategoris());
+        modelMap.addAttribute("jumlahUjian",ujianService.countUjians());
+        modelMap.addAttribute("jumlahAdmin",userService.countUsers());
+        modelMap.addAttribute("jumlahSoalDitampilkan",settingService.getSetting().getJumlahSoalTampil());
+        modelMap.addAttribute("waktuPengerjaan",settingService.getSetting().getWaktuPengerjaan());
         return "dashboard-page";
     }
 

@@ -1,10 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: latief
-  Date: 3/20/12
-  Time: 11:25 AM
-  To change this template use File | Settings | File Templates.
---%>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+// binds form submission and fields to the validation engine
+        jQuery("#formInputAdmin").validationEngine();
+    });
+</script>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,14 +12,14 @@
     <div class="modal-header">
         <a class="close" data-dismiss="modal">×</a>
 
-        <h3>${event} USER</h3>
+        <h3>${event} ADMIN</h3>
     </div>
 
     <c:set var="enabledInput" value="${event == 'DETAIL'}"/>
     <c:url value="/user" var="user_url"/>
 
 
-    <form:form class="modal-form" action="${user_url}" method="${httpMethod}" modelAttribute="user">
+    <form:form id="formInputAdmin" class="modal-form" action="${user_url}" method="${httpMethod}" modelAttribute="user">
         <div class="modal-body">
 
             <!--agar sejajar antara label dan inputan.-->
@@ -36,7 +35,7 @@
                     <td>
                         <div class="controls">
                             &nbsp;&nbsp;
-                            <form:input path="username" id="textUsername" class="input-medium"
+                            <form:input path="username" id="textUsername" class="input-medium validate[required] text-input"
                                         disabled="${enabledInpu}" readonly="${event == 'EDIT' || event == 'DETAIL'}"/>
                         </div>
                     </td>
@@ -50,7 +49,7 @@
                         <td>
                             <div class="controls">
                                 &nbsp;&nbsp;
-                                <form:password path="password" id="textPassword" class="input-medium"
+                                <form:password path="password" id="textPassword" class="input-medium validate[required] text-input"
                                                disabled="${enabledInput}"/>
                             </div>
                         </td>
@@ -62,7 +61,7 @@
                         <td>
                             <div class="controls">
                                 &nbsp;&nbsp;
-                                <form:password path="confirmPassword" id="textConfirmPassword" class="input-medium"
+                                <form:password path="confirmPassword" id="textConfirmPassword" class="input-medium validate[required] text-input"
                                                disabled="${enabledInput}"/>
                             </div>
                         </td>
@@ -75,7 +74,7 @@
                     <td>
                         <div class="controls">
                             &nbsp;&nbsp;
-                            <form:input path="name" id="textName" class="input-xlarge" disabled="${enabledInput}"/>
+                            <form:input path="name" id="textName" class="input-xlarge validate[required] text-input" disabled="${enabledInput}"/>
                         </div>
                     </td>
                 </tr>
@@ -86,7 +85,7 @@
                     <td>
                         <div class="controls">
                             &nbsp;&nbsp;
-                            <form:textarea path="address" id="textAddress" class="input-xlarge"
+                            <form:textarea path="address" id="textAddress" class="input-xlarge validate[required] text-input"
                                            disabled="${enabledInput}"/>
                         </div>
                     </td>
@@ -115,36 +114,19 @@
                     </td>
                 </tr>
 
+
                 <%--<tr>--%>
                     <%--<td>--%>
-                        <%--<label class="control-label" for="selectRoleGroup">Role Group</label>--%>
+                        <%--<label class="control-label" for="checkEnabled">Enabled</label>--%>
                     <%--</td>--%>
                     <%--<td>--%>
                         <%--<div class="controls">--%>
                             <%--&nbsp;&nbsp;--%>
-                            <%--<form:select path="roleGroupId" id="selectRoleGroup" class="input-medium"--%>
-                                         <%--disabled="${enabledInput}">--%>
-                                <%--<form:option value="" label="----"/>--%>
-                                <%--<c:forEach items="${roleGroups}" var="roleGroup">--%>
-                                    <%--<form:option value="${roleGroup.id}" label="${roleGroup.name}"/>--%>
-                                <%--</c:forEach>--%>
-                            <%--</form:select>--%>
+                            <%--<form:checkbox path="enabled" id="checkEnabled" class="input-mini"--%>
+                                           <%--disabled="${enabledInput}"/>--%>
                         <%--</div>--%>
                     <%--</td>--%>
                 <%--</tr>--%>
-
-                <tr>
-                    <td>
-                        <label class="control-label" for="checkEnabled">Enabled</label>
-                    </td>
-                    <td>
-                        <div class="controls">
-                            &nbsp;&nbsp;
-                            <form:checkbox path="enabled" id="checkEnabled" class="input-mini"
-                                           disabled="${enabledInput}"/>
-                        </div>
-                    </td>
-                </tr>
 
                 </tbody>
             </table>

@@ -69,6 +69,8 @@ public class KategoriController {
     public @ResponseBody String save(@Valid @ModelAttribute("kategori") Kategori kategori, BindingResult bindingResult, ModelMap modelMap){
 
         if(kategori == null) return "Gagal";
+        if(kategori.getNama()==null) return "Gagal";
+        if(kategori.getNama().isEmpty()) return "Gagal";
         if(bindingResult.hasErrors()) return "Gagal";
 
         try{

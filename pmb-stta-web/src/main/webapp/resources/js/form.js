@@ -21,6 +21,7 @@ $(document).ready(function () {
             url: action,
             type: method,
             data : data,
+
             success: function(result) {
                 if(action.match("/search")!=null){
                     $('#modal').modal('hide');
@@ -39,7 +40,7 @@ $(document).ready(function () {
 
             },
             error: function(xhr, status, error){
-                alert(status);
+               // alert(status);
             }
         });
 
