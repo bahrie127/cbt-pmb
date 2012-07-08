@@ -112,9 +112,10 @@ public final class CalendarUtil {
      */
     public static String timeToStringUjian(Calendar calendar,int jam) {
         if (calendar == null) return null;
+        calendar.add(Calendar.HOUR,jam);
          String time= fixLength2Digit(calendar.get(Calendar.MONTH)+ 1) + "/" +
                  (fixLength2Digit(calendar.get(Calendar.DATE) )) + "/" +
-                 calendar.get(Calendar.YEAR)+" "+fixLength2Digit(calendar.get(Calendar.HOUR)+2) + ":" +
+                 calendar.get(Calendar.YEAR)+" "+fixLength2Digit(calendar.get(Calendar.HOUR)) + ":" +
                  calendar.get(Calendar.MINUTE)+" "+(calendar.get(Calendar.AM_PM)==1?"PM":"AM");
         return time;
     }
