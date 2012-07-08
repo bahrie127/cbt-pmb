@@ -104,23 +104,6 @@ public class KategoriController {
         }
     }
 
-
-    @RequestMapping(value = "search", method = RequestMethod.GET)
-    public String formSearch(ModelMap modelMap) {
-        modelMap.addAttribute("event", "SEARCH");
-        modelMap.addAttribute("httpMethod", "POST");
-        modelMap.addAttribute("distributor", new Kategori());
-        return "kategori/input";
-    }
-
-//    @RequestMapping(value="search",method = RequestMethod.POST)
-//    public String search(@Valid @ModelAttribute("distributor") Distributor distributor, BindingResult bindingResult, ModelMap modelMap){
-//
-//        List<Distributor> listDistributor=distributorService.findDistributors(distributor);
-//        modelMap.addAttribute("distributors", listDistributor);
-//        return "distributor/list";
-//    }
-
     @InitBinder
     protected void initBinder(WebDataBinder binder) throws Exception{
         binder.registerCustomEditor(Kategori.class, new KategoriEditor(kategoriService));

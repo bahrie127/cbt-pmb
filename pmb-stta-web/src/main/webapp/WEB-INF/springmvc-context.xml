@@ -16,17 +16,6 @@
 
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
 
-
-    <!--<bean class="com.mkyong.common.controller.FileUploadController">-->
-    <!--<property name="formView" value="FileUploadForm" />-->
-    <!--<property name="successView" value="FileUploadSuccess" />-->
-
-    <!--&lt;!&ndash; Map a validator &ndash;&gt;-->
-    <!--<property name="validator">-->
-    <!--<bean class="com.mkyong.common.validator.FileUploadValidator" />-->
-    <!--</property>-->
-    <!--</bean>-->
-
 	<!-- mengganti default servletnya Tomcat dan Jetty -->
 	<!-- ini diperlukan kalau kita mapping DispatcherServlet ke / -->
 	<!-- sehingga tetap bisa mengakses folder selain WEB-INF, misalnya img, 
@@ -46,6 +35,4 @@
 
     <mvc:view-controller path="/" view-name="login-peserta"/>
 
-    <!--<bean class="org.springframework.web.servlet.view.XmlViewResolver" p:location="/WEB-INF/jasper-views.xml" p:order="0"/>-->
-    <!--<import resource="jasper-views.xml" />-->
 </beans>

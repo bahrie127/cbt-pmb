@@ -270,23 +270,6 @@ public class SoalController implements HandlerExceptionResolver {
         }
     }
 
-    @RequestMapping(value = "search", method = RequestMethod.GET)
-    public String formSearch(ModelMap modelMap) {
-        modelMap.addAttribute("event", "SEARCH");
-        modelMap.addAttribute("httpMethod", "POST");
-        modelMap.addAttribute("soal", new Soal());
-        return "soal/input";
-    }
-
-    @RequestMapping(value = "search", method = RequestMethod.POST)
-    public String search(@Valid @ModelAttribute("soal") Soal soal, BindingResult bindingResult, ModelMap modelMap) {
-
-        //List<Soal> listSoal=transaksiService.findSoals(soal);
-        //  modelMap.addAttribute("soals", listSoal);
-        return "soal/list";
-    }
-
-
     @InitBinder
     protected void initBinder(WebDataBinder binder) throws Exception {
         binder.registerCustomEditor(Soal.class, new SoalEditor(soalService));

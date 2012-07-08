@@ -39,7 +39,7 @@
     <div class="navbar-inner">
         <div class="container">
 
-            <a class="brand" href="#">Computer-Based Testing</a>
+            <a class="brand" href="#">Computer-Based Test</a>
 
             <div class="nav-collapse collapse">
                 <ul class="nav">

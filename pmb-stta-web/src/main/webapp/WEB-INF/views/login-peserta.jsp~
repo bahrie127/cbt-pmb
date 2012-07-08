@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: bahrie
@@ -20,11 +21,11 @@
     <script type="text/javascript" src="<c:url value='/resources/js/jquery.validationEngine-en.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/resources/js/jquery.validationEngine.js'/>"></script>
     <style type="text/css">
-        body
-        {
+        body {
             background-image: url("<c:url value='/resources/img/banner-bg.jpg'/>");
         }
     </style>
+
     <script type="text/javascript">
         jQuery(document).ready(function () {
 // binds form submission and fields to the validation engine
@@ -38,7 +39,7 @@
     <div class="navbar-inner">
         <div class="container">
 
-            <a class="brand" href="#">Computer-Based Test</a>
+            <a class="brand" href="#">Computer-Based Testing</a>
 
             <div class="nav-collapse collapse">
                 <ul class="nav">
@@ -56,36 +57,38 @@
 
     <div class="row">
 
-        <spring:url value='/login' var="submit_url"/>
+        <spring:url value='/ujian/mulai' var="submit_url"/>
+
 
         <div class="span4 offset4">
 
-            <form  action="${submit_url}" method="POST"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="PW5uYWoLrgvxCJPrlbig8cHV5dw3bcwFLV4sE3GidIM="></div>
-                <fieldset>
 
+                <form id="formLoginPeserta" action="${submit_url}" method="GET"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="PW5uYWoLrgvxCJPrlbig8cHV5dw3bcwFLV4sE3GidIM="></div>
+                <fieldset>
+                    <h2>Selamat datang </h2>
+
+                    <p>Login dengan menggunakan nomor pendaftaran anda
+                    </p>
 
                     <div class="well">
-                        <h3>PANEL ADMIN</h3>
+
+                        <a href="#" class="btn btn-large btn-primary">
+                            PANEL PESERTA</a>
+
                         <hr style="border-color: #ccc;">
 
 
 
                         <div class="control-group ">
                             <div class="controls">
-                                <input id="j_username" name="j_username" type="text" class="span2 validate[required] text-input"  type="text" placeholder="username"/>
+                                <input id="noPendaftaran" name="noPendaftaran" type="text" class="span2 validate[required] text-input" type="text"
+                                       placeholder="No Pendaftaran"/>
                             </div>
                         </div>
-
-                        <div class="control-group ">
-                            <div class="controls">
-                                <input id="j_password" name="j_password" type="password" class="span2 validate[required] text-input"  type="password" placeholder="password"/>
-                            </div>
-                        </div>
-
 
 
                         <div class="form-actions" style="border: 0; background-color: #f5f5f5; margin: 30px 0 0 0; padding: 0;">
-                            <button type="submit" class="btn btn-danger"><i class="icon-ok-sign icon-white"></i> Login</button>
+                            <button type="submit" class="btn btn-danger"><i class="icon-ok-sign icon-white"></i> Mulai</button>
 
                         </div>
 
@@ -96,10 +99,13 @@
     </div>
 
 
-    <c:if test="${not empty paramError}">
+
+
+
+    <c:if test="${not empty param}">
         <div class="alert alert-error">
-            <strong>Login Tidak Berhasil!</strong><br/>
-            Periksa kembali username dan password anda.
+            <strong>Kesalahan</strong><br/>
+            Nomor Pendaftaran tidak cocok,periksa kembali nomor pendaftaran.
         </div>
     </c:if>
 

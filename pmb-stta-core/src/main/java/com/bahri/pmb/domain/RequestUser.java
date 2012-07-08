@@ -84,7 +84,7 @@ public class RequestUser {
     }
 
     public Boolean getEnabled() {
-        return enabled;
+        return true;
     }
 
     public void setEnabled(Boolean enabled) {
