@@ -13,14 +13,6 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class RandomUtil {
 
-    /** use serialVersionUID from JDK 1.1 for interoperability */
-    static final long serialVersionUID = 3905348978240129619L;
-
-    /**
-     * The internal state associated with this pseudorandom number generator.
-     * (The specs for the methods in this class describe the ongoing
-     * computation of this value.)
-     */
     protected static final AtomicLong seed=new AtomicLong();
 
     private static final long multiplier = 0x5DEECE66DL;
@@ -28,12 +20,6 @@ public class RandomUtil {
     private static final long mask = (1L << 48) - 1;
 
     public static int nextRandom(int n) {
-        if (n<=0)
-            throw new IllegalArgumentException("n must be positive");
-
-        if ((n & -n) == n)  // i.e., n is a power of 2
-            return (int)((n * (long)next(31)) >> 31);
-
         int bits, val;
         do {
             bits = next(31);
@@ -56,3 +42,4 @@ public class RandomUtil {
         return (int)(nextseed >>> (48 - bits));
     }
 }
+

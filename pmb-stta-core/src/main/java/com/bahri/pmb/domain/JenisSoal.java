@@ -5,25 +5,20 @@ import javax.persistence.*;
 /**
  * Created by IntelliJ IDEA.
  * User: bahrie
- * Date: 3/27/12
- * Time: 5:30 AM
+ * Date: 7/12/12
+ * Time: 10:44 PM
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-@Table(name = "kategori")
-public class Kategori {
-
+@Table(name = "jenis_soal")
+public class JenisSoal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "kategori_id")
+    @Column(name = "jenis_soal_id")
     private Long id;
-
-    @Column(name = "nama",length = 50,nullable = false)
+    
+    @Column(name = "nama",nullable = false,length = 20)
     private String nama;
-
-    @ManyToOne
-    @JoinColumn(name = "jenis_soal_id",nullable = false)
-    private JenisSoal jenisSoal;
 
     public Long getId() {
         return id;
@@ -41,24 +36,15 @@ public class Kategori {
         this.nama = nama;
     }
 
-    public JenisSoal getJenisSoal() {
-        return jenisSoal;
-    }
-
-    public void setJenisSoal(JenisSoal jenisSoal) {
-        this.jenisSoal = jenisSoal;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Kategori kategori = (Kategori) o;
+        JenisSoal jenisSoal = (JenisSoal) o;
 
-        if (id != null ? !id.equals(kategori.id) : kategori.id != null) return false;
-        if (jenisSoal != null ? !jenisSoal.equals(kategori.jenisSoal) : kategori.jenisSoal != null) return false;
-        if (nama != null ? !nama.equals(kategori.nama) : kategori.nama != null) return false;
+        if (id != null ? !id.equals(jenisSoal.id) : jenisSoal.id != null) return false;
+        if (nama != null ? !nama.equals(jenisSoal.nama) : jenisSoal.nama != null) return false;
 
         return true;
     }
@@ -67,7 +53,6 @@ public class Kategori {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (nama != null ? nama.hashCode() : 0);
-        result = 31 * result + (jenisSoal != null ? jenisSoal.hashCode() : 0);
         return result;
     }
 }

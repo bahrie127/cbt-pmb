@@ -12,7 +12,7 @@ import java.util.GregorianCalendar;
 public class Main {
     public static void main(String [] args){
 //        boolean b = false;
-        Long b=new GregorianCalendar().getTimeInMillis();
-        System.out.println(b);
+        Long b=new GregorianCalendar().getTimeInMillis(); //271088165510156
+        System.out.println(((1L << 48) - 1));
     }
 }
