@@ -22,7 +22,7 @@ public class Kategori {
     private String nama;
 
     @ManyToOne
-    @JoinColumn(name = "jenis_soal_id",nullable = false)
+    @JoinColumn(name = "jenis_soal_id",nullable = false, unique = false)
     private JenisSoal jenisSoal;
 
     public Long getId() {

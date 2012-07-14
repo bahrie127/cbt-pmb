@@ -1,5 +1,7 @@
 package com.bahri.pmb;
 
+import com.bahri.pmb.util.RandomUtil;
+
 import java.util.GregorianCalendar;
 
 /**
@@ -12,7 +14,12 @@ import java.util.GregorianCalendar;
 public class Main {
     public static void main(String [] args){
 //        boolean b = false;
-        Long b=new GregorianCalendar().getTimeInMillis(); //271088165510156
-        System.out.println(((1L << 48) - 1));
+//        Long b=new GregorianCalendar().getTimeInMillis(); //271088165510156
+//        System.out.println(((1L << 48) - 1));
+//
+        for(int i=0;i<20;i++){
+            System.out.println(RandomUtil.nextRandom(20));
+        }
+
     }
 }

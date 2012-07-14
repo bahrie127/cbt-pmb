@@ -66,9 +66,9 @@
 
                     </li>
                     <%--<li class="">--%>
-                        <%--<a href="${url_hasil}" id="autoklik">--%>
-                            <%--<button class="badge badge-error">SELESAI</button>--%>
-                        <%--</a>--%>
+                    <%--<a href="${url_hasil}" id="autoklik">--%>
+                    <%--<button class="badge badge-error">SELESAI</button>--%>
+                    <%--</a>--%>
 
                     <%--</li>--%>
                 </ul>
@@ -88,7 +88,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="#">Soal Verbal</a>
+            <a class="brand" href="#">Soal logika</a>
 
             <div class="nav-collapse">
 
@@ -99,10 +99,9 @@
                         </a>
 
                     </li>
-
                     <li class="">
                         <a href="${url_hasil}" >
-                            <button class="badge badge-error" id="autoklik">LANJUT SOAL NUMERIK</button>
+                            <button class="badge badge-error" id="autoklik">LANJUT SOAL LOGIKAL</button>
                         </a>
 
                     </li>
@@ -115,7 +114,7 @@
     </div>
     <!-- /navbar-inner -->
 </div>
-           <%--<hiden id="urlhasil" value="<c:url value='${url_hasil}' />"/>--%>
+
 <%--<div class="row">--%>
 <%--<div class="pagination pagination-centered ">--%>
 <%--<ul class="btn-group">--%>
@@ -146,9 +145,10 @@
                 <c:set var="pengerjaanSoalId" value="${pengerjaanSoalItem.id}"/>
                 <c:set var="terjawabId" value="${pengerjaanSoalItem.jawaban.id}"/>
                 <c:set var="nomor" value="${nomor + 1}"/>
-                <c:if test="${nomor==1}">Sinonim</c:if>
-                <c:if test="${nomor==(jSoalAntonim+1)}">Antonim</c:if>
-                <c:if test="${nomor==(jSoalSinonim+jSoalAntonim+1)}">Padanan Kata</c:if>
+                <c:set var="mulai" value="${mulai + 1}"/>
+                <c:if test="${nomor==mulai}">Deret Angka</c:if>
+                <c:if test="${nomor==(jSoalSeriAngka+mulai)}">Deret Huruf</c:if>
+                <c:if test="${nomor==(jSoalSeriAngka+jSoalSeriHuruf+mulai)}">Teknikal</c:if>
                 <li>
                         ${nomor}. ${pengerjaanSoalItem.soal.pertanyaan}<br/>
                     <ul class="nav">

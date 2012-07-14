@@ -92,7 +92,7 @@ public class SoalController implements HandlerExceptionResolver {
             OutputStream outputStream = null;
             if (file.getSize() > 0) {
                 inputStream = file.getInputStream();
-                if (file.getSize() > 10000) {
+                if (file.getSize() > 10000000) {
                     System.out.println("File Size:::" + file.getSize());
                     return "/uploadfile";
                 }
@@ -103,8 +103,8 @@ public class SoalController implements HandlerExceptionResolver {
                 System.out.println("fileName:" + file.getOriginalFilename());
 
                 int readBytes = 0;
-                byte[] buffer = new byte[10000];
-                while ((readBytes = inputStream.read(buffer, 0, 10000)) != -1) {
+                byte[] buffer = new byte[10000000];
+                while ((readBytes = inputStream.read(buffer, 0, 10000000)) != -1) {
                     outputStream.write(buffer, 0, readBytes);
                 }
                 outputStream.close();

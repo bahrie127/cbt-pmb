@@ -29,9 +29,12 @@ function calcage(secs, num1, num2) {
 
 function CountBack(secs) {
     if (secs < 0) {
-//        document.getElementById("cntdwn").innerHTML = FinishMessage;autoklik
+//        document.getElementById("cntdwn").innerHTML = FinishMessage;
+//        alert("jalan");
         document.getElementById("autoklik").click();
-
+//        var url=$('#urlhasil').val();
+//        alert(url);
+//        window.location.href=url;
         return;
     }
     DisplayStr = DisplayFormat.replace(/%%D%%/g, calcage(secs,86400,100000));

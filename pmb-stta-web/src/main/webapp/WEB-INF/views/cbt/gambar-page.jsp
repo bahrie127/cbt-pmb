@@ -66,9 +66,9 @@
 
                     </li>
                     <%--<li class="">--%>
-                        <%--<a href="${url_hasil}" id="autoklik">--%>
-                            <%--<button class="badge badge-error">SELESAI</button>--%>
-                        <%--</a>--%>
+                    <%--<a href="${url_hasil}" id="autoklik">--%>
+                    <%--<button class="badge badge-error">SELESAI</button>--%>
+                    <%--</a>--%>
 
                     <%--</li>--%>
                 </ul>
@@ -88,7 +88,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="#">Soal Verbal</a>
+            <a class="brand" href="#">Soal Gambar</a>
 
             <div class="nav-collapse">
 
@@ -99,10 +99,9 @@
                         </a>
 
                     </li>
-
                     <li class="">
                         <a href="${url_hasil}" >
-                            <button class="badge badge-error" id="autoklik">LANJUT SOAL NUMERIK</button>
+                            <button class="badge badge-error" id="autoklik">SELESAI</button>
                         </a>
 
                     </li>
@@ -115,7 +114,7 @@
     </div>
     <!-- /navbar-inner -->
 </div>
-           <%--<hiden id="urlhasil" value="<c:url value='${url_hasil}' />"/>--%>
+
 <%--<div class="row">--%>
 <%--<div class="pagination pagination-centered ">--%>
 <%--<ul class="btn-group">--%>
@@ -142,6 +141,7 @@
 
 
         <ul class="nav">
+            Gambar Seri
             <c:forEach items="${ujian}" var="pengerjaanSoalItem">
                 <c:set var="pengerjaanSoalId" value="${pengerjaanSoalItem.id}"/>
                 <c:set var="terjawabId" value="${pengerjaanSoalItem.jawaban.id}"/>
@@ -150,7 +150,8 @@
                 <c:if test="${nomor==(jSoalAntonim+1)}">Antonim</c:if>
                 <c:if test="${nomor==(jSoalSinonim+jSoalAntonim+1)}">Padanan Kata</c:if>
                 <li>
-                        ${nomor}. ${pengerjaanSoalItem.soal.pertanyaan}<br/>
+                        ${nomor}. <img src="<c:url value="${pengerjaanSoalItem.soal.pertanyaan}"/>"
+                                       style="height: 100px;width: 350px" class="thumbnail"/><br/>
                     <ul class="nav">
                         <li>
                             <ul class="nav nav-pills" style="margin-left: 15px">
@@ -170,7 +171,8 @@
                                     A &nbsp;
                                 </li>
                                 <li>
-                                        ${pengerjaanSoalItem.soal.jawabans[0].pilihan}
+                                    <img src="<c:url value='${pengerjaanSoalItem.soal.jawabans[0].pilihan}'/>"
+                                         style="height: 100px;width: 100px;margin: 0 5px 0 5px" class="thumbnail"/>
                                 </li>
                             </ul>
                         </li>
@@ -194,7 +196,8 @@
                                 </li>
 
                                 <li>
-                                        ${pengerjaanSoalItem.soal.jawabans[1].pilihan}
+                                    <img src="<c:url value='${pengerjaanSoalItem.soal.jawabans[1].pilihan}'/>"
+                                         style="height: 100px;width: 100px;margin: 0 5px 0 5px" class="thumbnail"/>
                                 </li>
                             </ul>
 
@@ -219,7 +222,8 @@
                                     C &nbsp;
                                 </li>
                                 <li>
-                                        ${pengerjaanSoalItem.soal.jawabans[2].pilihan}
+                                    <img src="<c:url value='${pengerjaanSoalItem.soal.jawabans[2].pilihan}'/>"
+                                         style="height: 100px;width: 100px;margin: 0 5px 0 5px" class="thumbnail"/>
                                 </li>
                             </ul>
 
@@ -243,7 +247,8 @@
                                     D &nbsp;
                                 </li>
                                 <li>
-                                        ${pengerjaanSoalItem.soal.jawabans[3].pilihan}
+                                    <img src="<c:url value='${pengerjaanSoalItem.soal.jawabans[3].pilihan}'/>"
+                                         style="height: 100px;width: 100px;margin: 0 5px 0 5px" class="thumbnail"/>
                                 </li>
                             </ul>
 

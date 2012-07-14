@@ -21,118 +21,119 @@
 
 
     <ul class="nav">
-        <c:forEach items="${ujian}" var="pengerjaanSoalItem">
-            <c:set var="pengerjaanSoalId" value="${pengerjaanSoalItem.id}"/>
-            <c:set var="terjawabId" value="${pengerjaanSoalItem.jawaban.id}"/>
-            <c:set var="nomor" value="${nomor + 1}"/>
+    <c:forEach items="${ujian}" var="pengerjaanSoalItem">
+        <c:set var="pengerjaanSoalId" value="${pengerjaanSoalItem.id}"/>
+        <c:set var="terjawabId" value="${pengerjaanSoalItem.jawaban.id}"/>
+        <c:set var="nomor" value="${nomor + 1}"/>
 
-            <li>
-                    ${nomor}. ${pengerjaanSoalItem.soal.pertanyaan}<br/>
-                <ul class="nav">
-                    <li>
-                        <ul class="nav nav-pills" style="margin-left: 15px">
-                            <li>
-                                <c:set var="cek" value=""/>
-                                <c:if test="${pengerjaanSoalItem.soal.jawabans[0].id==terjawabId}"><c:set var="cek"
-                                                                                                          value="checked"/>
-                                </c:if>
-                                <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}"
-                                                  value="${pengerjaanSoalItem.soal.jawabans[0].id}" label=""
-                                                  onclick="jawab('${jawab_url}','0','0','${pengerjaanSoalId}','${pengerjaanSoalItem.soal.id}','${pengerjaanSoalItem.soal.jawabans[0].id}')"/>
+        <li>
+                ${nomor}. <img src="<c:url value="${pengerjaanSoalItem.soal.pertanyaan}"/>"
+                               style="height: 100px;width: 350px" class="thumbnail"/> <br/>
 
-                            </li>
-                            <li>
-                                &nbsp;
+        </li>
+        <li>
+            &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </li>
+        <%--<li>--%>
+        <li>
+            <img src="<c:url value='${pengerjaanSoalItem.soal.jawabans[0].pilihan}'/>"
+                 style="height: 100px;width: 100px;margin: 0 5px 0 5px" class="thumbnail"/>
+            <br>
 
-                                A &nbsp;
-                            </li>
-                            <li>
-                                    ${pengerjaanSoalItem.soal.jawabans[0].pilihan}
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
+            <div style="text-align: center">
+                <c:set var="cek" value=""/>
+                <c:if test="${pengerjaanSoalItem.soal.jawabans[0].id==terjawabId}"><c:set var="cek"
+                                                                                          value="checked"/>
+                </c:if>
+                <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}"
+                                  value="${pengerjaanSoalItem.soal.jawabans[0].id}" label=""
+                                  onclick="jawab('${jawab_url}','0','0','${pengerjaanSoalId}','${pengerjaanSoalItem.soal.id}','${pengerjaanSoalItem.soal.jawabans[0].id}')"/>
 
-                        <ul class="nav nav-pills" style="margin-left: 15px">
-                            <li>
-                                <c:set var="cek" value=""/>
-                                <c:if test="${pengerjaanSoalItem.soal.jawabans[1].id==terjawabId}"><c:set var="cek"
-                                                                                                          value="checked"/>
-                                </c:if>
-                                <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}"
-                                                  value="${pengerjaanSoalItem.soal.jawabans[1].id}" label=""
-                                                  onclick="jawab('${jawab_url}','0','0','${pengerjaanSoalId}','${pengerjaanSoalItem.soal.id}','${pengerjaanSoalItem.soal.jawabans[1].id}')"/>
+                &nbsp;
 
-                            </li>
-                            <li>
-                                &nbsp;
+                A &nbsp;
+            </div>
+        </li>
+        <li>
+            <img src="<c:url value='${pengerjaanSoalItem.soal.jawabans[1].pilihan}'/>"
+                 style="height: 100px;width: 100px;margin: 0 5px 0 5px" class="thumbnail"/>
+            <br>
 
-                                B &nbsp;
-                            </li>
+            <div style="text-align: center">
+                <c:set var="cek" value=""/>
+                <c:if test="${pengerjaanSoalItem.soal.jawabans[1].id==terjawabId}"><c:set var="cek"
+                                                                                          value="checked"/>
+                </c:if>
+                <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}"
+                                  value="${pengerjaanSoalItem.soal.jawabans[1].id}" label=""
+                                  onclick="jawab('${jawab_url}','0','0','${pengerjaanSoalId}','${pengerjaanSoalItem.soal.id}','${pengerjaanSoalItem.soal.jawabans[1].id}')"/>
 
-                            <li>
-                                    ${pengerjaanSoalItem.soal.jawabans[1].pilihan}
-                            </li>
-                        </ul>
+                &nbsp;
+
+                B &nbsp;
+            </div>
+        </li>
+
+        <li>
+            <ul class="nav nav-pills" style="margin-left: 15px">
+                <li>
+                    <c:set var="cek" value=""/>
+                    <c:if test="${pengerjaanSoalItem.soal.jawabans[2].id==terjawabId}"><c:set var="cek"
+                                                                                              value="checked"/>
+                    </c:if>
+                    <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}"
+                                      value="${pengerjaanSoalItem.soal.jawabans[2].id}"
+
+                                      onclick="jawab('${jawab_url}','0','0','${pengerjaanSoalId}','${pengerjaanSoalItem.soal.id}','${pengerjaanSoalItem.soal.jawabans[2].id}')"/>
+
+                </li>
+                <li>
+                    &nbsp;
+
+                    C &nbsp;
+                </li>
+                <li>
+                    <img src="<c:url value='${pengerjaanSoalItem.soal.jawabans[2].pilihan}'/>"
+                         style="height: 100px;width: 100px;margin: 0 5px 0 5px" class="thumbnail"/>
+                </li>
+            </ul>
+
+        </li>
+        <li>
+            <ul class="nav nav-pills" style="margin-left: 15px">
+                <li>
+                    <c:set var="cek" value=""/>
+                    <c:if test="${pengerjaanSoalItem.soal.jawabans[3].id==terjawabId}"><c:set var="cek"
+                                                                                              value="checked"/>
+                    </c:if>
+                    <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}"
+                                      value="${pengerjaanSoalItem.soal.jawabans[3].id}"
+
+                                      onclick="jawab('${jawab_url}','0','0','${pengerjaanSoalId}','${pengerjaanSoalItem.soal.id}','${pengerjaanSoalItem.soal.jawabans[3].id}')"/>
+
+                </li>
+                <li>
+                    &nbsp;
+
+                    D &nbsp;
+                </li>
+                <li>
+                    <img src="<c:url value='${pengerjaanSoalItem.soal.jawabans[3].pilihan}'/>"
+                         style="height: 100px;width: 100px;margin: 0 5px 0 5px" class="thumbnail"/>
+                </li>
+            </ul>
+
+        </li>
+        </ul>
+        <hr>
+        </li>
 
 
-                    </li>
-                    <li>
-                        <ul class="nav nav-pills" style="margin-left: 15px">
-                            <li>
-                                <c:set var="cek" value=""/>
-                                <c:if test="${pengerjaanSoalItem.soal.jawabans[2].id==terjawabId}"><c:set var="cek" value="checked"/>
-                                </c:if>
-                                <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}"
-                                                  value="${pengerjaanSoalItem.soal.jawabans[2].id}"
-
-                                                  onclick="jawab('${jawab_url}','0','0','${pengerjaanSoalId}','${pengerjaanSoalItem.soal.id}','${pengerjaanSoalItem.soal.jawabans[2].id}')"/>
-
-                            </li>
-                            <li>
-                                &nbsp;
-
-                                C     &nbsp;
-                            </li>
-                            <li>
-                                    ${pengerjaanSoalItem.soal.jawabans[2].pilihan}
-                            </li>
-                        </ul>
-
-                    </li>
-                    <li>
-                        <ul class="nav nav-pills" style="margin-left: 15px">
-                            <li>
-                                <c:set var="cek" value=""/>
-                                <c:if test="${pengerjaanSoalItem.soal.jawabans[3].id==terjawabId}"><c:set var="cek" value="checked"/>
-                                </c:if>
-                                <form:radiobutton checked="${cek}" path="" name="jawaban${nomor}"
-                                                  value="${pengerjaanSoalItem.soal.jawabans[3].id}"
-
-                                                  onclick="jawab('${jawab_url}','0','0','${pengerjaanSoalId}','${pengerjaanSoalItem.soal.id}','${pengerjaanSoalItem.soal.jawabans[3].id}')"/>
-
-                            </li>
-                            <li>
-                                &nbsp;
-
-                                D   &nbsp;
-                            </li>
-                            <li>
-                                    ${pengerjaanSoalItem.soal.jawabans[3].pilihan}
-                            </li>
-                        </ul>
-
-                    </li>
-                </ul>
-                <hr>
-            </li>
+    </c:forEach>
 
 
-        </c:forEach>
+
     </ul>
-
-
-
 
 
 </form:form>

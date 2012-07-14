@@ -62,8 +62,8 @@ public class AdminController {
         modelMap.addAttribute("jumlahKategori",kategoriService.countKategoris());
         modelMap.addAttribute("jumlahUjian",ujianService.countUjians());
         modelMap.addAttribute("jumlahAdmin",userService.countUsers());
-        modelMap.addAttribute("jumlahSoalDitampilkan",settingService.getSetting().getJumlahSoalTampil());
-        modelMap.addAttribute("waktuPengerjaan",settingService.getSetting().getWaktuPengerjaan());
+//        modelMap.addAttribute("jumlahSoalDitampilkan",settingService.getSetting().getJumlahSoalTampil());
+//        modelMap.addAttribute("waktuPengerjaan",settingService.getSetting().getWaktuPengerjaan());
         return "dashboard-page";
     }
 
