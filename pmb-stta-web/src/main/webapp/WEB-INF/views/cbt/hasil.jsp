@@ -51,17 +51,6 @@
                 <ul class="nav pull-right">
 
                     <li class="divider-vertical"></li>
-                    <%--<li class="dropdown open">--%>
-                        <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown"> </a>--%>
-                        <%--<ul class="dropdown-menu">--%>
-                            <%--<li><a href="#">Jumlah Soal : 50 soal</a></li>--%>
-                            <%--<li><a href="#">Waktu : 120 menit</a></li>--%>
-                            <%--<li><a href="#">Mulai : 15:00:00</a></li>--%>
-                            <%--<li><a href="#">Selesai : 15:00:00</a></li>--%>
-                            <%--<li class="divider"></li>--%>
-                            <%--<li><a href="#">Sisa : 15:00:00</a></li>--%>
-                        <%--</ul>--%>
-                    <%--</li>--%>
                 </ul>
 
             </div>
@@ -71,7 +60,17 @@
 
 <div class="container well">
 
-   <h2 class="row" style="text-align: center">Nilai anda adalah : ${hasil}</h2>
+    <h2 class="row" style="text-align: center">Hasil CBT dari Nomor Pendaftaran : ${noPendaftaran} dengan Nama :${nama}</h2>
+
+    <h2 class="row" style="text-align: center">Persentase kebenaran soal Verbal : ${verbal} %</h2>
+
+    <h2 class="row" style="text-align: center">Persentase kebenaran soal Numerik : ${numerik} %</h2>
+
+    <h2 class="row" style="text-align: center">Persentase kebenaran soal Logika : ${logika} %</h2>
+
+    <h2 class="row" style="text-align: center">Persentase kebenaran soal Gambar : ${gambar} %</h2>
+
+   <h2 class="row" style="text-align: center">Nilai rata-rata anda adalah : ${hasil} %</h2>
 
     <div style="clear: both;"></div>
 

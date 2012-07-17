@@ -102,10 +102,16 @@
 
 
 
-    <c:if test="${not empty param}">
+    <c:if test="${param=='gagal'}">
         <div class="alert alert-error">
             <strong>Kesalahan</strong><br/>
             Nomor Pendaftaran tidak cocok,periksa kembali nomor pendaftaran.
+        </div>
+    </c:if>
+    <c:if test="${param=='pernah'}">
+        <div class="alert alert-error">
+            <strong>Kesalahan</strong><br/>
+            Nomor Pendaftaran sudah pernah melakukan ujian sebelumnya.
         </div>
     </c:if>
 

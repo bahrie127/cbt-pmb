@@ -88,7 +88,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="#">Soal logika</a>
+            <a class="brand" href="#">Soal Numerik</a>
 
             <div class="nav-collapse">
 
@@ -145,7 +145,7 @@
                 <c:set var="pengerjaanSoalId" value="${pengerjaanSoalItem.id}"/>
                 <c:set var="terjawabId" value="${pengerjaanSoalItem.jawaban.id}"/>
                 <c:set var="nomor" value="${nomor + 1}"/>
-                <c:set var="mulai" value="${mulai + 1}"/>
+                <%--<c:set var="mulai" value="${mulai + 1}"/>--%>
                 <c:if test="${nomor==mulai}">Deret Angka</c:if>
                 <c:if test="${nomor==(jSoalSeriAngka+mulai)}">Deret Huruf</c:if>
                 <c:if test="${nomor==(jSoalSeriAngka+jSoalSeriHuruf+mulai)}">Teknikal</c:if>

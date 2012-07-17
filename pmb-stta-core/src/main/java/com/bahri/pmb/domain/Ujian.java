@@ -38,6 +38,19 @@ public class Ujian {
     @Column(name = "hasil",nullable = true)
     private Float hasil;
 
+    @Column(name = "nilai_verbal",nullable = true)
+    private Float nilaiVerbal;
+
+    @Column(name = "nilai_numerik",nullable = true)
+    private Float nilaiNumerik;
+
+    @Column(name = "nilai_logika",nullable = true)
+    private Float nilaiLogika;
+
+    @Column(name = "nilai_gambar",nullable = true)
+    private Float nilaiGambar;
+
+
 
 
     public Long getId() {
@@ -72,5 +85,35 @@ public class Ujian {
         this.hasil = hasil;
     }
 
+    public Float getNilaiVerbal() {
+        return nilaiVerbal;
+    }
 
+    public void setNilaiVerbal(Float nilaiVerbal) {
+        this.nilaiVerbal = nilaiVerbal;
+    }
+
+    public Float getNilaiNumerik() {
+        return nilaiNumerik;
+    }
+
+    public void setNilaiNumerik(Float nilaiNumerik) {
+        this.nilaiNumerik = nilaiNumerik;
+    }
+
+    public Float getNilaiLogika() {
+        return nilaiLogika;
+    }
+
+    public void setNilaiLogika(Float nilaiLogika) {
+        this.nilaiLogika = nilaiLogika;
+    }
+
+    public Float getNilaiGambar() {
+        return nilaiGambar;
+    }
+
+    public void setNilaiGambar(Float nilaiGambar) {
+        this.nilaiGambar = nilaiGambar;
+    }
 }

@@ -1,8 +1,8 @@
 package com.bahri.pmb.service.editor;
 
 
-import com.bahri.pmb.domain.Setting;
-import com.bahri.pmb.service.SettingService;
+import com.bahri.pmb.domain.GradeLulus;
+import com.bahri.pmb.service.GradeLulusService;
 
 import java.beans.PropertyEditorSupport;
 
@@ -11,14 +11,14 @@ import java.beans.PropertyEditorSupport;
  * User: Latief
  * Date: 6/27/11
  * Time: 9:28 AM
- * To change this template use File | Settings | File Templates.
+ * To change this template use File | GradeLuluss | File Templates.
  */
-public class SettingEditor extends PropertyEditorSupport {
+public class GradeLulusEditor extends PropertyEditorSupport {
 
-    private SettingService settingService;
+    private GradeLulusService gradeLulusService;
 
-    public SettingEditor(SettingService settingService) {
-        this.settingService = settingService;
+    public GradeLulusEditor(GradeLulusService gradeLulusService) {
+        this.gradeLulusService = gradeLulusService;
     }
 
     @Override
@@ -26,12 +26,12 @@ public class SettingEditor extends PropertyEditorSupport {
         try {
             long id = Long.parseLong(text);
 
-            Setting result = settingService.getSetting();
+            GradeLulus result = gradeLulusService.getGradeLulus();
 
             if (result != null) {
                 setValue(result);
             } else {
-                throw new IllegalArgumentException("Setting with id " + id + " not Found!");
+                throw new IllegalArgumentException("GradeLulus with id " + id + " not Found!");
             }
 
         } catch (NumberFormatException ex) {
@@ -42,7 +42,7 @@ public class SettingEditor extends PropertyEditorSupport {
     @Override
     public String getAsText() {
         if (getValue() != null) {
-            Setting result = (Setting) getValue();
+            GradeLulus result = (GradeLulus) getValue();
             return result.getId() + "";
         } else {
             return "";

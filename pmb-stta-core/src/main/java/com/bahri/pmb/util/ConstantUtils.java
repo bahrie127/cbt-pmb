@@ -119,9 +119,9 @@ public final class ConstantUtils {
         return returnSoal;
     }
 
-    public static List<PengerjaanSoal> tampilkanDiPanelPengerjaanSoal(List<PengerjaanSoal> pengerjaanSoals,int soalPerHalaman,int page){
+    public static List<PengerjaanSoal> tampilkanDiPanelPengerjaanSoal(List<PengerjaanSoal> pengerjaanSoals,int from,int to){
         List<PengerjaanSoal> returnPengerjaanSoal;
-        returnPengerjaanSoal=pengerjaanSoals.subList(((page-1)*soalPerHalaman),(soalPerHalaman*page));
+        returnPengerjaanSoal=pengerjaanSoals.subList(from,to);
         return returnPengerjaanSoal;
     }
 }

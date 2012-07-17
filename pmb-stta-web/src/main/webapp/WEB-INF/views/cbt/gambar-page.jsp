@@ -146,9 +146,6 @@
                 <c:set var="pengerjaanSoalId" value="${pengerjaanSoalItem.id}"/>
                 <c:set var="terjawabId" value="${pengerjaanSoalItem.jawaban.id}"/>
                 <c:set var="nomor" value="${nomor + 1}"/>
-                <c:if test="${nomor==1}">Sinonim</c:if>
-                <c:if test="${nomor==(jSoalAntonim+1)}">Antonim</c:if>
-                <c:if test="${nomor==(jSoalSinonim+jSoalAntonim+1)}">Padanan Kata</c:if>
                 <li>
                         ${nomor}. <img src="<c:url value="${pengerjaanSoalItem.soal.pertanyaan}"/>"
                                        style="height: 100px;width: 350px" class="thumbnail"/><br/>
