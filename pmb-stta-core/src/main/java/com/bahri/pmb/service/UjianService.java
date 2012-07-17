@@ -22,6 +22,9 @@ public interface UjianService {
     public Ujian findUjianByPendaftaran(CalonMahasiswa calonMahasiswa);
     public List<PengerjaanSoal> findPengerjaanSoalByPendaftaran(CalonMahasiswa calonMahasiswa);
     public List<Ujian> findUjians();
+    public List<Ujian> findUjians(int pilihan,String jurusan);
 
     public Long countUjians();
+    public Long countUjians(int pilihan,String jurusan);
+    public Double rataNilaiBidang(int pilihan,String jurusan,int bidang);
 }

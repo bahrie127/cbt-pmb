@@ -25,22 +25,28 @@
         <th>Numerik</th>
         <th>Logikal</th>
         <th>Gambar</th>
+        <th>Action</th>
 
     </tr>
     </thead>
     <tbody>
-    <%--<c:forEach items="${hasils}" var="hasil">--%>
+    <c:forEach items="${statistik1}" var="hasil">
 
         <tr>
-            <%--<td style="text-align: center">${hasil.calonMahasiswa.id}</td>--%>
-            <%--<td style="text-align: center">${hasil.calonMahasiswa.nama}</td>--%>
-            <%--<td style="text-align: center">${hasil.nilaiVerbal} %</td>--%>
-            <%--<td style="text-align: center">${hasil.nilaiNumerik} %</td>--%>
-            <%--<td style="text-align: center">${hasil.nilaiLogika} %</td>--%>
-            <%--<td style="text-align: center">${hasil.nilaiGambar} %</td>--%>
-
+            <td style="text-align: center">${hasil.jurusan}</td>
+            <td style="text-align: center">${hasil.jumlah}</td>
+            <td style="text-align: center">${hasil.verbal} %</td>
+            <td style="text-align: center">${hasil.numerik} %</td>
+            <td style="text-align: center">${hasil.logikal} %</td>
+            <td style="text-align: center">${hasil.gambar} %</td>
+            <td>
+                <div align="center">
+                    <a class="btn edit btn-info" href="#"><i
+                            class="icon-list-alt icon-white" title="Detail"></i> Detail</a>
+                </div>
+            </td>
         </tr>
-    <%--</c:forEach>--%>
+    </c:forEach>
     </tbody>
     <tfoot>
     <tr>

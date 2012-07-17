@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -75,7 +76,51 @@ public class UjianServiceImpl implements UjianService{
     }
 
     @Override
+    public List<Ujian> findUjians(int pilihan, String jurusan) {
+        if(pilihan==1){
+            return sessionFactory.getCurrentSession().createQuery("from Ujian o where o.calonMahasiswa.pilihanPertama=:pilihanPertama").setParameter("pilihanPertama",jurusan).list();
+        }else if(pilihan==2){
+            return sessionFactory.getCurrentSession().createQuery("from Ujian o where o.calonMahasiswa.pilihanKedua=:pilihanKedua").setParameter("pilihanKedua",jurusan).list();
+        }
+        return new ArrayList<Ujian>();
+    }
+
+    @Override
     public Long countUjians() {
         return (Long) sessionFactory.getCurrentSession().createQuery("select count (o) from Ujian o").uniqueResult();
+    }
+
+    @Override
+    public Long countUjians(int pilihan, String jurusan) {
+        if(pilihan==1){
+            return (Long) sessionFactory.getCurrentSession().createQuery("select count (o) from Ujian o where o.calonMahasiswa.pilihanPertama=:pilihanPertama").setParameter("pilihanPertama",jurusan).uniqueResult();
+        }else if(pilihan==2){
+            return (Long) sessionFactory.getCurrentSession().createQuery("select count (o) from Ujian o where o.calonMahasiswa.pilihanKedua=:pilihanKedua").setParameter("pilihanKedua",jurusan).uniqueResult();
+        }
+        return 0l;
+    }
+
+    @Override
+    public Double rataNilaiBidang(int pilihan, String jurusan, int bidang) {
+        if(pilihan==1){
+            if(bidang==1)
+            return (Double) sessionFactory.getCurrentSession().createQuery("select avg(o.nilaiVerbal) from Ujian o where o.calonMahasiswa.pilihanPertama=:pilihanPertama").setParameter("pilihanPertama",jurusan).uniqueResult();
+            if(bidang==2)
+                return (Double) sessionFactory.getCurrentSession().createQuery("select avg(o.nilaiNumerik) from Ujian o where o.calonMahasiswa.pilihanPertama=:pilihanPertama").setParameter("pilihanPertama",jurusan).uniqueResult();
+            if(bidang==3)
+                return (Double) sessionFactory.getCurrentSession().createQuery("select avg(o.nilaiLogika) from Ujian o where o.calonMahasiswa.pilihanPertama=:pilihanPertama").setParameter("pilihanPertama",jurusan).uniqueResult();
+            if(bidang==4)
+                return (Double) sessionFactory.getCurrentSession().createQuery("select avg(o.nilaiGambar) from Ujian o where o.calonMahasiswa.pilihanPertama=:pilihanPertama").setParameter("pilihanPertama",jurusan).uniqueResult();
+        }else if(pilihan==2){
+            if(bidang==1)
+            return (Double) sessionFactory.getCurrentSession().createQuery("select avg(o.nilaiVerbal) from Ujian o where o.calonMahasiswa.pilihanKedua=:pilihanKedua").setParameter("pilihanKedua",jurusan).uniqueResult();
+            if(bidang==2)
+                return (Double) sessionFactory.getCurrentSession().createQuery("select avg(o.nilaiNumerik) from Ujian o where o.calonMahasiswa.pilihanKedua=:pilihanKedua").setParameter("pilihanKedua",jurusan).uniqueResult();
+            if(bidang==3)
+                return (Double) sessionFactory.getCurrentSession().createQuery("select avg(o.nilaiLogika) from Ujian o where o.calonMahasiswa.pilihanKedua=:pilihanKedua").setParameter("pilihanKedua",jurusan).uniqueResult();
+            if(bidang==4)
+                return (Double) sessionFactory.getCurrentSession().createQuery("select avg(o.nilaiGambar) from Ujian o where o.calonMahasiswa.pilihanKedua=:pilihanKedua").setParameter("pilihanKedua",jurusan).uniqueResult();
+        }
+        return 0d;
     }
 }

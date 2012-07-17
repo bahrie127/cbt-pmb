@@ -42,7 +42,7 @@
             <td>
                 <div align="center">
                     <a class="btn edit btn-info" href="#"><i
-                            class="icon-print icon-white" title="edit"></i>Print</a>
+                            class="icon-print icon-white" title="print"></i>Print</a>
                 </div>
             </td>
         </tr>

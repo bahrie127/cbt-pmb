@@ -19,5 +19,7 @@ public interface CalonMahasiswaService {
     public void deleteMore(CalonMahasiswa[] calonMahasiswas);
     public CalonMahasiswa findCalonMahasiswa(Long id);
     public List<CalonMahasiswa> findCalonMahasiswas();
+    public List<CalonMahasiswa> findCalonMahasiswas(int pilihan,String jurusan);
     public Long countCalonMahasiswas();
+    public Long countCalonMahasiswas(int pilihan, String jurusan);
 }

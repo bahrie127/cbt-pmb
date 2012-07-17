@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,7 +60,27 @@ public class CalonMahasiswaServiceImpl implements CalonMahasiswaService{
     }
 
     @Override
+    public List<CalonMahasiswa> findCalonMahasiswas(int pilihan, String jurusan) {
+        if(pilihan==1){
+            return sessionFactory.getCurrentSession().createQuery("from CalonMahasiswa o where o.pilihanPertama=:pilihanPertama").setParameter("pilihanPertama",jurusan).list();
+        }else if(pilihan==2){
+            return sessionFactory.getCurrentSession().createQuery("from CalonMahasiswa o where o.pilihanKedua=:pilihanKedua").setParameter("pilihanKedua",jurusan).list();
+        }
+        return new ArrayList<CalonMahasiswa>();
+    }
+
+    @Override
     public Long countCalonMahasiswas() {
         return (Long) sessionFactory.getCurrentSession().createQuery("select count (o) from CalonMahasiswa o").uniqueResult();
+    }
+
+    @Override
+    public Long countCalonMahasiswas(int pilihan, String jurusan) {
+        if(pilihan==1){
+            return (Long) sessionFactory.getCurrentSession().createQuery("select count (o) from CalonMahasiswa o where o.pilihanPertama=:pilihanPertama").setParameter("pilihanPertama",jurusan).uniqueResult();
+        }else if(pilihan==2){
+            return (Long) sessionFactory.getCurrentSession().createQuery("select count (o) from CalonMahasiswa o where o.pilihanKedua=:pilihanKedua").setParameter("pilihanKedua",jurusan).uniqueResult();
+        }
+        return 0l;
     }
 }

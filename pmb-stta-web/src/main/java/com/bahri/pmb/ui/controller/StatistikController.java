@@ -5,6 +5,7 @@ import com.bahri.pmb.service.CalonMahasiswaService;
 import com.bahri.pmb.service.KategoriService;
 import com.bahri.pmb.service.UjianService;
 import com.bahri.pmb.service.editor.KategoriEditor;
+import com.bahri.pmb.simple.Statistik;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -46,13 +50,107 @@ public class StatistikController {
 
     @RequestMapping(value = "pertama",method = RequestMethod.GET)
     public String findPilPertama(ModelMap modelMap) {
-        //modelMap.addAttribute("kategoris", kategoriService.findKategoris());
+        List<Statistik> statistikList=new ArrayList<Statistik>();
+        Statistik statistikTp=new Statistik();
+        statistikTp.setJurusan("T. Penerbangan");
+        statistikTp.setJumlah(ujianService.countUjians(1,"tp"));
+        statistikTp.setVerbal(ujianService.rataNilaiBidang(1,"tp",1));
+        statistikTp.setNumerik(ujianService.rataNilaiBidang(1, "tp", 2));
+        statistikTp.setLogikal(ujianService.rataNilaiBidang(1, "tp", 3));
+        statistikTp.setGambar(ujianService.rataNilaiBidang(1, "tp", 4));
+
+        Statistik statistikTf=new Statistik();
+        statistikTf.setJurusan("T. Informatika");
+        statistikTf.setJumlah(ujianService.countUjians(1,"tf"));
+        statistikTf.setVerbal(ujianService.rataNilaiBidang(1,"tf",1));
+        statistikTf.setNumerik(ujianService.rataNilaiBidang(1,"tf",2));
+        statistikTf.setLogikal(ujianService.rataNilaiBidang(1,"tf",3));
+        statistikTf.setGambar(ujianService.rataNilaiBidang(1,"tf",4));
+
+        Statistik statistikTi=new Statistik();
+        statistikTi.setJurusan("T. Industri");
+        statistikTi.setJumlah(ujianService.countUjians(1,"ti"));
+        statistikTi.setVerbal(ujianService.rataNilaiBidang(1,"ti",1));
+        statistikTi.setNumerik(ujianService.rataNilaiBidang(1,"ti",2));
+        statistikTi.setLogikal(ujianService.rataNilaiBidang(1,"ti",3));
+        statistikTi.setGambar(ujianService.rataNilaiBidang(1,"ti",4));
+
+        Statistik statistikTm=new Statistik();
+        statistikTm.setJurusan("T. Mesin");
+        statistikTm.setJumlah(ujianService.countUjians(1,"tm"));
+        statistikTm.setVerbal(ujianService.rataNilaiBidang(1,"tm",1));
+        statistikTm.setNumerik(ujianService.rataNilaiBidang(1,"tm",2));
+        statistikTm.setLogikal(ujianService.rataNilaiBidang(1,"tm",3));
+        statistikTm.setGambar(ujianService.rataNilaiBidang(1,"tm",4));
+
+        Statistik statistikTe=new Statistik();
+        statistikTe.setJurusan("T. Elektro");
+        statistikTe.setJumlah(ujianService.countUjians(1,"te"));
+        statistikTe.setVerbal(ujianService.rataNilaiBidang(1,"te",1));
+        statistikTe.setNumerik(ujianService.rataNilaiBidang(1,"te",2));
+        statistikTe.setLogikal(ujianService.rataNilaiBidang(1,"te",3));
+        statistikTe.setGambar(ujianService.rataNilaiBidang(1,"te",4));
+
+        statistikList.add(statistikTp);
+        statistikList.add(statistikTf);
+        statistikList.add(statistikTi);
+        statistikList.add(statistikTm);
+        statistikList.add(statistikTe);
+
+        modelMap.addAttribute("statistik1",statistikList);
         return "statistik/listpilihanpertama";
     }
 
     @RequestMapping(value = "kedua",method = RequestMethod.GET)
     public String findPilKedua(ModelMap modelMap) {
-        //modelMap.addAttribute("kategoris", kategoriService.findKategoris());
+        List<Statistik> statistikList=new ArrayList<Statistik>();
+        Statistik statistikTp=new Statistik();
+        statistikTp.setJurusan("T. Penerbangan");
+        statistikTp.setJumlah(ujianService.countUjians(2,"tp"));
+        statistikTp.setVerbal(ujianService.rataNilaiBidang(2,"tp",1));
+        statistikTp.setNumerik(ujianService.rataNilaiBidang(2,"tp",2));
+        statistikTp.setLogikal(ujianService.rataNilaiBidang(2,"tp",3));
+        statistikTp.setGambar(ujianService.rataNilaiBidang(2,"tp",4));
+
+        Statistik statistikTf=new Statistik();
+        statistikTf.setJurusan("T. Informatika");
+        statistikTf.setJumlah(ujianService.countUjians(2,"tf"));
+        statistikTf.setVerbal(ujianService.rataNilaiBidang(2,"tf",1));
+        statistikTf.setNumerik(ujianService.rataNilaiBidang(2,"tf",2));
+        statistikTf.setLogikal(ujianService.rataNilaiBidang(2,"tf",3));
+        statistikTf.setGambar(ujianService.rataNilaiBidang(2,"tf",4));
+
+        Statistik statistikTi=new Statistik();
+        statistikTi.setJurusan("T. Industri");
+        statistikTi.setJumlah(ujianService.countUjians(2,"ti"));
+        statistikTi.setVerbal(ujianService.rataNilaiBidang(2,"ti",1));
+        statistikTi.setNumerik(ujianService.rataNilaiBidang(2,"ti",2));
+        statistikTi.setLogikal(ujianService.rataNilaiBidang(2,"ti",3));
+        statistikTi.setGambar(ujianService.rataNilaiBidang(2,"ti",4));
+
+        Statistik statistikTm=new Statistik();
+        statistikTm.setJurusan("T. Mesin");
+        statistikTm.setJumlah(ujianService.countUjians(2,"tm"));
+        statistikTm.setVerbal(ujianService.rataNilaiBidang(2,"tm",1));
+        statistikTm.setNumerik(ujianService.rataNilaiBidang(2,"tm",2));
+        statistikTm.setLogikal(ujianService.rataNilaiBidang(2,"tm",3));
+        statistikTm.setGambar(ujianService.rataNilaiBidang(2,"tm",4));
+
+        Statistik statistikTe=new Statistik();
+        statistikTe.setJurusan("T. Elektro");
+        statistikTe.setJumlah(ujianService.countUjians(2,"te"));
+        statistikTe.setVerbal(ujianService.rataNilaiBidang(2,"te",1));
+        statistikTe.setNumerik(ujianService.rataNilaiBidang(2,"te",2));
+        statistikTe.setLogikal(ujianService.rataNilaiBidang(2,"te",3));
+        statistikTe.setGambar(ujianService.rataNilaiBidang(2,"te",4));
+
+        statistikList.add(statistikTp);
+        statistikList.add(statistikTf);
+        statistikList.add(statistikTi);
+        statistikList.add(statistikTm);
+        statistikList.add(statistikTe);
+
+        modelMap.addAttribute("statistik2",statistikList);
         return "statistik/listpilihankedua";
     }
 

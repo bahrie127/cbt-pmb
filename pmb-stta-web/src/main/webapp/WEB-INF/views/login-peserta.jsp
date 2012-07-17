@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: bahrie
@@ -13,7 +12,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Computer-Based Test PMB STTA</title>
+    <title>Computer Based Test PMB STTA</title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/validationEngine.jquery.css'/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/style.css'/>"/>
     <%--<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>"/>--%>
@@ -39,7 +38,7 @@
     <div class="navbar-inner">
         <div class="container">
 
-            <a class="brand" href="#">Computer-Based Test</a>
+            <a class="brand" href="#">Computer Based Test</a>
 
             <div class="nav-collapse collapse">
                 <ul class="nav">
@@ -58,23 +57,32 @@
     <div class="row">
 
         <spring:url value='/ujian/mulai' var="submit_url"/>
+        <div align="center">
+            <h2>Selamat Datang </h2>
 
-
+            <h3> Panduan Computer Based Tes Potensi Akademik (TPA)</h3>
+            <p style="font-size: 14px">
+            Soal terdiri dari 4 bidang yaitu : Verbal , Numerik, Logikal, dan Gambar. <br/>
+            Tiap-tiap bidang dibatasi oleh waktu. <br/>
+            Bila waktu ditiap bidang habis maka akan secara otomatis melanjutkan ke bidang selanjutnya.<br/>
+            Gunakan waktu yang tersedia seefektif mungkin. <br/>
+                                       </p>
+        </div>
         <div class="span4 offset4">
 
 
-                <form id="formLoginPeserta" action="${submit_url}" method="GET">
-                    <div style="margin:0;padding:0;display:inline">
+            <form id="formLoginPeserta" action="${submit_url}" method="GET">
+                <div style="margin:0;padding:0;display:inline">
                     <input name="utf8" type="hidden" value="✓">
                     <input name="authenticity_token" type="hidden" value="PW5uYWoLrgvxCJPrlbig8cHV5dw3bcwFLV4sE3GidIM=">
-                    </div>
+                </div>
                 <fieldset>
-                    <h2>Selamat datang </h2>
 
-                    <p>Login dengan menggunakan nomor pendaftaran anda
-                    </p>
 
-                    <div class="well">
+                    <%--<p>Login dengan menggunakan nomor pendaftaran anda--%>
+                    <%--</p>--%>
+
+                    <div class="well" style=" margin-left: -34px; margin-top: 34px;">
 
                         <a href="#" class="btn btn-large btn-primary">
                             PANEL PESERTA</a>
@@ -82,28 +90,29 @@
                         <hr style="border-color: #ccc;">
 
 
-
                         <div class="control-group ">
                             <div class="controls">
-                                <input id="noPendaftaran" name="noPendaftaran" type="text" class="span2 validate[required] text-input" type="text"
+                                <input id="noPendaftaran" name="noPendaftaran" type="text"
+                                       class="span2 validate[required] text-input" type="text"
                                        placeholder="No Pendaftaran"/>
                             </div>
                         </div>
 
 
-                        <div class="form-actions" style="border: 0; background-color: #f5f5f5; margin: 30px 0 0 0; padding: 0;">
-                            <button type="submit" class="btn btn-danger"><i class="icon-ok-sign icon-white"></i> Mulai</button>
+                        <div class="form-actions"
+                             style="border: 0; background-color: #f5f5f5; margin: 30px 0 0 0; padding: 0;">
+                            <button type="submit" class="btn btn-danger"><i class="icon-ok-sign icon-white"></i> Mulai
+                            </button>
 
                         </div>
 
                     </div>
                 </fieldset>
-            </form>    </div>
+            </form>
+        </div>
+
 
     </div>
-
-
-
 
 
     <c:if test="${param=='gagal'}">
