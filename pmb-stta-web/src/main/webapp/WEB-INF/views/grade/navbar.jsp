@@ -14,10 +14,10 @@
         <div class="container">
 
             <!-- Be sure to leave the brand out there if you want it shown -->
-            <a class="brand" href="#"><i class="icon-th-large icon-white icon-banner"></i>SETTING SOAL</a>
+            <a class="brand" href="#"><i class="icon-th-large icon-white icon-banner"></i>SETTING GRADE LULUS</a>
 
         </div>
     </div>
 </div>
 
-<script type="text/javascript" src="<c:url value='/resources/js/setting/navbar.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/grade/navbar.js'/>"></script>

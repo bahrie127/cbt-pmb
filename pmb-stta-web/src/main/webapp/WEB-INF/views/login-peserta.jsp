@@ -63,7 +63,11 @@
         <div class="span4 offset4">
 
 
-                <form id="formLoginPeserta" action="${submit_url}" method="GET"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="PW5uYWoLrgvxCJPrlbig8cHV5dw3bcwFLV4sE3GidIM="></div>
+                <form id="formLoginPeserta" action="${submit_url}" method="GET">
+                    <div style="margin:0;padding:0;display:inline">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input name="authenticity_token" type="hidden" value="PW5uYWoLrgvxCJPrlbig8cHV5dw3bcwFLV4sE3GidIM=">
+                    </div>
                 <fieldset>
                     <h2>Selamat datang </h2>
 

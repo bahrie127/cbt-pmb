@@ -2,6 +2,8 @@ package com.bahri.pmb.service;
 
 import com.bahri.pmb.domain.GradeLulus;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User: bahrie
@@ -13,5 +15,7 @@ public interface GradeLulusService {
 
     public void save(GradeLulus gradeLulus);
 
-    public GradeLulus getGradeLulus();
+    public GradeLulus getGradeLulus(Long id);
+
+    public List<GradeLulus> getAllGradeLulus();
 }

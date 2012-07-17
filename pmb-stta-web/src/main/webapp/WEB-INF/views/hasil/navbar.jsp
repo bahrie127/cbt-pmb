@@ -17,33 +17,29 @@
             <a class="brand" href="#"><i class="icon-th-large icon-white icon-banner"></i>LIHAT HASIL UJIAN</a>
 
             <!-- Everything you want hidden at 940px or less, place within here -->
-            <%--<div class="nav-collapse">--%>
+            <div class="nav-collapse">
 
-                <%--<ul class="nav pull-right">--%>
-                        <%--<li class="">--%>
-                            <%--<a id="buttonAddKategori" class="plus" href="#" rel="tooltip" title="ADD"><i class="icon-plus-sign icon-white"--%>
-                                                                                  <%--></i></a>--%>
-                        <%--</li>--%>
-                    <%--<li>--%>
-                        <%--<a id="buttonRefreshKategori" href="#" rel="tooltip" title="REFRESH"><i class="icon-refresh icon-white"--%>
-                                                                     <%--></i></a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                        <%--<a id="buttonSearchKategori" href="#" class="plus" rel="tooltip" title="SEARCH"><i class="icon-search icon-white"--%>
-                                                                                 <%--></i></a>--%>
-                    <%--</li>--%>
+                <ul class="nav pull-right">
+                    <li>
+                        <a id="buttonRefreshHasil" href="#" rel="tooltip" title="REFRESH"><i class="icon-refresh icon-white"
+                                ></i></a>
+                    </li>
+                    <li>
+                        <a id="buttonSearchHasil" href="#" class="plus" rel="tooltip" title="SEARCH"><i class="icon-search icon-white"
+                                                                                 ></i></a>
+                    </li>
 
-                <%--</ul>--%>
+                </ul>
 
-                <%--<form class="navbar-search pull-left" id="form_hide" style="display: none;">--%>
-                    <%--<input type="text" class="search-query" placeholder="Search">--%>
-                <%--</form>--%>
+                <form class="navbar-search pull-left" id="form_hide" style="display: none;">
+                    <input type="text" class="search-query" placeholder="Search">
+                </form>
 
-            <%--</div>--%>
+            </div>
 
         </div>
     </div>
 </div>
 <%--<br/>--%>
 <%--<hr/>--%>
-<script type="text/javascript" src="<c:url value='/resources/js/kategori/navbar.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/hasil/navbar.js'/>"></script>

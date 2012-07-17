@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.DecimalFormat;
 import java.util.*;
@@ -135,7 +132,7 @@ public class UjianController {
             } else {
                 if (ujian.getHasil()==null){
                     pengerjaanSoals = ujianService.findPengerjaanSoalByPendaftaran(cm);
-                    soalVerbal=settingService.getSetting().getJumlahSoalSinominTampil()+settingService.getSetting().getJumlahSoalAntonimTampil()+settingService.getSetting().getJumlahSoalPadananTampil();
+                    soalVerbal=settingService.getSetting().getJumlahSoalSinonimTampil()+settingService.getSetting().getJumlahSoalAntonimTampil()+settingService.getSetting().getJumlahSoalPadananTampil();
                     soalNumerik=settingService.getSetting().getJumlahSoalSeriAngkaTampil()+settingService.getSetting().getJumlahSoalSeriHurufTampil()+settingService.getSetting().getJumlahSoalTeknikalTampil();
                     soalLogika=settingService.getSetting().getJumlahSoalLogikalTampil();
                     soalGambar=settingService.getSetting().getJumlahSoalGambarTampil();
@@ -152,7 +149,7 @@ public class UjianController {
             modelMap.addAttribute("url_hasil", "/cbt-pmb/ujian?page=2");
             modelMap.addAttribute("waktu", waktuPengerjaanVerbal);
 
-            modelMap.addAttribute("jSoalSinonim", settingService.getSetting().getJumlahSoalSinominTampil());
+            modelMap.addAttribute("jSoalSinonim", settingService.getSetting().getJumlahSoalSinonimTampil());
             modelMap.addAttribute("jSoalAntonim", settingService.getSetting().getJumlahSoalAntonimTampil());
             modelMap.addAttribute("jSoalPadanan", settingService.getSetting().getJumlahSoalPadananTampil());
             return "cbt-page";
@@ -202,7 +199,7 @@ public class UjianController {
         modelMap.addAttribute("url", "/cbt-pmb/ujian");
         modelMap.addAttribute("url_hasil", "/cbt-pmb/ujian?page=2");
         modelMap.addAttribute("waktu", waktuPengerjaanVerbal);
-        modelMap.addAttribute("jSoalSinonim", settingService.getSetting().getJumlahSoalSinominTampil());
+        modelMap.addAttribute("jSoalSinonim", settingService.getSetting().getJumlahSoalSinonimTampil());
         modelMap.addAttribute("jSoalAntonim", settingService.getSetting().getJumlahSoalAntonimTampil());
         modelMap.addAttribute("jSoalPadanan", settingService.getSetting().getJumlahSoalPadananTampil());
         return "cbt/page";
@@ -306,6 +303,32 @@ public class UjianController {
 
     }
 
+    @RequestMapping(value = "search/form", method = RequestMethod.GET)
+    public String formSearch(ModelMap modelMap) {
+        modelMap.addAttribute("event", "SEARCH");
+        modelMap.addAttribute("httpMethod", "POST");
+        modelMap.addAttribute("ujian", new Ujian());
+        return "hasil/input";
+    }
+
+    @RequestMapping(value="search",method = RequestMethod.GET)
+    public String search(ModelMap modelMap,
+                         @RequestParam(value = "noPendaftaran") Long id){
+        CalonMahasiswa calonMahasiswa=new CalonMahasiswa();
+        calonMahasiswa.setId(id);
+        Ujian singleUjian=ujianService.findUjianByPendaftaran(calonMahasiswa);
+        modelMap.addAttribute("hasil", singleUjian);
+        return "hasil/singglelist";
+    }
+
+    @RequestMapping(value = "search", method = RequestMethod.POST)
+    public String getSearching(@ModelAttribute("ujian") Ujian ujian1) {
+
+        return "redirect:/ujian/search?"
+                + (ujian1.getId()==null?"":("id="+ujian1.getId()));
+
+    }
+
     public void getAllSoals() {
         getSoalVerbals();
         getSoalNumerik();
@@ -329,7 +352,7 @@ public class UjianController {
 
     public void getSoalVerbals() {
         soalVerbals = new ArrayList<Soal>();
-        int jumlahSoalSinonim = settingService.getSetting().getJumlahSoalSinominTampil();
+        int jumlahSoalSinonim = settingService.getSetting().getJumlahSoalSinonimTampil();
         int jumlahSoalAntonim = settingService.getSetting().getJumlahSoalAntonimTampil();
         int jumlahSoalPadanan = settingService.getSetting().getJumlahSoalPadananTampil();
         this.soalVerbal = jumlahSoalAntonim + jumlahSoalPadanan + jumlahSoalSinonim;

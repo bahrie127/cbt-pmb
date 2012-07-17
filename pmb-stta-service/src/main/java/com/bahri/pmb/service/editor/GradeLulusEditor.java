@@ -26,7 +26,7 @@ public class GradeLulusEditor extends PropertyEditorSupport {
         try {
             long id = Long.parseLong(text);
 
-            GradeLulus result = gradeLulusService.getGradeLulus();
+            GradeLulus result = gradeLulusService.getGradeLulus(id);
 
             if (result != null) {
                 setValue(result);

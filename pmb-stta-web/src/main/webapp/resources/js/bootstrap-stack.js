@@ -8,19 +8,11 @@ $(document).ready(function () {
     var accordianToggleUser = $('#accordianToggleUser');
     var accordianToggleHasil = $('#accordianToggleHasil');
     var accordianToggleSetting = $('#accordianToggleSetting');
+    var accordianToggleGrade = $('#accordianToggleGrade');
+    var accordianToggleStatistik = $('#accordianToggleStatistik');
     /**
      * Distributor Action
      */
-
-    accordianToggleDistributor.click(function () {
-        $('#myCarousel').remove();
-        $.get('/flatout/distributor/navbar', function (dataNavBar) {
-            $('#bundleNavbar').html(dataNavBar);
-        });
-        $.get('/flatout/distributor', function (data) {
-            $('#bundleList').html(data);
-        });
-    });
 
     accordianToggleKategori.click(function () {
         $('#myCarousel').remove();
@@ -28,6 +20,7 @@ $(document).ready(function () {
             $('#bundleNavbar').html(dataNavBar);
         });
         $.get('/cbt-pmb/kategori', function (data) {
+            $('#list2').html("");
             $('#bundleList').html(data);
         });
     });
@@ -38,6 +31,7 @@ $(document).ready(function () {
             $('#bundleNavbar').html(dataNavBar);
         });
         $.get('/cbt-pmb/soal', function (data) {
+            $('#list2').html("");
             $('#bundleList').html(data);
         });
     });
@@ -55,6 +49,7 @@ $(document).ready(function () {
             $('#bundleNavbar').html(dataNavBar);
         });
         $.get('/cbt-pmb/user', function (data) {
+            $('#list2').html("");
             $('#bundleList').html(data);
         });
     });
@@ -65,6 +60,7 @@ $(document).ready(function () {
             $('#bundleNavbar').html(dataNavBar);
         });
         $.get('/cbt-pmb/hasilUjian', function (data) {
+            $('#list2').html("");
             $('#bundleList').html(data);
         });
     });
@@ -75,7 +71,32 @@ $(document).ready(function () {
             $('#bundleNavbar').html(dataNavBar);
         });
         $.get('/cbt-pmb/setting', function (data) {
+            $('#list2').html("");
             $('#bundleList').html(data);
+        });
+    });
+
+    accordianToggleGrade.click(function () {
+        $('#myCarousel').remove();
+        $.get('/cbt-pmb/grade/navbar', function (dataNavBar) {
+            $('#bundleNavbar').html(dataNavBar);
+        });
+        $.get('/cbt-pmb/grade', function (data) {
+            $('#list2').html("");
+            $('#bundleList').html(data);
+        });
+    });
+
+    accordianToggleStatistik.click(function () {
+        $('#myCarousel').remove();
+        $.get('/cbt-pmb/statistik/navbar', function (dataNavBar) {
+            $('#bundleNavbar').html(dataNavBar);
+        });
+        $.get('/cbt-pmb/statistik/pertama', function (data) {
+            $('#bundleList').html(data);
+        });
+        $.get('/cbt-pmb/statistik/kedua', function (data) {
+            $('#list2').html(data);
         });
     });
 

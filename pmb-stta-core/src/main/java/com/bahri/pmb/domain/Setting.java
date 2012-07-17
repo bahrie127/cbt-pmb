@@ -18,7 +18,7 @@ public class Setting {
     private Long id;
 
     @Column(name = "jumlah_soal_sinonim_tampil",nullable = false)
-    private int jumlahSoalSinominTampil;
+    private int jumlahSoalSinonimTampil;
     
     @Column(name = "jumlah_soal_antonim_tampil",nullable = false)
     private int jumlahSoalAntonimTampil;
@@ -62,12 +62,12 @@ public class Setting {
         this.id = id;
     }
 
-    public int getJumlahSoalSinominTampil() {
-        return jumlahSoalSinominTampil;
+    public int getJumlahSoalSinonimTampil() {
+        return jumlahSoalSinonimTampil;
     }
 
-    public void setJumlahSoalSinominTampil(int jumlahSoalSinominTampil) {
-        this.jumlahSoalSinominTampil = jumlahSoalSinominTampil;
+    public void setJumlahSoalSinonimTampil(int jumlahSoalSinonimTampil) {
+        this.jumlahSoalSinonimTampil = jumlahSoalSinonimTampil;
     }
 
     public int getJumlahSoalAntonimTampil() {

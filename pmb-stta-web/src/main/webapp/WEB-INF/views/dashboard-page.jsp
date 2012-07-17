@@ -127,10 +127,10 @@
                             <div class="accordion-inner bgSubmenu"
                                  style=" background-color: #ffffff;text-align: center">
                                 <ul class="nav nav-tabs nav-stacked">
-                                    <li><a id="accordianToggleKategori" class="accordion-toggle "
-                                           href="#collapseKategori"
-                                           data-parent="#accordion2"
-                                           data-toggle="collapse">Kategori</a></li>
+                                    <%--<li><a id="accordianToggleKategori" class="accordion-toggle "--%>
+                                           <%--href="#collapseKategori"--%>
+                                           <%--data-parent="#accordion2"--%>
+                                           <%--data-toggle="collapse">Kategori</a></li>--%>
                                     <li><a id="accordianToggleSoal" class=" accordion-toggle "
                                            href="#collapseSoal"
                                            data-parent="#accordion2"
@@ -147,11 +147,19 @@
                                     <li><a id="accordianToggleSetting" class=" accordion-toggle "
                                            href="#collapseSetting"
                                            data-parent="#accordion2"
-                                           data-toggle="collapse">Setting</a></li>
+                                           data-toggle="collapse">Setting Soal</a></li>
+                                        <li><a id="accordianToggleGrade" class="accordion-toggle "
+                                               href="#collapseGrade"
+                                               data-parent="#accordion2"
+                                               data-toggle="collapse">Setting Grade</a></li>
                                     <li><a id="accordianToggleUser" class=" accordion-toggle "
                                            href="#collapseUser"
                                            data-parent="#accordion2"
-                                           data-toggle="collapse">Admin</a></li>
+                                           data-toggle="collapse">Operator</a></li>
+                                        <li><a id="accordianToggleStatistik" class=" accordion-toggle "
+                                               href="#collapseStatistik"
+                                               data-parent="#accordion2"
+                                               data-toggle="collapse">Statistik</a></li>
                                 </ul>
 
                             </div>
@@ -262,7 +270,11 @@
         <!--list-list-->
         <div id="bundleList"> <!--bundle table-->
 
+
+
         </div>
+        <div id="list2"></div>
+        
 
     </div>
     <!--/span-->

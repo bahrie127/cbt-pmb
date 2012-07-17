@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User: bahrie
@@ -27,7 +29,12 @@ public class GradeLulusServiceImpl implements GradeLulusService{
     }
 
     @Override
-    public GradeLulus getGradeLulus() {
-        return (GradeLulus) sessionFactory.getCurrentSession().get(GradeLulus.class,1L);
+    public GradeLulus getGradeLulus(Long id) {
+        return (GradeLulus) sessionFactory.getCurrentSession().get(GradeLulus.class,id);
+    }
+
+    @Override
+    public List<GradeLulus> getAllGradeLulus() {
+        return sessionFactory.getCurrentSession().createQuery("from GradeLulus g order by g.id").list();
     }
 }

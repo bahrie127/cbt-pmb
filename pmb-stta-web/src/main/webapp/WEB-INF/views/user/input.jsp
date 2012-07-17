@@ -12,7 +12,7 @@
     <div class="modal-header">
         <a class="close" data-dismiss="modal">×</a>
 
-        <h3>${event} ADMIN</h3>
+        <h3>${event} OPERATOR</h3>
     </div>
 
     <c:set var="enabledInput" value="${event == 'DETAIL'}"/>

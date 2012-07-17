@@ -30,7 +30,6 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${hasils}" var="hasil">
 
         <tr>
             <td style="text-align: center">${hasil.calonMahasiswa.id}</td>
@@ -47,7 +46,6 @@
                 </div>
             </td>
         </tr>
-    </c:forEach>
     </tbody>
     <tfoot>
     <tr>

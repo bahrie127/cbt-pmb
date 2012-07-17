@@ -24,8 +24,18 @@
     <thead>
     <tr>
         <th class="span1">ID</th>
-        <th>Jumlah Soal</th>
-        <th>Waktu Pengerjaan (jam)</th>
+        <th>Sinonim</th>
+        <th>Antonim</th>
+        <th>Padanan</th>
+        <th>Seri Angka</th>
+        <th>Seri Huruf</th>
+        <th>Teknikal</th>
+        <th>Logika</th>
+        <th>Gambar</th>
+        <th>Waktu Verbal</th>
+        <th>Waktu Numerik</th>
+        <th>Waktu Logikal</th>
+        <th>Waktu Gambar</th>
         <th class="span3">ACTION</th>
     </tr>
     </thead>
@@ -35,8 +45,18 @@
             <td class="span1" style="text-align: center"><a href="#"
                                                             onclick="detailClick('${settingUrlDetail}',${settings.id})">${settings.id}</a>
             </td>
-            <td style="text-align: center">${settings.jumlahSoalTampil}</td>
-            <td style="text-align: center">${settings.waktuPengerjaan}</td>
+            <td style="text-align: center">${settings.jumlahSoalSinonimTampil}</td>
+            <td style="text-align: center">${settings.jumlahSoalAntonimTampil}</td>
+            <td style="text-align: center">${settings.jumlahSoalPadananTampil}</td>
+            <td style="text-align: center">${settings.jumlahSoalSeriAngkaTampil}</td>
+            <td style="text-align: center">${settings.jumlahSoalSeriHurufTampil}</td>
+            <td style="text-align: center">${settings.jumlahSoalTeknikalTampil}</td>
+            <td style="text-align: center">${settings.jumlahSoalLogikalTampil}</td>
+            <td style="text-align: center">${settings.jumlahSoalGambarTampil}</td>
+            <td style="text-align: center">${settings.waktuPengerjaanVerbal}</td>
+            <td style="text-align: center">${settings.waktuPengerjaanNumerik}</td>
+            <td style="text-align: center">${settings.waktuPengerjaanLogikal}</td>
+            <td style="text-align: center">${settings.waktuPengerjaanGambar}</td>
             <td>
                 <div align="center">
                     <a class="btn edit btn-info" href="#"

@@ -14,7 +14,7 @@
         <div class="container">
 
             <!-- Be sure to leave the brand out there if you want it shown -->
-            <a class="brand" href="#"><i class="icon-th-large icon-white icon-banner"></i>ADMIN</a>
+            <a class="brand" href="#"><i class="icon-th-large icon-white icon-banner"></i>OPERATOR</a>
 
             <!-- Everything you want hidden at 940px or less, place within here -->
             <div class="nav-collapse">
