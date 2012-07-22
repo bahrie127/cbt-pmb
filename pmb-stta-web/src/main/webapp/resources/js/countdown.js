@@ -30,7 +30,7 @@ function calcage(secs, num1, num2) {
 function CountBack(secs) {
     if (secs < 0) {
 //        document.getElementById("cntdwn").innerHTML = FinishMessage;
-//        alert("jalan");
+     //   alert("waktu selesai, menuju soal selanjutnya");
         document.getElementById("autoklik").click();
 //        var url=$('#urlhasil').val();
 //        alert(url);

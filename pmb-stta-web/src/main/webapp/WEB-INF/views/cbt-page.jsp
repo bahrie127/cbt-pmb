@@ -101,10 +101,10 @@
                     </li>
 
                     <li class="">
-                        <a href="${url_hasil}" >
-                            <button class="badge badge-error" id="autoklik">LANJUT SOAL NUMERIK</button>
+                        <a href="${url_hasil}">
+                            <button class="badge badge-error" >LANJUT SOAL NUMERIK</button>
                         </a>
-
+                        
                     </li>
                 </ul>
 
@@ -149,9 +149,9 @@
                 <c:if test="${nomor==1}">Sinonim</c:if>
                 <c:if test="${nomor==(jSoalAntonim+1)}">Antonim</c:if>
                 <c:if test="${nomor==(jSoalSinonim+jSoalAntonim+1)}">Padanan Kata</c:if>
-                <li>
+                <li style="color: #085219;">
                         ${nomor}. ${pengerjaanSoalItem.soal.pertanyaan}<br/>
-                    <ul class="nav">
+                    <ul class="nav" style="color: #17268c;">
                         <li>
                             <ul class="nav nav-pills" style="margin-left: 15px">
                                 <li>
@@ -260,20 +260,19 @@
     </form:form>
 </div>
 
+<input style="visibility:hidden;" type="button" value="Hello world!" id="autoklik"/>
 
-<%--<div class="row">--%>
-<%--<div class="pagination pagination-centered ">--%>
-<%--<ul class="btn-group">--%>
+<div id="modal" class="modal hide fade in">
+    <div class="modal-header">
+        <div align="center">
+            Waktu Pengerjaan Verbal Selesai <br/>
+        <a href="${url_hasil}" >
+            <button class="badge badge-error">LANJUT SOAL NUMERIK</button>
+        </a>
+    </div>
+    </div>
 
-<%--<c:forEach var="i" begin="1" step="1" end="${countPage}">--%>
-<%--<li class="active" onclick="toPage('${url}',${i})">--%>
-<%--<button style="cursor: pointer" class="btn">${i}</button>--%>
-<%--</li>--%>
-<%--</c:forEach>--%>
-
-<%--</ul>--%>
-<%--</div>--%>
-<%--</div>--%>
+</div>
 
 <div style="clear: both;"></div>
 
@@ -350,6 +349,10 @@
             }
         });
     }
+
+    $("#autoklik").click(function(){
+        $("#modal").modal('show');
+    });
 </script>
 
 <script type="text/javascript">

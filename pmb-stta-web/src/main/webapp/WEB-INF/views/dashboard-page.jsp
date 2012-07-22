@@ -96,203 +96,201 @@
 </div>
 
 <div class="container-fluid">
-<div class="row-fluid">
-<div class="span2">
+    <div class="row-fluid">
+        <div class="span2">
 
 
-    <div class="well sidebar-nav">
+            <div class="well sidebar-nav">
 
-        <ul class="nav nav-list">
+                <ul class="nav nav-list">
 
-            <li>
+                    <li>
 
 
-                <div id="accordion2" class="accordion" style="text-align: left">
-                    <%--<div class="accordion-group" style="border: none">--%>
-                    <%--<div class="accordion-heading" >--%>
-                    <%--<a  class="btn accordion-toggle "--%>
-                    <%--href="<c:url value='/home'/>"--%>
-                    <%--data-parent="#accordion2"--%>
-                    <%--data-toggle="collapse" style="text-decoration: none;text-align: left;" data-stack="dashboard"> <i class="icon-home icon-white"></i> Dashboard </a>--%>
-                    <%--</div>--%>
-                    <%--</div>--%>
-                    <div class="accordion-group batasAtas" style="border: none">
-                        <div class="accordion-heading" id="accordianHeadingBarang">
-                            <a class="btn accordion-toggle btn-danger " href="#collapseBarang" data-parent="#accordion2"
-                               data-toggle="collapse" style="text-decoration: none;text-align: left" id="chevron1"
-                               data-stack="barang"> <i class="icon-barcode icon-white"></i> Menu
-                            </a>
-                        </div>
-                        <div id="collapseBarang" class="accordion-body collapse in" style="height: auto;">
-                            <div class="accordion-inner bgSubmenu"
-                                 style=" background-color: #ffffff;text-align: center">
-                                <ul class="nav nav-tabs nav-stacked">
-                                    <%--<li><a id="accordianToggleKategori" class="accordion-toggle "--%>
-                                           <%--href="#collapseKategori"--%>
-                                           <%--data-parent="#accordion2"--%>
-                                           <%--data-toggle="collapse">Kategori</a></li>--%>
-                                    <li><a id="accordianToggleSoal" class=" accordion-toggle "
-                                           href="#collapseSoal"
-                                           data-parent="#accordion2"
-                                           data-toggle="collapse">Soal</a></li>
-                                    <%--<li><a id="accordianToggleUploadSoal" class=" accordion-toggle "--%>
-                                    <%--href="#collapseUploadSoal"--%>
-                                    <%--data-parent="#accordion2"--%>
-                                    <%--data-toggle="collapse">Upload Soal</a></li>--%>
+                        <div id="accordion2" class="accordion" style="text-align: left">
+                            <%--<div class="accordion-group" style="border: none">--%>
+                            <%--<div class="accordion-heading" >--%>
+                            <%--<a  class="btn accordion-toggle "--%>
+                            <%--href="<c:url value='/home'/>"--%>
+                            <%--data-parent="#accordion2"--%>
+                            <%--data-toggle="collapse" style="text-decoration: none;text-align: left;" data-stack="dashboard"> <i class="icon-home icon-white"></i> Dashboard </a>--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
+                            <div class="accordion-group batasAtas" style="border: none">
+                                <div class="accordion-heading" id="accordianHeadingBarang">
+                                    <a class="btn accordion-toggle btn-danger " href="#collapseBarang"
+                                       data-parent="#accordion2"
+                                       data-toggle="collapse" style="text-decoration: none;text-align: left"
+                                       id="chevron1"
+                                       data-stack="barang"> <i class="icon-barcode icon-white"></i> Menu
+                                    </a>
+                                </div>
+                                <div id="collapseBarang" class="accordion-body collapse in" style="height: auto;">
+                                    <div class="accordion-inner bgSubmenu"
+                                         style=" background-color: #ffffff;text-align: center">
+                                        <ul class="nav nav-tabs nav-stacked">
+                                            <sec:authorize access="hasAnyRole('ADMIN_IT')">
+                                            <li><a id="accordianToggleSoal" class=" accordion-toggle "
+                                                   href="#collapseSoal"
+                                                   data-parent="#accordion2"
+                                                   data-toggle="collapse">Soal</a></li>
+                                            <li><a id="accordianToggleHasil" class=" accordion-toggle "
+                                                   href="#collapseHasil"
+                                                   data-parent="#accordion2"
+                                                   data-toggle="collapse">Hasil Ujian</a></li>
+                                            <li><a id="accordianToggleSetting" class=" accordion-toggle "
+                                                   href="#collapseSetting"
+                                                   data-parent="#accordion2"
+                                                   data-toggle="collapse">Setting Soal</a></li>
+                                            <li><a id="accordianToggleGrade" class="accordion-toggle "
+                                                   href="#collapseGrade"
+                                                   data-parent="#accordion2"
+                                                   data-toggle="collapse">Setting Grade</a></li>
+                                            <li><a id="accordianToggleUser" class=" accordion-toggle "
+                                                   href="#collapseUser"
+                                                   data-parent="#accordion2"
+                                                   data-toggle="collapse">Operator</a></li>
+                                                <li><a id="accordianToggleKajur" class=" accordion-toggle "
+                                                       href="#collapseKajur"
+                                                       data-parent="#accordion2"
+                                                       data-toggle="collapse">Kajur</a></li>
+                                                </sec:authorize>
+                                            <li><a id="accordianToggleStatistik" class=" accordion-toggle "
+                                                   href="#collapseStatistik"
+                                                   data-parent="#accordion2"
+                                                   data-toggle="collapse">Statistik</a></li>
+                                        </ul>
 
-                                    <li><a id="accordianToggleHasil" class=" accordion-toggle "
-                                           href="#collapseHasil"
-                                           data-parent="#accordion2"
-                                           data-toggle="collapse">Hasil Ujian</a></li>
-                                    <li><a id="accordianToggleSetting" class=" accordion-toggle "
-                                           href="#collapseSetting"
-                                           data-parent="#accordion2"
-                                           data-toggle="collapse">Setting Soal</a></li>
-                                        <li><a id="accordianToggleGrade" class="accordion-toggle "
-                                               href="#collapseGrade"
-                                               data-parent="#accordion2"
-                                               data-toggle="collapse">Setting Grade</a></li>
-                                    <li><a id="accordianToggleUser" class=" accordion-toggle "
-                                           href="#collapseUser"
-                                           data-parent="#accordion2"
-                                           data-toggle="collapse">Operator</a></li>
-                                        <li><a id="accordianToggleStatistik" class=" accordion-toggle "
-                                               href="#collapseStatistik"
-                                               data-parent="#accordion2"
-                                               data-toggle="collapse">Statistik</a></li>
-                                </ul>
-
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
-                    </div>
 
-                </div>
-
-            </li>
-        </ul>
-
-    </div>
-
-    <hr>
-    <!--/.well -->
-</div>
-<!--/span-->
-
-<div class="span10">
-    <div id="heroUnit" class="hero-unit" style="height: auto; min-height: 465px;">
-        <div id="myCarousel" class="carousel" style="margin-top: 0px;">
-            <div class="row-fluid abs-report">
-                <div class="alert alert-success span2 height-report" style="width:191px;text-align: center">
-                    <strong>Soal</strong>
-
-                    <table class="table table-bordered" style="margin-top: 15px">
-                        <tr>
-                            <td>
-                                Jumlah Soal :
-                            </td>
-                            <td>
-                                ${jumlahSoal}
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                Jumlah Kategori :
-                            </td>
-                            <td>
-                                ${jumlahKategori}
-                            </td>
-
-                        </tr>
-                    </table>
-
-
-                </div>
-                <div class="alert alert-success span2 height-report" style="width:191px;text-align: center">
-                    <strong>Ujian</strong>
-                    <table class="table table-bordered" style="margin-top: 15px">
-                        <tr>
-                            <td>
-                                Jumlah Ujian :
-                            </td>
-                            <td>
-                              ${jumlahUjian}
-                            </td>
-                        </tr>
-
-                    </table>
-
-                </div>
-                <div class="alert alert-success span2 height-report" style="width:191px;text-align: center">
-                    <strong>Admin</strong>
-                    <table class="table table-bordered" style="margin-top: 15px">
-                        <tr>
-                            <td>
-                                Jumlah Admin :
-                            </td>
-                            <td>
-                              ${jumlahAdmin}
-                            </td>
-                        </tr>
-
-                    </table>
-                </div>
-                <div class="alert alert-success span2 height-report" style="width:191px;text-align: center">
-                    <strong>Setting</strong>
-
-                    <table class="table table-bordered" style="margin-top: 15px">
-                        <tr>
-                            <td>
-                                Soal ditampilkan :
-                            </td>
-                            <td>
-                                ${jumlahSoalDitampilkan}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Waktu pengerjaan :
-                            </td>
-                            <td>
-                                ${waktuPengerjaan} jam
-                            </td>
-                        </tr>
-
-                    </table>
-                </div>
+                    </li>
+                </ul>
 
             </div>
 
+            <hr>
+            <!--/.well -->
         </div>
-        <div id="bundleNavbar"> <!--bundle nav-->
+        <!--/span-->
+
+        <div class="span10">
+            <div id="heroUnit" class="hero-unit" style="height: auto; min-height: 465px;">
+                <div id="myCarousel" class="carousel" style="margin-top: 0px;">
+                    <div class="row-fluid abs-report">
+                        <div class="alert alert-success span2 height-report" style="width:191px;text-align: center">
+                            <strong>Soal</strong>
+
+                            <table class="table table-bordered" style="margin-top: 15px">
+                                <tr>
+                                    <td>
+                                        Jumlah Soal :
+                                    </td>
+                                    <td>
+                                        ${jumlahSoal}
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Jumlah Kategori :
+                                    </td>
+                                    <td>
+                                        ${jumlahKategori}
+                                    </td>
+
+                                </tr>
+                            </table>
+
+
+                        </div>
+                        <div class="alert alert-success span2 height-report" style="width:191px;text-align: center">
+                            <strong>Ujian</strong>
+                            <table class="table table-bordered" style="margin-top: 15px">
+                                <tr>
+                                    <td>
+                                        Jumlah Ujian :
+                                    </td>
+                                    <td>
+                                        ${jumlahUjian}
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+                        <div class="alert alert-success span2 height-report" style="width:191px;text-align: center">
+                            <strong>Admin</strong>
+                            <table class="table table-bordered" style="margin-top: 15px">
+                                <tr>
+                                    <td>
+                                        Jumlah Admin :
+                                    </td>
+                                    <td>
+                                        ${jumlahAdmin}
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="alert alert-success span2 height-report" style="width:191px;text-align: center">
+                            <strong>Setting</strong>
+
+                            <table class="table table-bordered" style="margin-top: 15px">
+                                <tr>
+                                    <td>
+                                        Soal ditampilkan :
+                                    </td>
+                                    <td>
+                                        ${jumlahSoalDitampilkan}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Waktu pengerjaan :
+                                    </td>
+                                    <td>
+                                        ${waktuPengerjaan} jam
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div id="bundleNavbar"> <!--bundle nav-->
+                </div>
+
+                <!--list-list-->
+                <div id="bundleList"> <!--bundle table-->
+
+
+                </div>
+                <div id="list2"></div>
+
+
+            </div>
+            <!--/span-->
+        </div>
+        <!--/row-->
+
+        <div id="fillMyModalPlus">
         </div>
 
-        <!--list-list-->
-        <div id="bundleList"> <!--bundle table-->
+        <hr>
 
+        <div style="clear: both;"></div>
 
-
+        <div class="row" style="text-align: center">
+            <p> Saiful Bahri &copy; 2012</p>
         </div>
-        <div id="list2"></div>
-        
 
     </div>
-    <!--/span-->
-</div>
-<!--/row-->
-
-<div id="fillMyModalPlus">
-</div>
-
-<hr>
-
-<div style="clear: both;"></div>
-
-<div class="row" style="text-align: center">
-    <p> Saiful Bahri &copy; 2012</p>
-</div>
-
-</div>
 </div>
 
 <script src="<c:url value='/resources/js/bootstrap.js'/>"></script>

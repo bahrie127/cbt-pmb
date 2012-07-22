@@ -10,6 +10,7 @@ $(document).ready(function () {
     var accordianToggleSetting = $('#accordianToggleSetting');
     var accordianToggleGrade = $('#accordianToggleGrade');
     var accordianToggleStatistik = $('#accordianToggleStatistik');
+    var accordianToggleKajur = $('#accordianToggleKajur');
     /**
      * Distributor Action
      */
@@ -82,6 +83,16 @@ $(document).ready(function () {
             $('#bundleNavbar').html(dataNavBar);
         });
         $.get('/cbt-pmb/grade', function (data) {
+            $('#list2').html("");
+            $('#bundleList').html(data);
+        });
+    });
+    accordianToggleKajur.click(function () {
+        $('#myCarousel').remove();
+        $.get('/cbt-pmb/kajur/navbar', function (dataNavBar) {
+            $('#bundleNavbar').html(dataNavBar);
+        });
+        $.get('/cbt-pmb/kajur', function (data) {
             $('#list2').html("");
             $('#bundleList').html(data);
         });

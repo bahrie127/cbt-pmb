@@ -101,7 +101,7 @@
                     </li>
                     <li class="">
                         <a href="${url_hasil}" >
-                            <button class="badge badge-error" id="autoklik">LANJUT SOAL LOGIKAL</button>
+                            <button class="badge badge-error">LANJUT SOAL LOGIKAL</button>
                         </a>
 
                     </li>
@@ -149,9 +149,9 @@
                 <c:if test="${nomor==mulai}">Deret Angka</c:if>
                 <c:if test="${nomor==(jSoalSeriAngka+mulai)}">Deret Huruf</c:if>
                 <c:if test="${nomor==(jSoalSeriAngka+jSoalSeriHuruf+mulai)}">Teknikal</c:if>
-                <li>
+                <li style="color: #36130a;">
                         ${nomor}. ${pengerjaanSoalItem.soal.pertanyaan}<br/>
-                    <ul class="nav">
+                    <ul class="nav" style="color: #17268c;">
                         <li>
                             <ul class="nav nav-pills" style="margin-left: 15px">
                                 <li>
@@ -260,7 +260,19 @@
     </form:form>
 </div>
 
+<input style="visibility:hidden;" type="button" value="Hello world!" id="autoklik"/>
 
+<div id="modal" class="modal hide fade in">
+    <div class="modal-header">
+        <div align="center">
+            Waktu Pengerjaan Verbal Selesai <br/>
+            <a href="${url_hasil}" >
+                <button class="badge badge-error">LANJUT SOAL NUMERIK</button>
+            </a>
+        </div>
+    </div>
+
+</div>
 <%--<div class="row">--%>
 <%--<div class="pagination pagination-centered ">--%>
 <%--<ul class="btn-group">--%>
@@ -350,6 +362,7 @@
             }
         });
     }
+
 </script>
 
 <script type="text/javascript">

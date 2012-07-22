@@ -1,5 +1,6 @@
 package com.bahri.pmb.service;
 
+import com.bahri.pmb.domain.Role;
 import com.bahri.pmb.domain.User;
 
 
@@ -20,6 +21,7 @@ public interface UserService {
     public void deleteMore(User[] users);
     public User findUser(String username);
     public List<User> findUsers();
+    public List<User> findUsers(Role role);
     public List<User> findUsers(int first, int max);
     public Long countUsers();
 }

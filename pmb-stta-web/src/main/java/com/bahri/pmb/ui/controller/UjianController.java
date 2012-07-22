@@ -41,8 +41,8 @@ public class UjianController {
     private SettingService settingService;
 
     @Autowired
-    @Qualifier("kategoriService")
-    private KategoriService kategoriService;
+    @Qualifier("gradeLulusService")
+    private GradeLulusService gradeLulusService;
 
     @Autowired
     @Qualifier("pengerjaanSoalService")
@@ -327,6 +327,74 @@ public class UjianController {
         return "redirect:/ujian/search?"
                 + (ujian1.getId()==null?"":("id="+ujian1.getId()));
 
+    }
+
+    @RequestMapping(value = "print", method = RequestMethod.GET)
+    public String print(ModelMap modelMap, @RequestParam(value = "id") Long id) {
+        CalonMahasiswa calonMahasiswa=calonMahasiswaService.findCalonMahasiswa(id);
+        Long pilihanPertama=1l;
+        Long pilihanKedua=1l;
+        Ujian ujian1=ujianService.findUjianByPendaftaran(calonMahasiswa);
+        if(calonMahasiswa.getPilihanPertama().equals("tp")){
+            calonMahasiswa.setPilihanPertama("T Penerbangan");
+            pilihanPertama=1L;
+        }
+        if(calonMahasiswa.getPilihanPertama().equals("tf")){
+            calonMahasiswa.setPilihanPertama("T Informatika");
+            pilihanPertama=2L;
+        }
+        if(calonMahasiswa.getPilihanPertama().equals("ti")){
+            calonMahasiswa.setPilihanPertama("T Industri");
+            pilihanPertama=3L;
+        }
+        if(calonMahasiswa.getPilihanPertama().equals("tm")){
+            calonMahasiswa.setPilihanPertama("T Mesin");
+            pilihanPertama=4L;
+        }
+        if(calonMahasiswa.getPilihanPertama().equals("te")){
+            calonMahasiswa.setPilihanPertama("T Elektro");
+            pilihanPertama=5L;
+        }
+        if(calonMahasiswa.getPilihanKedua().equals("tp")){
+            calonMahasiswa.setPilihanKedua("T Penerbangan");
+            pilihanKedua=1L;
+        }
+        if(calonMahasiswa.getPilihanKedua().equals("tf")){
+            calonMahasiswa.setPilihanKedua("T Informatika");
+            pilihanKedua=2L;
+        }
+        if(calonMahasiswa.getPilihanKedua().equals("ti")){
+            calonMahasiswa.setPilihanKedua("T Industri");
+            pilihanKedua=3L;
+        }
+        if(calonMahasiswa.getPilihanKedua().equals("tm")){
+            calonMahasiswa.setPilihanKedua("T Mesin");
+            pilihanKedua=4L;
+        }
+        if(calonMahasiswa.getPilihanKedua().equals("te")){
+            calonMahasiswa.setPilihanKedua("T Elektro");
+            pilihanKedua=5L;
+        }
+        
+        modelMap.addAttribute("nomor",calonMahasiswa.getId());
+        modelMap.addAttribute("nama",calonMahasiswa.getNama());
+        modelMap.addAttribute("pilihanPertama",calonMahasiswa.getPilihanPertama());
+        modelMap.addAttribute("pilihanKedua",calonMahasiswa.getPilihanKedua());
+        modelMap.addAttribute("verbal",ujian1.getNilaiVerbal());
+        modelMap.addAttribute("numerik",ujian1.getNilaiNumerik());
+        modelMap.addAttribute("logika",ujian1.getNilaiLogika());
+        modelMap.addAttribute("gambar",ujian1.getNilaiGambar());
+        modelMap.addAttribute("nilaiAkhir",ujian1.getHasil());
+        modelMap.addAttribute("gradeVerbal1",gradeLulusService.getGradeLulus(pilihanPertama).getBatasVerbal());
+        modelMap.addAttribute("gradeVerbal2",gradeLulusService.getGradeLulus(pilihanKedua).getBatasVerbal());
+        modelMap.addAttribute("gradeNumerik1",gradeLulusService.getGradeLulus(pilihanPertama).getBatasNumerik());
+        modelMap.addAttribute("gradeNumerik2",gradeLulusService.getGradeLulus(pilihanKedua).getBatasNumerik());
+        modelMap.addAttribute("gradeLogika1",gradeLulusService.getGradeLulus(pilihanPertama).getBatasLogika());
+        modelMap.addAttribute("gradeLogika2",gradeLulusService.getGradeLulus(pilihanKedua).getBatasLogika());
+        modelMap.addAttribute("gradeGambar1",gradeLulusService.getGradeLulus(pilihanPertama).getBatasGambar());
+        modelMap.addAttribute("gradeGambar2",gradeLulusService.getGradeLulus(pilihanKedua).getBatasGambar());
+        
+         return "hasil/print-page";
     }
 
     public void getAllSoals() {

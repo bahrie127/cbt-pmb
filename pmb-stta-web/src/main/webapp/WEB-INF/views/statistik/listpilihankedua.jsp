@@ -9,6 +9,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<c:url value="/statistik/detail" var="statistikDetail"/>
 <style type="text/css">
     .table-center tr th {
         text-align: center
@@ -41,8 +42,8 @@
             <td style="text-align: center">${hasil.gambar} %</td>
             <td>
                 <div align="center">
-                    <a class="btn edit btn-info" href="#"><i
-                            class="icon-list-alt icon-white" title="print"></i> Detail</a>
+                    <a class="btn edit btn-info" href="#" onclick="detailClick('${statistikDetail}','2','${hasil.jurusan}')"><i
+                            class="icon-list-alt icon-white" title="Detail"></i> Detail</a>
                 </div>
             </td>
         </tr>
@@ -56,4 +57,4 @@
 
     </tfoot>
 </table>
-
+<script type="text/javascript" src="<c:url value='/resources/js/statistik/detail.js'/>"></script>

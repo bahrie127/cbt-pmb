@@ -27,8 +27,8 @@ import javax.validation.Valid;
  * To change this template use File | Settings | File Templates.
  */
 @Controller
-@RequestMapping(value = "user")
-public class UserController {
+@RequestMapping(value = "kajur")
+public class KajurController {
 
     @Autowired
     @Qualifier("userService")
@@ -39,15 +39,20 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
 
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String login(ModelMap modelMap){
+        return "login-kajur";
+    }
+
     @RequestMapping(value = "navbar", method = RequestMethod.GET)
     public String navBar() {
-        return "user/navbar";
+        return "kajur/navbar";
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public String find(ModelMap modelMap) {
-        modelMap.addAttribute("users", userService.findUsers(new Role("ADMIN_IT")));
-        return "user/list";
+        modelMap.addAttribute("kajurs", userService.findUsers(new Role("PEWAWANCARA")));
+        return "kajur/list";
     }
 
     @RequestMapping(params = "id", method = RequestMethod.GET)
@@ -86,7 +91,7 @@ public class UserController {
         modelMap.addAttribute("httpMethod", "POST");
         modelMap.addAttribute("user", new RequestUser());
 
-        return "user/input";
+        return "kajur/input";
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -113,6 +118,7 @@ public class UserController {
         user.setPhone1(requestUser.getPhone1());
         user.setPhone2(requestUser.getPhone2());
         user.setEnabled(requestUser.getEnabled());
+        user.setRole(new Role("PEWAWANCARA"));
 
         try {
            userService.save(user);
@@ -136,7 +142,7 @@ public class UserController {
         modelMap.addAttribute("event", "EDIT");
         modelMap.addAttribute("httpMethod", "PUT");
         modelMap.addAttribute("user", requestUser);
-        return "user/input";
+        return "kajur/input";
     }
 
     @RequestMapping(method = RequestMethod.PUT)
@@ -158,7 +164,7 @@ public class UserController {
         newUser.setPhone1(requestUser.getPhone1());
         newUser.setPhone2(requestUser.getPhone2());
         newUser.setEnabled(requestUser.getEnabled());
-
+        newUser.setRole(new Role("PEWAWANCARA"));
         try {
             userService.update(newUser);
             return "Sukses";

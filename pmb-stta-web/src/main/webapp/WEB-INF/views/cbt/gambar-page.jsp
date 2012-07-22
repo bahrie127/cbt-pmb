@@ -101,7 +101,7 @@
                     </li>
                     <li class="">
                         <a href="${url_hasil}" >
-                            <button class="badge badge-error" id="autoklik">SELESAI</button>
+                            <button class="badge badge-error">SELESAI</button>
                         </a>
 
                     </li>
@@ -146,10 +146,10 @@
                 <c:set var="pengerjaanSoalId" value="${pengerjaanSoalItem.id}"/>
                 <c:set var="terjawabId" value="${pengerjaanSoalItem.jawaban.id}"/>
                 <c:set var="nomor" value="${nomor + 1}"/>
-                <li>
+                <li style="color: #085219;">
                         ${nomor}. <img src="<c:url value="${pengerjaanSoalItem.soal.pertanyaan}"/>"
                                        style="height: 100px;width: 350px" class="thumbnail"/><br/>
-                    <ul class="nav">
+                            <ul class="nav" style="color: #17268c;">
                         <li>
                             <ul class="nav nav-pills" style="margin-left: 15px">
                                 <li>
@@ -262,7 +262,19 @@
     </form:form>
 </div>
 
+<input style="visibility:hidden;" type="button" value="Hello world!" id="autoklik"/>
 
+<div id="modal" class="modal hide fade in">
+    <div class="modal-header">
+        <div align="center">
+            Waktu Pengerjaan Verbal Selesai <br/>
+            <a href="${url_hasil}" >
+                <button class="badge badge-error">LANJUT SOAL NUMERIK</button>
+            </a>
+        </div>
+    </div>
+
+</div>
 <%--<div class="row">--%>
 <%--<div class="pagination pagination-centered ">--%>
 <%--<ul class="btn-group">--%>

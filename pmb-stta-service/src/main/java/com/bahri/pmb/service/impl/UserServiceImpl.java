@@ -1,6 +1,7 @@
 package com.bahri.pmb.service.impl;
 
 
+import com.bahri.pmb.domain.Role;
 import com.bahri.pmb.domain.User;
 import com.bahri.pmb.service.UserService;
 import org.hibernate.SessionFactory;
@@ -79,6 +80,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findUsers() {
         List<User> users = (List<User>) sessionFactory.getCurrentSession().createQuery("from User rg").list();
+        return users;
+    }
+
+    @Override
+    public List<User> findUsers(Role role) {
+        List<User> users = (List<User>) sessionFactory.getCurrentSession().createQuery("from User rg where rg.role=:role").setParameter("role",role).list();
         return users;
     }
 

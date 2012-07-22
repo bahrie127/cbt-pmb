@@ -78,9 +78,9 @@ public class UjianServiceImpl implements UjianService{
     @Override
     public List<Ujian> findUjians(int pilihan, String jurusan) {
         if(pilihan==1){
-            return sessionFactory.getCurrentSession().createQuery("from Ujian o where o.calonMahasiswa.pilihanPertama=:pilihanPertama").setParameter("pilihanPertama",jurusan).list();
+            return sessionFactory.getCurrentSession().createQuery("from Ujian o where o.calonMahasiswa.pilihanPertama=:pilihanPertama order by o.hasil desc ").setParameter("pilihanPertama",jurusan).list();
         }else if(pilihan==2){
-            return sessionFactory.getCurrentSession().createQuery("from Ujian o where o.calonMahasiswa.pilihanKedua=:pilihanKedua").setParameter("pilihanKedua",jurusan).list();
+            return sessionFactory.getCurrentSession().createQuery("from Ujian o where o.calonMahasiswa.pilihanKedua=:pilihanKedua order by o.hasil desc ").setParameter("pilihanKedua",jurusan).list();
         }
         return new ArrayList<Ujian>();
     }

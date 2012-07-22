@@ -42,8 +42,8 @@
             <td style="text-align: center">${hasil.hasil}</td>
             <td>
                 <div align="center">
-                    <a class="btn edit btn-info" href="#"><i
-                            class="icon-print icon-white" title="edit"></i>Print</a>
+                    <a class="btn edit btn-info" href="/cbt-pmb/ujian/print?id=${hasil.calonMahasiswa.id}" target="_blank"><i
+                            class="icon-print icon-white" title="print"></i>Print</a>
                 </div>
             </td>
         </tr>

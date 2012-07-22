@@ -1,5 +1,7 @@
 package com.bahri.pmb.simple;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by IntelliJ IDEA.
  * User: bahrie
@@ -14,6 +16,7 @@ public class Statistik {
     private Double numerik;
     private Double logikal;
     private Double gambar;
+    DecimalFormat twoDForm = new DecimalFormat("#.##");
 
     public String getJurusan() {
         return jurusan;
@@ -36,7 +39,7 @@ public class Statistik {
     }
 
     public void setVerbal(Double verbal) {
-        this.verbal = verbal;
+        this.verbal = Double.valueOf(twoDForm.format((verbal==null?0d:verbal)));
     }
 
     public Double getNumerik() {
@@ -44,7 +47,7 @@ public class Statistik {
     }
 
     public void setNumerik(Double numerik) {
-        this.numerik = numerik;
+        this.numerik = Double.valueOf(twoDForm.format((numerik==null?0d:numerik)));
     }
 
     public Double getLogikal() {
@@ -52,7 +55,7 @@ public class Statistik {
     }
 
     public void setLogikal(Double logikal) {
-        this.logikal = logikal;
+        this.logikal = Double.valueOf(twoDForm.format((logikal==null?0d:logikal)));
     }
 
     public Double getGambar() {
@@ -60,6 +63,6 @@ public class Statistik {
     }
 
     public void setGambar(Double gambar) {
-        this.gambar = gambar;
+        this.gambar = Double.valueOf(twoDForm.format((gambar==null?0d:gambar)));
     }
 }

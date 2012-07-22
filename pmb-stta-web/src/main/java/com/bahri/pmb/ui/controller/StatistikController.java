@@ -1,6 +1,7 @@
 package com.bahri.pmb.ui.controller;
 
 import com.bahri.pmb.domain.Kategori;
+import com.bahri.pmb.domain.Ujian;
 import com.bahri.pmb.service.CalonMahasiswaService;
 import com.bahri.pmb.service.KategoriService;
 import com.bahri.pmb.service.UjianService;
@@ -154,69 +155,24 @@ public class StatistikController {
         return "statistik/listpilihankedua";
     }
 
-    @RequestMapping(params = "id", method = RequestMethod.GET)
-    public String find(ModelMap modelMap, @RequestParam("id") Kategori kategori) {
-        modelMap.addAttribute("event", "DETAIL");
-        modelMap.addAttribute("kategori",kategori);
-        return "kategori/input";
+    @RequestMapping(value = "detail", method = RequestMethod.GET)
+    public String find(ModelMap modelMap, @RequestParam("pilihan") int pilihan,@RequestParam("jurusan")String jurusan) {
+        String jurus="tp";
+        if(jurusan.equals("T. Penerbangan"))
+            jurus="tp";
+        if(jurusan.equals("T. Informatika"))
+            jurus="tf";
+        if(jurusan.equals("T. Industri"))
+            jurus="ti";
+        if(jurusan.equals("T. Mesin"))
+            jurus="tm";
+        if(jurusan.equals("T. Elektro"))
+            jurus="te";
+        List<Ujian> ujians=ujianService.findUjians(pilihan,jurus);
+        modelMap.addAttribute("statistiks",ujians);
+        return "statistik/detail";
     }
 
-    @RequestMapping(params = "id", method = RequestMethod.DELETE)
-    public @ResponseBody String delete(@RequestParam("id") Kategori kategori) {
-        try{
-            kategoriService.delete(kategori);
-            return "Sukses";
-        }catch (HibernateException e){
-            return "Gagal";
-        }
-    }
-
-    @RequestMapping(value = "new", method = RequestMethod.GET)
-    public String create(ModelMap modelMap) {
-        modelMap.addAttribute("event", "INPUT");
-        modelMap.addAttribute("httpMethod", "POST");
-        modelMap.addAttribute("kategori", new Kategori());
-        return "kategori/input";
-    }
-
-    @RequestMapping(method = RequestMethod.POST)
-    public @ResponseBody String save(@Valid @ModelAttribute("kategori") Kategori kategori, BindingResult bindingResult, ModelMap modelMap){
-
-        if(kategori == null) return "Gagal";
-        if(kategori.getNama()==null) return "Gagal";
-        if(kategori.getNama().isEmpty()) return "Gagal";
-        if(bindingResult.hasErrors()) return "Gagal";
-
-        try{
-            kategoriService.save(kategori);
-            return "Sukses";
-        }catch (HibernateException e){
-            return "Gagal";
-        }
-    }
-
-    @RequestMapping(value = "edit", params = "id", method = RequestMethod.GET)
-    public String edit(ModelMap modelMap, @RequestParam("id")Kategori kategori) {
-
-        modelMap.addAttribute("event", "EDIT");
-        modelMap.addAttribute("httpMethod", "PUT");
-        modelMap.addAttribute("kategori",kategori);
-        return "kategori/input";
-    }
-
-    @RequestMapping(method = RequestMethod.PUT)
-    public @ResponseBody String update(@Valid @ModelAttribute("kategori") Kategori kategori, BindingResult bindingResult, ModelMap modelMap){
-
-        if(kategori == null) return "Gagal";
-        if(bindingResult.hasErrors()) return "Gagal";
-
-        try{
-            kategoriService.save(kategori);
-            return "Sukses";
-        }catch (HibernateException e){
-            return "Gagal";
-        }
-    }
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) throws Exception{
