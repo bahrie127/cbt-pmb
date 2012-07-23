@@ -143,7 +143,7 @@ public class UjianController {
             }
             this.namaCalonMahasiswa = calonMahasiswa.getNama();
             modelMap.addAttribute("namaPeserta", calonMahasiswa.getNama());
-            modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, 0, (soalVerbal - 1)));
+            modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, 0, soalVerbal));
             modelMap.addAttribute("nomor", "0");
             modelMap.addAttribute("url", "/cbt-pmb/ujian");
             modelMap.addAttribute("url_hasil", "/cbt-pmb/ujian?page=2");
@@ -165,9 +165,9 @@ public class UjianController {
 
         if (page == 2) {
             modelMap.addAttribute("namaPeserta", namaCalonMahasiswa);
-            modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, soalVerbal, (soalVerbal + soalNumerik - 1)));
+            modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, soalVerbal, (soalVerbal + soalNumerik )));
             modelMap.addAttribute("nomor", soalVerbal + "");
-            modelMap.addAttribute("mulai", soalVerbal + "");
+            modelMap.addAttribute("mulai", (soalVerbal+1) + "");
             modelMap.addAttribute("url", "/cbt-pmb/ujian");
             modelMap.addAttribute("url_hasil", "/cbt-pmb/ujian?page=3");
             modelMap.addAttribute("waktu", waktuPengerjaanNumerik);
@@ -178,7 +178,7 @@ public class UjianController {
         }
         if (page == 3) {
             modelMap.addAttribute("namaPeserta", namaCalonMahasiswa);
-            modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, (soalVerbal + soalNumerik), (soalVerbal + soalNumerik + soalLogika - 1)));
+            modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, (soalVerbal + soalNumerik), (soalVerbal + soalNumerik + soalLogika )));
             modelMap.addAttribute("nomor", (soalVerbal + soalNumerik) + "");
             modelMap.addAttribute("url", "/cbt-pmb/ujian");
             modelMap.addAttribute("url_hasil", "/cbt-pmb/ujian?page=4");
@@ -187,14 +187,14 @@ public class UjianController {
         }
         if (page == 4) {
             modelMap.addAttribute("namaPeserta", namaCalonMahasiswa);
-            modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, (soalVerbal + soalNumerik + soalLogika), (soalVerbal + soalNumerik + soalLogika + soalGambar - 1)));
+            modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, (soalVerbal + soalNumerik + soalLogika), (soalVerbal + soalNumerik + soalLogika + soalGambar)));
             modelMap.addAttribute("nomor", (soalVerbal + soalNumerik + soalLogika) + "");
             modelMap.addAttribute("url", "/cbt-pmb/ujian");
             modelMap.addAttribute("url_hasil", "/cbt-pmb/ujian/hasil");
             modelMap.addAttribute("waktu", waktuPengerjaanGambar);
             return "cbt/gambar-page";
         }
-        modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, 0, (soalVerbal - 1)));
+        modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, 0, (soalVerbal)));
         modelMap.addAttribute("nomor", "0");
         modelMap.addAttribute("url", "/cbt-pmb/ujian");
         modelMap.addAttribute("url_hasil", "/cbt-pmb/ujian?page=2");
@@ -259,7 +259,7 @@ public class UjianController {
         hasilNumerik=Float.valueOf(twoDForm.format(hasilNumerik));
 
         int benarSoalLogika = 0;
-        for (PengerjaanSoal pengerjaanSoal : allPengerjaanVerbal) {
+        for (PengerjaanSoal pengerjaanSoal : allPengerjaanLogika) {
             if (pengerjaanSoal.getJawaban() != null && pengerjaanSoal.getJawaban().getKebenaran()) {
                 benarSoalLogika++;
             }
@@ -268,7 +268,7 @@ public class UjianController {
         hasilLogika=Float.valueOf(twoDForm.format(hasilLogika));
 
         int benarSoalGambar = 0;
-        for (PengerjaanSoal pengerjaanSoal : allPengerjaanVerbal) {
+        for (PengerjaanSoal pengerjaanSoal : allPengerjaanGambar) {
             if (pengerjaanSoal.getJawaban() != null && pengerjaanSoal.getJawaban().getKebenaran()) {
                 benarSoalGambar++;
             }

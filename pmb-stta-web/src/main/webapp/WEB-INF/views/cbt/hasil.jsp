@@ -70,7 +70,7 @@
 
     <h2 class="row" style="text-align: center">Persentase kebenaran soal Gambar : ${gambar} %</h2>
 
-   <h2 class="row" style="text-align: center">Nilai rata-rata anda adalah : ${hasil} %</h2>
+   <h2 class="row" style="text-align: center">Nilai rata-rata anda adalah : ${hasil} </h2>
 
     <div style="clear: both;"></div>
 

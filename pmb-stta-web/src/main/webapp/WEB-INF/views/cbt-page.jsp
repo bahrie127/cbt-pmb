@@ -351,7 +351,9 @@
     }
 
     $("#autoklik").click(function(){
-        $("#modal").modal('show');
+        $("#modal").modal({
+            backdrop:false
+        });
     });
 </script>
 
@@ -366,6 +368,23 @@
             }
         });
     }
+</script>
+
+<script type="text/javascript">
+//    $(document).on("click", "#ondoel-tabel-center tbody tr", function (eventObject) {
+//
+//
+//        if (eventObject.type === 'click') {
+//            $(this).find("div.hide-action").css({
+//                'display':'block'
+//            });
+//        } else {
+//            $(this).find("div.hide-action").css({
+//                'display':'none'
+//            });
+//        }
+//
+//    });
 </script>
 
 </body>

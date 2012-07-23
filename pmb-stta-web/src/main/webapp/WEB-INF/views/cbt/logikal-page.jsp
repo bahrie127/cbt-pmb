@@ -263,9 +263,9 @@
 <div id="modal" class="modal hide fade in">
     <div class="modal-header">
         <div align="center">
-            Waktu Pengerjaan Verbal Selesai <br/>
+            Waktu Pengerjaan Logika Selesai <br/>
             <a href="${url_hasil}" >
-                <button class="badge badge-error">LANJUT SOAL NUMERIK</button>
+                <button class="badge badge-error">LANJUT SOAL GAMBAR</button>
             </a>
         </div>
     </div>
@@ -360,6 +360,12 @@
             }
         });
     }
+
+    $("#autoklik").click(function(){
+        $("#modal").modal({
+            backdrop:false
+        });
+    });
 </script>
 
 <script type="text/javascript">
