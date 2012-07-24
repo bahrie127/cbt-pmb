@@ -153,7 +153,7 @@
                                                 <li><a id="accordianToggleKajur" class=" accordion-toggle "
                                                        href="#collapseKajur"
                                                        data-parent="#accordion2"
-                                                       data-toggle="collapse">Kajur</a></li>
+                                                       data-toggle="collapse">Pewawancara</a></li>
                                                 </sec:authorize>
                                             <li><a id="accordianToggleStatistik" class=" accordion-toggle "
                                                    href="#collapseStatistik"

@@ -9,7 +9,7 @@
 //    defaultkan funsgsi reload ke reload deposit
 reload = function(){
     $.ajax({
-        url: '/cbt-pmb/ujian',
+        url: '/cbt-pmb/hasilUjian',
         type: 'GET',
         success: function(result) {
             $('#bundleList').html(result);

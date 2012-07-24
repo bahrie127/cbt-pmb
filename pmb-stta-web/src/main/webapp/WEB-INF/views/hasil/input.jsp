@@ -54,7 +54,7 @@
 
                 <%--tombol hanya muncul waktu input dan edit--%>
             <c:if test="${!enabledInput}">
-                <button type="submit" class="btn btn-primary"><i class="icon-white icon-download-alt"></i> Simpan
+                <button type="submit" class="btn btn-primary"><i class="icon-white icon-download-alt"></i> Cari
                 </button>
                 <input type="reset" class="btn" data-dismiss="modal" value="Batal">
             </c:if>

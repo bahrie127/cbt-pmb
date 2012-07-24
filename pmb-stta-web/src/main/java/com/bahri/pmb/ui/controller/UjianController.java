@@ -235,10 +235,10 @@ public class UjianController {
 
 
         List<PengerjaanSoal> allPengerjaanSoal = ujian.getPengerjaanSoalList();
-        List<PengerjaanSoal> allPengerjaanVerbal = ConstantUtils.tampilkanDiPanelPengerjaanSoal(allPengerjaanSoal, 0, (soalVerbal - 1));
-        List<PengerjaanSoal> allPengerjaanNumerik = ConstantUtils.tampilkanDiPanelPengerjaanSoal(allPengerjaanSoal, soalVerbal, (soalVerbal + soalNumerik - 1));
-        List<PengerjaanSoal> allPengerjaanLogika = ConstantUtils.tampilkanDiPanelPengerjaanSoal(allPengerjaanSoal, (soalVerbal + soalNumerik), (soalVerbal + soalNumerik + soalLogika - 1));
-        List<PengerjaanSoal> allPengerjaanGambar = ConstantUtils.tampilkanDiPanelPengerjaanSoal(allPengerjaanSoal, (soalVerbal + soalNumerik + soalLogika), (soalVerbal + soalNumerik + soalLogika + soalGambar - 1));
+        List<PengerjaanSoal> allPengerjaanVerbal = ConstantUtils.tampilkanDiPanelPengerjaanSoal(allPengerjaanSoal, 0, soalVerbal);
+        List<PengerjaanSoal> allPengerjaanNumerik = ConstantUtils.tampilkanDiPanelPengerjaanSoal(allPengerjaanSoal, soalVerbal, (soalVerbal + soalNumerik));
+        List<PengerjaanSoal> allPengerjaanLogika = ConstantUtils.tampilkanDiPanelPengerjaanSoal(allPengerjaanSoal, (soalVerbal + soalNumerik), (soalVerbal + soalNumerik + soalLogika));
+        List<PengerjaanSoal> allPengerjaanGambar = ConstantUtils.tampilkanDiPanelPengerjaanSoal(allPengerjaanSoal, (soalVerbal + soalNumerik + soalLogika), (soalVerbal + soalNumerik + soalLogika + soalGambar));
 
         int benarSoalVerbal = 0;
         for (PengerjaanSoal pengerjaanSoal : allPengerjaanVerbal) {
@@ -282,7 +282,8 @@ public class UjianController {
                 benarALlSoal++;
             }
         }
-        float hasil = ((float) benarALlSoal / allPengerjaanSoal.size()) * (float) 100;
+        float hasil = 0f; //((float) benarALlSoal / allPengerjaanSoal.size()) * (float) 100;
+        hasil=(hasilVerbal+hasilNumerik+hasilLogika+hasilGambar)/4;
         hasil=Float.valueOf(twoDForm.format(hasil));
 
         ujian.setNilaiVerbal(hasilVerbal);
