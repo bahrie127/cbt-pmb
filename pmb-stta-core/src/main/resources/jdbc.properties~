@@ -1,7 +1,12 @@
  # DB Development
-hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-jdbc.driver = com.mysql.jdbc.Driver
-jdbc.url = jdbc:mysql://localhost/mgm?zeroDateTimeBehavior=convertToNull&autoReconnect=true
-jdbc.username = mgm
-jdbc.password = mErpatGroup789
-
+hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+jdbc.driver      = org.postgresql.Driver
+jdbc.url         = jdbc:postgresql://10.10.10.2:5432/stta
+jdbc.username    = jatisia
+jdbc.password    = 090906
+#
+#jdbc.driver      = com.mysql.jdbc.Driver
+#jdbc.url         = jdbc:mysql://localhost/cbt-pmb
+#jdbc.username    = root
+#jdbc.password    = admin
+#hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect

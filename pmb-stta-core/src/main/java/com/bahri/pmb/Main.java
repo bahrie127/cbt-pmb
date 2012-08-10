@@ -17,9 +17,10 @@ public class Main {
 //        Long b=new GregorianCalendar().getTimeInMillis(); //271088165510156
 //        System.out.println(((1L << 48) - 1));
 //
-        for(int i=0;i<20;i++){
-            System.out.println(RandomUtil.nextRandom(20));
-        }
+//        for(int i=0;i<20;i++){
+//            System.out.println(RandomUtil.nextRandom(20));
+//        }
+        System.out.println(10%7);
 
     }
 }

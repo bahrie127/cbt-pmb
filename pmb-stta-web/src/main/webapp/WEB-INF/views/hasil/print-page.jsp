@@ -119,6 +119,14 @@
                     <td>Nilai Akhir</td>
                     <td>${nilaiAkhir}</td>
                 </tr>
+                <tr>
+                    <td>Hasil Ujian untuk Pilihan Pertama</td>
+                    <td>${lulus1}</td>
+                </tr>
+                <tr>
+                    <td>Hasil Ujian untuk Pilihan Kedua</td>
+                    <td>${lulus2}</td>
+                </tr>
             </table>
             <h3 align="center">Grade Lulus</h3>
             
@@ -168,7 +176,7 @@
         <div style="clear: both;"></div>
 
         <div class="row" style="text-align: center">
-            <p> Saiful Bahri &copy; 2012</p>
+            <p> CBT PMB STTA &copy; 2012</p>
         </div>
 
     </div>

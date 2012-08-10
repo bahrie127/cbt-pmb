@@ -31,10 +31,14 @@ function CountBack(secs) {
     if (secs < 0) {
 //        document.getElementById("cntdwn").innerHTML = FinishMessage;
      //   alert("waktu selesai, menuju soal selanjutnya");
-        document.getElementById("autoklik").click();
+       // document.getElementById("autoklik").click();
 //        var url=$('#urlhasil').val();
 //        alert(url);
 //        window.location.href=url;
+
+        $("#modal").modal({
+            backdrop:false
+        });
         return;
     }
     DisplayStr = DisplayFormat.replace(/%%D%%/g, calcage(secs,86400,100000));

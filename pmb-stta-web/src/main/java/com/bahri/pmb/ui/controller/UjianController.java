@@ -14,6 +14,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -52,86 +54,52 @@ public class UjianController {
     @Qualifier("calonMahasiswaService")
     private CalonMahasiswaService calonMahasiswaService;
 
-    List<Soal> allSoals;
-
-    List<Soal> soalVerbals;
-    List<Soal> soalNumeriks;
-    List<Soal> soalLogikals;
-    List<Soal> soalGambars;
-    List<PengerjaanSoal> pengerjaanSoals;
-    Ujian ujian;
-    Long noPendaftaran = 0L;
-    String waktu;
-    String waktuPengerjaanVerbal;
-    String waktuPengerjaanNumerik;
-    String waktuPengerjaanLogikal;
-    String waktuPengerjaanGambar;
-
     int soalVerbal;
     int soalNumerik;
     int soalLogika;
     int soalGambar;
 
-    int urutanJenisSoal = 0;
-
-    String namaCalonMahasiswa;
+   // String namaCalonMahasiswa;
 
     @RequestMapping(value = "mulai", method = RequestMethod.GET)
-    public String ujianMulai(ModelMap modelMap, @RequestParam(value = "noPendaftaran") String noPendaftaran) {
+    public String ujianMulai(ModelMap modelMap, @RequestParam(value = "noPendaftaran") String noPendaftaran, HttpServletRequest request) {
+
         if (!(noPendaftaran).matches("\\p{Digit}+")) {
             modelMap.addAttribute("param", "gagal");
             return "login-peserta";
         }
-        int waktuVerbal = settingService.getSetting().getWaktuPengerjaanVerbal();
-        int waktuNumerik = settingService.getSetting().getWaktuPengerjaanNumerik();
-        int waktuLogikal = settingService.getSetting().getWaktuPengerjaanLogikal();
-        int waktuGambar = settingService.getSetting().getWaktuPengerjaanGambar();
-        if (this.noPendaftaran == 0L) {
-            waktuPengerjaanVerbal = CalendarUtil.timeToStringUjian(new GregorianCalendar(), waktuVerbal);
-            waktuPengerjaanNumerik = CalendarUtil.timeToStringUjian(new GregorianCalendar(), (waktuVerbal + waktuNumerik));
-            waktuPengerjaanLogikal = CalendarUtil.timeToStringUjian(new GregorianCalendar(), (waktuVerbal + waktuNumerik + waktuLogikal));
-            waktuPengerjaanGambar = CalendarUtil.timeToStringUjian(new GregorianCalendar(), (waktuVerbal + waktuNumerik + waktuLogikal + waktuGambar));
+        List<PengerjaanSoal> pengerjaanSoals=new ArrayList<PengerjaanSoal>();
 
-        } else {
-            if (this.noPendaftaran != Long.parseLong(noPendaftaran)) {
-                waktuPengerjaanVerbal = CalendarUtil.timeToStringUjian(new GregorianCalendar(), waktuVerbal);
-                waktuPengerjaanNumerik = CalendarUtil.timeToStringUjian(new GregorianCalendar(), (waktuVerbal + waktuNumerik));
-                waktuPengerjaanLogikal = CalendarUtil.timeToStringUjian(new GregorianCalendar(), (waktuVerbal + waktuNumerik + waktuLogikal));
-                waktuPengerjaanGambar = CalendarUtil.timeToStringUjian(new GregorianCalendar(), (waktuVerbal + waktuNumerik + waktuLogikal + waktuGambar));
-            }
-        }
-        this.noPendaftaran = Long.parseLong(noPendaftaran);
-        CalonMahasiswa calonMahasiswa = calonMahasiswaService.findCalonMahasiswa(this.noPendaftaran);
+        CalonMahasiswa calonMahasiswa = calonMahasiswaService.findCalonMahasiswa(Long.valueOf(noPendaftaran));
 
         if (calonMahasiswa != null) {
-            CalonMahasiswa cm = new CalonMahasiswa();
-            cm.setId(this.noPendaftaran);
-            ujian = new Ujian();
-            ujian = ujianService.findUjianByPendaftaran(cm);
+            HttpSession session=request.getSession();
+            session.setAttribute("noPendaftaran",noPendaftaran);
+            
+            Ujian ujian = new Ujian();
+            ujian = ujianService.findUjianByPendaftaran(calonMahasiswa);
 
             if (ujian == null) {
                 ujian = new Ujian();
-                ujian.setCalonMahasiswa(cm);
-                this.getAllSoals();
-                List<PengerjaanSoal> pengerjaanSoals = new ArrayList<PengerjaanSoal>();
+                ujian.setCalonMahasiswa(calonMahasiswa);
+                List<Soal> allSoals=getAllSoals();
+                List<PengerjaanSoal> siapPengerjaanSoals = new ArrayList<PengerjaanSoal>();
                 Jawaban jawaban = new Jawaban();
                 jawaban.setId(2L);
                 for (int i = 0; i < allSoals.size(); i++) {
                     PengerjaanSoal pengerjaanSoal = new PengerjaanSoal();
                     pengerjaanSoal.setSoal(allSoals.get(i));
                     pengerjaanSoal.setJawaban(jawaban);
-                    pengerjaanSoals.add(pengerjaanSoal);
+                    siapPengerjaanSoals.add(pengerjaanSoal);
                 }
 
-                ujian.setPengerjaanSoalList(pengerjaanSoals);
+                ujian.setPengerjaanSoalList(siapPengerjaanSoals);
 
                      ujianService.save(ujian);
-
-                this.pengerjaanSoals = pengerjaanSoals;
-
+                pengerjaanSoals = ujianService.findPengerjaanSoalByPendaftaran(calonMahasiswa);
             } else {
                 if (ujian.getHasil()==null){
-                    pengerjaanSoals = ujianService.findPengerjaanSoalByPendaftaran(cm);
+                    pengerjaanSoals = ujianService.findPengerjaanSoalByPendaftaran(calonMahasiswa);
                     soalVerbal=settingService.getSetting().getJumlahSoalSinonimTampil()+settingService.getSetting().getJumlahSoalAntonimTampil()+settingService.getSetting().getJumlahSoalPadananTampil();
                     soalNumerik=settingService.getSetting().getJumlahSoalSeriAngkaTampil()+settingService.getSetting().getJumlahSoalSeriHurufTampil()+settingService.getSetting().getJumlahSoalTeknikalTampil();
                     soalLogika=settingService.getSetting().getJumlahSoalLogikalTampil();
@@ -141,13 +109,12 @@ public class UjianController {
                     return "login-peserta";
                 }
             }
-            this.namaCalonMahasiswa = calonMahasiswa.getNama();
             modelMap.addAttribute("namaPeserta", calonMahasiswa.getNama());
             modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, 0, soalVerbal));
             modelMap.addAttribute("nomor", "0");
             modelMap.addAttribute("url", "/cbt-pmb/ujian");
             modelMap.addAttribute("url_hasil", "/cbt-pmb/ujian?page=2");
-            modelMap.addAttribute("waktu", waktuPengerjaanVerbal);
+            modelMap.addAttribute("waktu", CalendarUtil.timeToStringUjian(new GregorianCalendar(),settingService.getSetting().getWaktuPengerjaanVerbal()));
 
             modelMap.addAttribute("jSoalSinonim", settingService.getSetting().getJumlahSoalSinonimTampil());
             modelMap.addAttribute("jSoalAntonim", settingService.getSetting().getJumlahSoalAntonimTampil());
@@ -161,44 +128,46 @@ public class UjianController {
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public String find(ModelMap modelMap, @RequestParam(value = "page", defaultValue = "1") int page) {
-
+    public String find(ModelMap modelMap, @RequestParam(value = "page", defaultValue = "1") int page,HttpServletRequest request) {
+            HttpSession session=request.getSession();
+        CalonMahasiswa calonMahasiswa=calonMahasiswaService.findCalonMahasiswa(Long.valueOf(session.getAttribute("noPendaftaran")+""));
+        List<PengerjaanSoal> pengerjaanSoals=ujianService.findPengerjaanSoalByPendaftaran(calonMahasiswa);
         if (page == 2) {
-            modelMap.addAttribute("namaPeserta", namaCalonMahasiswa);
+            modelMap.addAttribute("namaPeserta", calonMahasiswa.getNama());
             modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, soalVerbal, (soalVerbal + soalNumerik )));
             modelMap.addAttribute("nomor", soalVerbal + "");
             modelMap.addAttribute("mulai", (soalVerbal+1) + "");
             modelMap.addAttribute("url", "/cbt-pmb/ujian");
             modelMap.addAttribute("url_hasil", "/cbt-pmb/ujian?page=3");
-            modelMap.addAttribute("waktu", waktuPengerjaanNumerik);
+            modelMap.addAttribute("waktu", CalendarUtil.timeToStringUjian(new GregorianCalendar(),settingService.getSetting().getWaktuPengerjaanNumerik()));
             modelMap.addAttribute("jSoalSeriAngka", settingService.getSetting().getJumlahSoalSeriAngkaTampil());
             modelMap.addAttribute("jSoalSeriHuruf", settingService.getSetting().getJumlahSoalSeriHurufTampil());
             modelMap.addAttribute("jSoalTeknikal", settingService.getSetting().getJumlahSoalTeknikalTampil());
             return "cbt/numerik-page";
         }
         if (page == 3) {
-            modelMap.addAttribute("namaPeserta", namaCalonMahasiswa);
+            modelMap.addAttribute("namaPeserta", calonMahasiswa.getNama());
             modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, (soalVerbal + soalNumerik), (soalVerbal + soalNumerik + soalLogika )));
             modelMap.addAttribute("nomor", (soalVerbal + soalNumerik) + "");
             modelMap.addAttribute("url", "/cbt-pmb/ujian");
             modelMap.addAttribute("url_hasil", "/cbt-pmb/ujian?page=4");
-            modelMap.addAttribute("waktu", waktuPengerjaanLogikal);
+            modelMap.addAttribute("waktu", CalendarUtil.timeToStringUjian(new GregorianCalendar(),settingService.getSetting().getWaktuPengerjaanLogikal()));
             return "cbt/logikal-page";
         }
         if (page == 4) {
-            modelMap.addAttribute("namaPeserta", namaCalonMahasiswa);
+            modelMap.addAttribute("namaPeserta", calonMahasiswa.getNama());
             modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, (soalVerbal + soalNumerik + soalLogika), (soalVerbal + soalNumerik + soalLogika + soalGambar)));
             modelMap.addAttribute("nomor", (soalVerbal + soalNumerik + soalLogika) + "");
             modelMap.addAttribute("url", "/cbt-pmb/ujian");
             modelMap.addAttribute("url_hasil", "/cbt-pmb/ujian/hasil");
-            modelMap.addAttribute("waktu", waktuPengerjaanGambar);
+            modelMap.addAttribute("waktu", CalendarUtil.timeToStringUjian(new GregorianCalendar(),settingService.getSetting().getWaktuPengerjaanGambar()));
             return "cbt/gambar-page";
         }
         modelMap.addAttribute("ujian", ConstantUtils.tampilkanDiPanelPengerjaanSoal(pengerjaanSoals, 0, (soalVerbal)));
         modelMap.addAttribute("nomor", "0");
         modelMap.addAttribute("url", "/cbt-pmb/ujian");
         modelMap.addAttribute("url_hasil", "/cbt-pmb/ujian?page=2");
-        modelMap.addAttribute("waktu", waktuPengerjaanVerbal);
+        modelMap.addAttribute("waktu", CalendarUtil.timeToStringUjian(new GregorianCalendar(),settingService.getSetting().getWaktuPengerjaanVerbal()));
         modelMap.addAttribute("jSoalSinonim", settingService.getSetting().getJumlahSoalSinonimTampil());
         modelMap.addAttribute("jSoalAntonim", settingService.getSetting().getJumlahSoalAntonimTampil());
         modelMap.addAttribute("jSoalPadanan", settingService.getSetting().getJumlahSoalPadananTampil());
@@ -226,19 +195,44 @@ public class UjianController {
     }
 
     @RequestMapping(value = "hasil", method = RequestMethod.GET)
-    public String hasil(ModelMap modelMap) {
+    public String hasil(ModelMap modelMap,HttpServletRequest request) {
         DecimalFormat twoDForm = new DecimalFormat("#.##");
-        CalonMahasiswa cm = new CalonMahasiswa();
-        cm.setId(noPendaftaran);
+        HttpSession session=request.getSession();
+        CalonMahasiswa cm = calonMahasiswaService.findCalonMahasiswa(Long.valueOf(session.getAttribute("noPendaftaran")+""));
 
-        ujian = ujianService.findUjianByPendaftaran(cm);
+        Ujian ujian = ujianService.findUjianByPendaftaran(cm);
 
 
         List<PengerjaanSoal> allPengerjaanSoal = ujian.getPengerjaanSoalList();
-        List<PengerjaanSoal> allPengerjaanVerbal = ConstantUtils.tampilkanDiPanelPengerjaanSoal(allPengerjaanSoal, 0, soalVerbal);
-        List<PengerjaanSoal> allPengerjaanNumerik = ConstantUtils.tampilkanDiPanelPengerjaanSoal(allPengerjaanSoal, soalVerbal, (soalVerbal + soalNumerik));
-        List<PengerjaanSoal> allPengerjaanLogika = ConstantUtils.tampilkanDiPanelPengerjaanSoal(allPengerjaanSoal, (soalVerbal + soalNumerik), (soalVerbal + soalNumerik + soalLogika));
-        List<PengerjaanSoal> allPengerjaanGambar = ConstantUtils.tampilkanDiPanelPengerjaanSoal(allPengerjaanSoal, (soalVerbal + soalNumerik + soalLogika), (soalVerbal + soalNumerik + soalLogika + soalGambar));
+        //allPengerjaanSoal.
+        List<PengerjaanSoal> allPengerjaanVerbal = new ArrayList<PengerjaanSoal>();
+        for(PengerjaanSoal ps:allPengerjaanSoal){
+            if(ps.getSoal().getKategori().getJenisSoal().getNama().equals("TES BAHASA")){
+                allPengerjaanVerbal.add(ps);
+
+            }
+        }
+        List<PengerjaanSoal> allPengerjaanNumerik = new ArrayList<PengerjaanSoal>();
+        for(PengerjaanSoal ps:allPengerjaanSoal){
+            if(ps.getSoal().getKategori().getJenisSoal().getNama().equals("TES ANGKA")){
+                allPengerjaanNumerik.add(ps);
+
+            }
+        }
+        List<PengerjaanSoal> allPengerjaanLogika = new ArrayList<PengerjaanSoal>();
+        for(PengerjaanSoal ps:allPengerjaanSoal){
+            if(ps.getSoal().getKategori().getJenisSoal().getNama().equals("TES LOGIKA")){
+                allPengerjaanLogika.add(ps);
+
+            }
+        }
+        List<PengerjaanSoal> allPengerjaanGambar = new ArrayList<PengerjaanSoal>();
+        for(PengerjaanSoal ps:allPengerjaanSoal){
+            if(ps.getSoal().getKategori().getJenisSoal().getNama().equals("TES GAMBAR")){
+                allPengerjaanGambar.add(ps);
+
+            }
+        }
 
         int benarSoalVerbal = 0;
         for (PengerjaanSoal pengerjaanSoal : allPengerjaanVerbal) {
@@ -246,7 +240,7 @@ public class UjianController {
                 benarSoalVerbal++;
             }
         }
-        float hasilVerbal = ((float) benarSoalVerbal / allPengerjaanSoal.size()) * (float) 100;
+        float hasilVerbal = ((float) benarSoalVerbal / allPengerjaanVerbal.size()) * (float) 100;
         hasilVerbal=Float.valueOf(twoDForm.format(hasilVerbal));
 
         int benarSoalNumerik = 0;
@@ -255,7 +249,7 @@ public class UjianController {
                 benarSoalNumerik++;
             }
         }
-        float hasilNumerik = ((float) benarSoalNumerik / allPengerjaanVerbal.size()) * (float) 100;
+        float hasilNumerik = ((float) benarSoalNumerik / allPengerjaanNumerik.size()) * (float) 100;
         hasilNumerik=Float.valueOf(twoDForm.format(hasilNumerik));
 
         int benarSoalLogika = 0;
@@ -276,12 +270,12 @@ public class UjianController {
         float hasilGambar = ((float) benarSoalGambar / allPengerjaanGambar.size()) * (float) 100;
         hasilGambar=Float.valueOf(twoDForm.format(hasilGambar));
 
-        int benarALlSoal = 0;
-        for (PengerjaanSoal pengerjaanSoal : allPengerjaanSoal) {
-            if (pengerjaanSoal.getJawaban() != null && pengerjaanSoal.getJawaban().getKebenaran()) {
-                benarALlSoal++;
-            }
-        }
+//        int benarALlSoal = 0;
+//        for (PengerjaanSoal pengerjaanSoal : allPengerjaanSoal) {
+//            if (pengerjaanSoal.getJawaban() != null && pengerjaanSoal.getJawaban().getKebenaran()) {
+//                benarALlSoal++;
+//            }
+//        }
         float hasil = 0f; //((float) benarALlSoal / allPengerjaanSoal.size()) * (float) 100;
         hasil=(hasilVerbal+hasilNumerik+hasilLogika+hasilGambar)/4;
         hasil=Float.valueOf(twoDForm.format(hasil));
@@ -293,13 +287,14 @@ public class UjianController {
         ujian.setHasil(hasil);
 
         ujianService.save(ujian);
-        modelMap.addAttribute("noPendaftaran", noPendaftaran);
-        modelMap.addAttribute("nama", namaCalonMahasiswa);
+        modelMap.addAttribute("noPendaftaran", cm.getId());
+        modelMap.addAttribute("nama", cm.getNama());
         modelMap.addAttribute("verbal", hasilVerbal);
         modelMap.addAttribute("numerik", hasilNumerik);
         modelMap.addAttribute("logika", hasilLogika);
         modelMap.addAttribute("gambar", hasilGambar);
         modelMap.addAttribute("hasil", hasil);
+
         return "cbt/hasil";
 
     }
@@ -394,33 +389,45 @@ public class UjianController {
         modelMap.addAttribute("gradeLogika2",gradeLulusService.getGradeLulus(pilihanKedua).getBatasLogika());
         modelMap.addAttribute("gradeGambar1",gradeLulusService.getGradeLulus(pilihanPertama).getBatasGambar());
         modelMap.addAttribute("gradeGambar2",gradeLulusService.getGradeLulus(pilihanKedua).getBatasGambar());
-        
+        if(ujian1.getNilaiGambar()>=gradeLulusService.getGradeLulus(pilihanPertama).getBatasGambar() &&
+                ujian1.getNilaiLogika()>=gradeLulusService.getGradeLulus(pilihanPertama).getBatasLogika() &&
+                ujian1.getNilaiNumerik()>=gradeLulusService.getGradeLulus(pilihanPertama).getBatasNumerik() &&
+                ujian1.getNilaiVerbal()>=gradeLulusService.getGradeLulus(pilihanPertama).getBatasVerbal()){
+            modelMap.addAttribute("lulus1","LULUS");
+        }                                           else{
+            modelMap.addAttribute("lulus1","TIDAK LULUS");
+        }
+        if(ujian1.getNilaiGambar()>=gradeLulusService.getGradeLulus(pilihanKedua).getBatasGambar() &&
+                ujian1.getNilaiLogika()>=gradeLulusService.getGradeLulus(pilihanKedua).getBatasLogika() &&
+                ujian1.getNilaiNumerik()>=gradeLulusService.getGradeLulus(pilihanKedua).getBatasNumerik() &&
+                ujian1.getNilaiVerbal()>=gradeLulusService.getGradeLulus(pilihanKedua).getBatasVerbal()){
+            modelMap.addAttribute("lulus2","LULUS");
+        }                                           else{
+            modelMap.addAttribute("lulus2","TIDAK LULUS");
+        }
          return "hasil/print-page";
     }
 
-    public void getAllSoals() {
-        getSoalVerbals();
-        getSoalNumerik();
-        getSoalLogikals();
-        getSoalGambars();
+    public List<Soal> getAllSoals() {
 
-        allSoals = new ArrayList<Soal>();
-        for (Soal soal : soalVerbals) {
+        List<Soal> allSoals = new ArrayList<Soal>();
+        for (Soal soal : getSoalVerbals()) {
             allSoals.add(soal);
         }
-        for (Soal soal : soalNumeriks) {
+        for (Soal soal : getSoalNumerik()) {
             allSoals.add(soal);
         }
-        for (Soal soal : soalLogikals) {
+        for (Soal soal : getSoalLogikals()) {
             allSoals.add(soal);
         }
-        for (Soal soal : soalGambars) {
+        for (Soal soal : getSoalGambars()) {
             allSoals.add(soal);
         }
+        return allSoals;
     }
 
-    public void getSoalVerbals() {
-        soalVerbals = new ArrayList<Soal>();
+    public List<Soal> getSoalVerbals() {
+        List<Soal> soalVerbals = new ArrayList<Soal>();
         int jumlahSoalSinonim = settingService.getSetting().getJumlahSoalSinonimTampil();
         int jumlahSoalAntonim = settingService.getSetting().getJumlahSoalAntonimTampil();
         int jumlahSoalPadanan = settingService.getSetting().getJumlahSoalPadananTampil();
@@ -452,11 +459,11 @@ public class UjianController {
             soal.setJawabans(setRandomJawaban(soal.getJawabans()));
             soalVerbals.add(soal);
         }
-
+        return soalVerbals;
     }
 
-    public void getSoalNumerik() {
-        soalNumeriks = new ArrayList<Soal>();
+    public List<Soal> getSoalNumerik() {
+        List<Soal> soalNumeriks = new ArrayList<Soal>();
         int jumlahSoalSeriAngka = settingService.getSetting().getJumlahSoalSeriAngkaTampil();
         int jumlahSoalSeriHuruf = settingService.getSetting().getJumlahSoalSeriHurufTampil();
         int jumlahSoalTeknikal = settingService.getSetting().getJumlahSoalTeknikalTampil();
@@ -488,11 +495,11 @@ public class UjianController {
             soal.setJawabans(setRandomJawaban(soal.getJawabans()));
             soalNumeriks.add(soal);
         }
-
+             return soalNumeriks;
     }
 
-    public void getSoalGambars() {
-        soalGambars = new ArrayList<Soal>();
+    public List<Soal> getSoalGambars() {
+        List<Soal> soalGambars = new ArrayList<Soal>();
         int jumlahSoalGambar = settingService.getSetting().getJumlahSoalGambarTampil();
         this.soalGambar = jumlahSoalGambar;
         List<Soal> soalGambarList = soalService.findSoalsByKategori(8L, jumlahSoalGambar);
@@ -504,11 +511,11 @@ public class UjianController {
             soal.setJawabans(setRandomJawaban(soal.getJawabans()));
             soalGambars.add(soal);
         }
-
+         return  soalGambars;
     }
 
-    public void getSoalLogikals() {
-        soalLogikals = new ArrayList<Soal>();
+    public List<Soal> getSoalLogikals() {
+        List<Soal>  soalLogikals = new ArrayList<Soal>();
         int jumlahSoalLogika = settingService.getSetting().getJumlahSoalLogikalTampil();
         this.soalLogika = jumlahSoalLogika;
         List<Soal> soalLogikalList = soalService.findSoalsByKategori(7L, jumlahSoalLogika);
@@ -520,7 +527,7 @@ public class UjianController {
             soal.setJawabans(setRandomJawaban(soal.getJawabans()));
             soalLogikals.add(soal);
         }
-
+           return soalLogikals;
     }
 
     public List<Soal> setRandomSoal(List<Soal> soalSebelumRandoms) {
