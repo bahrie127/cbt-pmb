@@ -268,7 +268,7 @@
                     <contextPath>/cbt-pmb</contextPath>
                     <connectors>
                         <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-                            <port>8081</port>
+                            <port>8083</port>
                             <maxIdleTime>60000</maxIdleTime>
                         </connector>
                     </connectors>
